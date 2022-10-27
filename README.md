@@ -17,10 +17,10 @@ As a user I want the ability to...
 	-communicate with other pet owners
 	-rating system 
 
-## User Stretch	
+## User Stretch	Goals
   - schedule meetings 
   - YOU GOT A MATCH
-  - 
+  
     
 ## Technology Used
   - HTML
