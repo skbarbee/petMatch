@@ -9,7 +9,7 @@ TBD
 ## User Stories
 As a user I want the ability to...
   - sign in  or register
-  - make a profile a for each your pet
+  - make a profile for each your pets
   - add profile pictures
   - see your pets
   - see all pets
@@ -47,11 +47,29 @@ As a user I want the ability to...
 
 ## Schedule
 
-- Friday 10/28:
-- Saturday 10/29:
-- Sunday 10/30:
-- Monday 10/31:
-- Tuesday 11/1:
-- Wednesday 11/2:
-- Thurday 11/3:
-- Friday 11/4: 
+- Friday 10/28: Pitch idea, Seed db, Get the back end going
+- Saturday 10/29: Testing with postman and make sure Back End is nearly good to go.
+- Sunday 10/30: Finish up Back End and start on Front End React
+- Monday 10/31: Front End
+- Tuesday 11/1: Front End React, should be near MVP
+- Wednesday 11/2: Goal: MVP status, Work on Front End Styling 
+- Thurday 11/3: Polish all details
+- Friday 11/4: Presentation Day
+
+## MVP
+
+- An app that looks and functions at least as well as the Pet App we did in class, with a navigation bar, and div boxes that display the users resources and allows the user to edit and delete them as well as make comments on them/leave messages for other users.
+
+## Example Seed Data 
+
+```
+const startPets = [
+  { name: "Jasmine Pedraza", type: "cat", breed: "Domestic Shorthair", likes: "playing ribbon", availableForPlayDate: true, rating: "3 fish" },
+  { name: "Trisca Laghari", type: "dog", breed: "American Husky", likes: "playing fetch", availableForPlayDate: true, rating: "5 bones" },
+  { name: "Chun Heu Kim", type: "cat", breed: "Orange Domestic Short hair", likes: "snuggle time", availableForPlayDate: true, rating: "4 fish" },
+  { name: "Estelle Darcy", type: "dog", breed: "Wirehaired Terrier", likes: "dog park playtime", availableForPlayDate: true, rating: "3 bones" }, 
+  { name: "Jiara Martins", type: "cat", breed: "Domestic Short Hair", likes: "guarding the water fountain", availableForPlayDate: false, rating: "3 fish" },
+  { name: "Margarita Perez", type: "dog", breed: "Chihuahua", likes: "spa days", availableForPlayDate: false, rating: "3 fish" }
+]
+
+```
