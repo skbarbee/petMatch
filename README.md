@@ -46,4 +46,12 @@ As a user I want the ability to...
 ![slide](/imageFiles/seedData.jpg)
 
 ## Schedule
-![slide](/imageFiles/planning.jpg)
+
+- Friday 10/28:
+- Saturday 10/29:
+- Sunday 10/30:
+- Monday 10/31:
+- Tuesday 11/1:
+- Wednesday 11/2:
+- Thurday 11/3:
+- Friday 11/4: 
