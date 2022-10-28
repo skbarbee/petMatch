@@ -8,14 +8,14 @@ TBD
 
 ## User Stories
 As a user I want the ability to...
-	-sign in  or register
-	-make a profile a for each your pet
-	-add profile pictures
-	-see your pets
-	-see all pets
-	-update profiles
-	-communicate with other pet owners
-	-rating system 
+	- sign in  or register
+	- make a profile a for each your pet
+	- add profile pictures
+	- see your pets
+	- see all pets
+	- update profiles
+	- communicate with other pet owners
+	- rating system 
 
 ## User Stretch	Goals
   - schedule meetings 
