@@ -12,7 +12,7 @@ const Home = (props) => {
 		<>
 	
 	<Container fluid className='center'>
-			<h1>Pet Match</h1>
+			<h1>PetMatch</h1>
 			<img fluid  src={picture} />
 			<h3> Find your best friend, their 2nd best friend</h3>
 	</Container>
