@@ -16,6 +16,7 @@ import ChangePassword from './components/auth/ChangePassword'
 
 // import Pet Routes
 import PetCreate from './components/pets/PetCreate'
+import PetIndex from './components/pets/PetIndex'
 
 const App = () => {
 
@@ -79,6 +80,13 @@ const App = () => {
                 <PetCreate msgAlert={msgAlert} user={user} />
               </RequireAuth>}
           />
+		  <Route
+            path='/petmatch'
+            element={
+              <RequireAuth user={user}>
+                <PetIndex msgAlert={msgAlert} user={user} />
+              </RequireAuth>}
+				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
