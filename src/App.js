@@ -3,6 +3,7 @@ import React, { useState, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
+
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
@@ -12,6 +13,9 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+
+// import Pet Routes
+import PetCreate from './components/pets/PetCreate'
 
 const App = () => {
 
@@ -66,6 +70,13 @@ const App = () => {
             element={
               <RequireAuth user={user}>
                 <ChangePassword msgAlert={msgAlert} user={user} />
+              </RequireAuth>}
+          />
+		     <Route
+            path='/newPet'
+            element={
+              <RequireAuth user={user}>
+                <PetCreate msgAlert={msgAlert} user={user} />
               </RequireAuth>}
           />
 				</Routes>
