@@ -38,7 +38,7 @@ const PetShow = ({ user, msgAlert }) => {
     }
 
     const handleUpdatePet = () => {
-        petUpdate(cat, user, id)
+        petUpdate(pet, user, id)
         .then(() => {
             msgAlert({
                 heading: 'Success',
