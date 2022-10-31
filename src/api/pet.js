@@ -4,7 +4,7 @@ import axios from 'axios'
 export const petCreate = (data, user) => {
 	return axios({
 		method: 'POST',
-		url: apiUrl + '/petmatch/newpet',
+		url: apiUrl + '/petmatch',
 		data: {
 			pet: data,
 		},
