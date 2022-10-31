@@ -1,10 +1,22 @@
+
+
+import React from "react"
+import { Container } from 'react-bootstrap'
+
+
 const Home = (props) => {
 	// const { msgAlert, user } = props
 	console.log('props in home', props)
-
+	const  picture = require("./shared/Mock-up.png") 
 	return (
 		<>
-			<h2>Home Page</h2>
+	
+	<Container fluid className='center'>
+			<h1>PetMatch</h1>
+			<img fluid  src={picture} />
+			<h3> Find your best friend, their 2nd best friend</h3>
+	</Container>
+	
 		</>
 	)
 }
