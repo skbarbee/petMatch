@@ -37,11 +37,11 @@ const PetUpdate = ({ pet, handleChange, handleUpdatePet }) => {
             value={pet.available}
             name='available'
             />
-            <input 
+            {/* <input 
             type='mongoose.Schema.Types.ObjectId'
             value={[ratingSchema]}
             name='rating'
-            />
+            /> */}
 			<button onClick={handleUpdatePet}>Update Pet</button>
 		</>
 	)

@@ -17,7 +17,7 @@ export const petCreate = (data, user) => {
 export const petUpdate = (data, user, id) => {
     return axios({
         method: 'PATCH',
-        url: apiUrl + '/petmatch' + id,
+        url: apiUrl + '/petmatch/' + id,
         data: {
             pet: data,
         },
@@ -31,5 +31,20 @@ export const petIndex = (user) => {
 	return axios({
 		method: 'GET',
 		url: apiUrl + '/petmatch'
+	})
+}
+export const petShow = (user, id) => {
+	return axios({
+		method: 'GET',
+		url: apiUrl + '/petmatch/' + id
+	})
+}
+export const petDelete = (user, id) => {
+	return axios({
+		method: 'DELETE',
+		url: apiUrl + '/petmatch/' + id,
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
 	})
 }
