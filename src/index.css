@@ -13,3 +13,10 @@ body {
   text-align: center; 
   margin-bottom: 0;
 }
+.justify-center {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  align-items: flex-start;
+
+}
