@@ -1,9 +1,16 @@
-// import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+//import React, { Component, Fragment } from 'react'
+import React, { useState, Fragment, Component } from 'react'
+//importing rating icons from library 
+import { fish, bone} from 'react-icons/fa'
+//importing stylesheet to be able to use FA library icons
+import "./style.css"
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 8bb1bd40d7ef3d8f9c33477923a2419cd8c95481
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
@@ -101,5 +108,17 @@ const App = () => {
 			</Fragment>
 		)
 }
+
+//rendering rating icons from Font Awesome library
+class RatingIcon extends Component {
+	render() {
+	  return (
+	  <div>
+		<fish className = 'fish'/>
+		<bone className = 'bone'/>
+	  </div>
+	  ) 
+	}
+  }
 
 export default App
