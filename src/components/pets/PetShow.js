@@ -38,7 +38,7 @@ const PetShow = ({ user, msgAlert }) => {
     }
 
     const handleUpdatePet = () => {
-        petUpdate(cat, user, id)
+        petUpdate(pet, user, id)
         .then(() => {
             msgAlert({
                 heading: 'Success',
@@ -76,7 +76,7 @@ const PetShow = ({ user, msgAlert }) => {
     }
 
     // oneliner
-    if (deleted) navigate('/pets')
+    if (deleted) navigate('/petmatch')
 
     return (
 			<>
