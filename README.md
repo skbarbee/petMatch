@@ -72,4 +72,10 @@ const startPets = [
   { name: "Margarita Perez", type: "dog", breed: "Chihuahua", likes: "spa days", availableForPlayDate: false, rating: "3 fish" }
 ]
 
+## Team Assignments
+ -Git Manager: Sarah
+ -Back End Developer: Emily
+ -Front End Developer: Sarah and Julie
+ -Full Stack - Sean
+
 ```
