@@ -31,19 +31,19 @@ const PetIndex = ({ user, msgAlert }) => {
 	const catPic = require('../shared/images/defaultCat.png')
 	
 	const setImage = (type)=>{
-		if(type == "Dog"){
+		if(type == "DOG"){
 			return <img fluid  src={dogPic} />
 		}else{
 			return <img fluid  src={catPic} />
 		}
 	}
     const petCards = allPets.map(pet => (
-        <Card key={ pet.id } style={{ margin: 10, width: '40%', display: 'flex'}} border="primary">
+        <Card key={ pet.id } style={{ margin: 10, width: '45%',}} border="primary">
            
             <Card.Body>
                 <Card.Text>
                 
-                    <Container fluid className="justify-center">
+                    
                     {/* <Link to={ `/petmatch/${pet._id}` }>View { pet.name }</Link> */}
                     <Row>
                         <Col><Link to={ `/petmatch/${pet._id}` }>{setImage(pet.typeOfPet)}</Link></Col>
@@ -53,7 +53,7 @@ const PetIndex = ({ user, msgAlert }) => {
                         </Col>
                     
                     </Row>
-					</Container>
+					
                 </Card.Text>
             </Card.Body>
         </Card>
@@ -61,7 +61,7 @@ const PetIndex = ({ user, msgAlert }) => {
 
     return (
         // <div className='container-md' style={ cardContainerLayout }>
-           <Container style={{display:"flex", justifyContent:"space-between", width:"80%"}}>
+           <Container>
             <Row>
             { petCards }
             </Row>

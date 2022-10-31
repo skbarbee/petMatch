@@ -26,6 +26,14 @@ const PetCreate = ({user, msgAlert}) => {
 			}else if( updatedName === 'avaliable' && !e.target.checked){
 				updatedValue = false
 			}
+
+			if (updatedName === "typeOfPet"){
+				updatedValue = e.target.value.toUpperCase()
+			}else if(updatedName === "name"){
+				updatedValue = e.target.value.toUpperCase()
+			}else{
+				updatedValue = e.target.value
+			}
 			const updatedPet = { [updatedName]: updatedValue}
 
 			return {...prevPet, ...updatedPet}
@@ -35,7 +43,8 @@ const PetCreate = ({user, msgAlert}) => {
         e.preventDefault()
         
         petCreate(pet, user)
-           .then(res => { navigate(`/petmatch/${res.data.pet._id}`)})
+        //    .then(res => { navigate(`/petmatch/${res.data.pet._id}`)})
+			.then(res =>{ navigate(`/petmatch`)} )
             .then(() => {
                 msgAlert({
                     heading: 'Success',
