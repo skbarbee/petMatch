@@ -76,7 +76,7 @@ const PetShow = ({ user, msgAlert }) => {
     }
 
     // oneliner
-    if (deleted) navigate('/pets')
+    if (deleted) navigate('/petmatch')
 
     return (
 			<>
