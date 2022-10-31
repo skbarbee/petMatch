@@ -6,6 +6,11 @@ import { fish, bone} from 'react-icons/fa'
 import "./style.css"
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 8bb1bd40d7ef3d8f9c33477923a2419cd8c95481
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
@@ -75,6 +80,20 @@ const App = () => {
                 <ChangePassword msgAlert={msgAlert} user={user} />
               </RequireAuth>}
           />
+		     <Route
+            path='/newPet'
+            element={
+              <RequireAuth user={user}>
+                <PetCreate msgAlert={msgAlert} user={user} />
+              </RequireAuth>}
+          />
+		  <Route
+            path='/petmatch'
+            element={
+              <RequireAuth user={user}>
+                <PetIndex msgAlert={msgAlert} user={user} />
+              </RequireAuth>}
+				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
