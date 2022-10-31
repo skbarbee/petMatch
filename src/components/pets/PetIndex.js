@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react' 
-import { Card } from 'react-bootstrap'
+import { Card, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { petIndex } from '../../api/pet'
 
-const cardContainerLayout = {
-    display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'center'
-}
+// const cardContainerLayout = {
+//     display: 'flex',
+//     flexFlow: 'row wrap',
+//     justifyContent: 'center'
+// }
 
 const PetIndex = ({ user, msgAlert }) => {
 
@@ -27,8 +27,8 @@ const PetIndex = ({ user, msgAlert }) => {
         })
     }, [])
 
-	const dogPic = require('../shared/defaultDog.png')
-	const catPic = require('../shared/defaultCat.png')
+	const dogPic = require('../shared/images/defaultDog.png')
+	const catPic = require('../shared/images/defaultCat.png')
 	
 	const setImage = (type)=>{
 		if(type == "Dog"){
@@ -38,23 +38,36 @@ const PetIndex = ({ user, msgAlert }) => {
 		}
 	}
     const petCards = allPets.map(pet => (
-        <Card key={ pet.id } style={{ width: '30%', margin: 5 }}>
-            <Card.Header>{ pet.fullTitle }</Card.Header>
+        <Card key={ pet.id } style={{ margin: 10, width: '40%', display: 'flex'}} border="primary">
+           
             <Card.Body>
                 <Card.Text>
-                    <Link to={ `/petmatch/${pet._id}` }>View { pet.name }</Link>
-					{ pet.typeOfPet}
-					{setImage(pet.typeOfPet)}
+                
+                    <Container fluid className="justify-center">
+                    {/* <Link to={ `/petmatch/${pet._id}` }>View { pet.name }</Link> */}
+                    <Row>
+                        <Col><Link to={ `/petmatch/${pet._id}` }>{setImage(pet.typeOfPet)}</Link></Col>
+                        <Col> 
+                            <Card.Title>{ pet.name }</Card.Title>
+                            <Card.Text style ={{color:'#eb50b8'}}>{ pet.typeOfPet}</Card.Text>
+                        </Col>
+                    
+                    </Row>
+					</Container>
                 </Card.Text>
             </Card.Body>
         </Card>
     ))
 
     return (
-        <div className='container-md' style={ cardContainerLayout }>
-           
+        // <div className='container-md' style={ cardContainerLayout }>
+           <Container style={{display:"flex", justifyContent:"space-between", width:"80%"}}>
+            <Row>
             { petCards }
-        </div>
+            </Row>
+           </Container>
+          
+        
     )
 }
 

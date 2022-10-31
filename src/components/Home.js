@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap'
 const Home = (props) => {
 	// const { msgAlert, user } = props
 	console.log('props in home', props)
-	const  picture = require("./shared/Mock-up.png") 
+	const  picture = require("./shared/images/Mock-up.png") 
 	return (
 		<>
 	
