@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-//import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment, Component } from 'react'
-//importing rating icons from library 
-import { fish, bone} from 'react-icons/fa'
-import { Route, Routes } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
-=======
+
 // import React, { Component, Fragment } from 'react'
 import React, { useState, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
-
->>>>>>> 7e9df0539effcb8bfd64d988cb053b67526758f3
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
