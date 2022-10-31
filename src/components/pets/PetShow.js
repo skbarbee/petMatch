@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react' 
 import { useParams, useNavigate } from 'react-router-dom'
-import { petDelete, petShow, petUpdate } from '../api/pet'
+import { petDelete, petShow, petUpdate } from '../../api/pet'
 import PetUpdate from './PetUpdate'
 
 const PetShow = ({ user, msgAlert }) => {
 
-    const [pet, setPet] = useState({})
+    const [pet, setPet] = useState(null)
     const [isUpdateShown, setIsUpdateShown] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
