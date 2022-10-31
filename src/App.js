@@ -14,7 +14,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 
-// import Pet Routes
+// import Pet Components
 import PetCreate from './components/pets/PetCreate'
 import PetIndex from './components/pets/PetIndex'
 import PetShow from './components/pets/PetShow'
@@ -82,7 +82,7 @@ const App = () => {
               </RequireAuth>}
           />
 		    <Route
-            path='/petmatch/:id'
+            path = '/petmatch/:id'
             element={
                 <PetShow msgAlert={msgAlert} user={user} />
             }

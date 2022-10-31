@@ -5,7 +5,7 @@ import PetUpdate from './PetUpdate'
 
 const PetShow = ({ user, msgAlert }) => {
 
-    const [pet, setPet] = useState(null)
+    const [pet, setPet] = useState({})
     const [isUpdateShown, setIsUpdateShown] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
@@ -16,6 +16,7 @@ const PetShow = ({ user, msgAlert }) => {
         petShow(user, id)
         .then((res) => {
             setPet(res.data.pet)
+            console.log("this is the id", id)
         })
         .catch((error) => {
             msgAlert({
@@ -24,36 +25,36 @@ const PetShow = ({ user, msgAlert }) => {
                 variant: 'danger'
             })
         })
-    }, [])
+    },[] )
 
-    const toggleShowUpdate = () => {
-        setIsUpdateShown(prevUpdateShown => !prevUpdateShown)
-    }
+    // const toggleShowUpdate = () => {
+    //     setIsUpdateShown(prevUpdateShown => !prevUpdateShown)
+    // }
 
-    const handleChange = (event) => {
-        // to keep the values as users input info 
-        // first spread the current pet
-        // then comma and modify the key to the value you need
-        setPet({...pet, [event.target.name]: event.target.value})
-    }
+    // const handleChange = (event) => {
+    //     // to keep the values as users input info 
+    //     // first spread the current pet
+    //     // then comma and modify the key to the value you need
+    //     setPet({...pet, [event.target.name]: event.target.value})
+    // }
 
-    const handleUpdatePet = () => {
-        petUpdate(pet, user, id)
-        .then(() => {
-            msgAlert({
-                heading: 'Success',
-                message: 'Updating Pet',
-                variant: 'success'
-            })
-        })
-        .catch((error) => {
-            msgAlert({
-                heading: 'Failure',
-                message: 'Update Pet Failure' + error,
-                variant: 'danger'
-            })
-        })
-    }
+    // const handleUpdatePet = () => {
+    //     petUpdate(pet, user, id)
+    //     .then(() => {
+    //         msgAlert({
+    //             heading: 'Success',
+    //             message: 'Updating Pet',
+    //             variant: 'success'
+    //         })
+    //     })
+    //     .catch((error) => {
+    //         msgAlert({
+    //             heading: 'Failure',
+    //             message: 'Update Pet Failure' + error,
+    //             variant: 'danger'
+    //         })
+    //     })
+    // }
 
     const handleDeletePet = () => {
         petDelete(user, id)
@@ -87,7 +88,7 @@ const PetShow = ({ user, msgAlert }) => {
                 <p>Likes: {pet.likes}</p>
                 <p>Available: {pet.available}</p>
                 <p>Rating: {pet.rating}</p>
-				<button onClick={toggleShowUpdate}>Toggle Update</button>
+				{/* <button onClick={toggleShowUpdate}>Toggle Update</button>
 				{isUpdateShown && (
 					<PetUpdate
 						pet={pet}
@@ -95,7 +96,7 @@ const PetShow = ({ user, msgAlert }) => {
 						handleUpdatePet={handleUpdatePet}
 					/>
 				)}
-                <button onClick={handleDeletePet} >Delete</button>
+                <button onClick={handleDeletePet} >Delete</button> */}
 			</>
 		)
 }
