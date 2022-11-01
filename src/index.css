@@ -24,3 +24,7 @@ body {
   align-items: flex-start;
 
 }
+
+.footer {
+  background-color: turquoise;
+}

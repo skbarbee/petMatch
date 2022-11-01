@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react' 
 import { Container, Row, Col , Card, Button} from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
-import { petDelete, petShow, petUpdate } from '../../api/pet'
+import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
+
 const PetShow = ({ user, msgAlert }) => {
 
     const [pet, setPet] = useState({})
@@ -29,14 +30,11 @@ const PetShow = ({ user, msgAlert }) => {
     },[updated] )
 
    
- 
-
-
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
 	
 	const setImage = (type)=>{
-		if(type == "DOG"){
+		if(type === "DOG"){
 			return <img fluid  src={dogPic} />
 		}else{
 			return <img fluid  src={catPic} />
@@ -79,7 +77,6 @@ const PetShow = ({ user, msgAlert }) => {
                              pet.owner && user && pet.owner._id === user._id 
                                 ?
                             <Row>
-                                
                             <Button onClick={() => setEditModalShow(true)} className="m-2" variant="info">
                                 Edit {pet.name}'s Profile'
                             </Button>
@@ -103,14 +100,18 @@ const PetShow = ({ user, msgAlert }) => {
                         <Card>
                         <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
                        <Card.Body>
-                            <h3>I am a {pet.typeOfPet}, more specifically I am {pet.breed}!</h3>
+                            <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
                             <h4>Likes: {pet.likes}</h4>
                         </Card.Body> 
                         <Col xl={1}>
                         </Col>
+                        <div className="footer">
                         <Card.Footer>
-                        <p>{pet.available ? "Want to meet up?" : "Might be availabe later"}</p>
+                        <div>
+                                Available for a play date: { pet.available ? 'yes' : 'no' }
+                            </div><br/>
                         </Card.Footer>
+                        </div>
                         </Card>
                         </Container>
                         

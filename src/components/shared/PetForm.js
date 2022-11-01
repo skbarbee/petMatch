@@ -40,8 +40,8 @@ const PetForm = (props) => {
                     value= { pet.likes }
                     onChange={ handleChange }
                 />
-                <Form.Switch 
-					type='switch'
+                <Form.Check 
+					// type='switch'
                     label="Are You Able to Meet-up?"
                     name="available"
                     defaultChecked={ pet.available }
