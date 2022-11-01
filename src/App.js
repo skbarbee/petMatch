@@ -18,6 +18,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import PetCreate from './components/pets/PetCreate'
 import PetIndex from './components/pets/PetIndex'
 import PetShow from './components/pets/PetShow'
+import Upload from './components/shared/Upload'
 
 const App = () => {
 
@@ -92,6 +93,13 @@ const App = () => {
             element={
               <RequireAuth user={user}>
                 <PetIndex msgAlert={msgAlert} user={user} />
+              </RequireAuth>}
+				/>
+				  <Route
+            path='/image/:petid'
+            element={
+              <RequireAuth user={user}>
+                <Upload msgAlert={msgAlert} user={user}/>
               </RequireAuth>}
 				/>
 				</Routes>

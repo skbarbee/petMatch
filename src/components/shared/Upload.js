@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { imageCreate } from "../../api/image";
+import { useParams } from 'react-router-dom'
 
-const Upload = ({user})=>{
-
+const Upload = ({user,pet})=>{
+	console.log("this is the pet?\n", pet)
 	const [fileInputState, setFileInputState] = useState('')
 	const [selectedFile, setSelectedFile] =useState('')
 	const [previewSource,setPreviewSource] = useState('')
-
+	const { petid } = useParams()
 	//show the user the picture they selected
 	const previewFile =(file)=>{
 		//File reader is a built in js
 		const reader = new FileReader()
 		//converts image to string
 		reader.readAsDataURL(file)
+		console.log(file)
+		
 		reader.onloadend=()=>{
 			setPreviewSource(reader.result) 
 		}
@@ -21,7 +24,9 @@ const Upload = ({user})=>{
 
 	const handleFileInputChange = (e)=>{
 		const file = e.target.files[0]
-		previewFile(File)
+		previewFile(file)
+		console.log(previewSource)
+		
 	}
 	const handSubmitFile =(e)=>{
 		console.log('submitting')
@@ -30,10 +35,10 @@ const Upload = ({user})=>{
 		uploadImage(previewSource)
 	}
 
-	const uploadImage =async (base64EncodedImage) => {
-		console.log(base64EncodedImage)
-		data = base64EncodedImage
-		imageCreate(data, user)
+	const uploadImage =async (previewSource) => {
+	let imgFile = previewSource
+	
+		imageCreate(petid, user, imgFile )
 		.then(res=> console.log(res))
 		.catch((error)=>{
 			console.log(error)
@@ -52,6 +57,7 @@ const Upload = ({user})=>{
 				name = 'image'
 				value={fileInputState}
 				/>
+				<small>picture must be a jpeg</small><br/>
 				<Button variant="primary" type='submit'> Submit </Button>
       			</Form.Group>
 				

@@ -1,17 +1,17 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const imageCreate = (data, user) => {
-	return axios({
+export const imageCreate = async (petId, user, imgFile) => {
+	await axios({
 		method: 'POST',
-		url: apiUrl + '/image/${petId}',
+		url:  `${apiUrl}/image/${petId}`,
 		data: {
-			//body:{JSON.stringify({data:base64EncodedImage})}
-			image: data
+			// body:JSON.stringify({data:base64EncodedImage})
+			 image: imgFile
 		},
 		headers: {
 			Authorization: `Token token=${user.token}`,
-			//content-type: 'application/json'
+			
 		},
 	})
 }
