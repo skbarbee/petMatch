@@ -16,9 +16,9 @@ const EditPetModal = (props) => {
 			const updatedName = e.target.name
 			let updatedValue = e.target.value
 
-			if (updatedName === 'avaliable' && e.target.checked){
+			if (updatedName === 'available' && e.target.checked){
 				updatedValue = true
-			}else if( updatedName === 'avaliable' && !e.target.checked){
+			}else if( updatedName === 'available' && !e.target.checked){
 				updatedValue = false
 			}
 
