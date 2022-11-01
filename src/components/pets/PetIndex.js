@@ -48,7 +48,7 @@ const PetIndex = ({ user, msgAlert }) => {
                     <Row>
                         <Col><Link to={ `/petmatch/${pet._id}` }>{setImage(pet.typeOfPet)}</Link></Col>
                         <Col> 
-                            <Card.Title>{ pet.name }</Card.Title>
+                            <Card.Title><h1>{ pet.name }</h1></Card.Title>
                             <Card.Text style ={{color:'#eb50b8'}}>{ pet.typeOfPet}</Card.Text>
                         </Col>
                     
@@ -61,7 +61,7 @@ const PetIndex = ({ user, msgAlert }) => {
 
     return (
         // <div className='container-md' style={ cardContainerLayout }>
-           <Container>
+           <Container className="mx-auto mt-5" style={{justifyContent:"space-around"}}>
             <Row>
             { petCards }
             </Row>

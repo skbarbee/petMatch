@@ -1,10 +1,14 @@
 /* //Remember, to style rating icons, refer to ClassNames in App.js */
 
+/* font-family: 'Oswald', sans-serif; */
 
 body {
   margin: auto;
+  font-family: 'Oswald';
+  font-weight: 200;
   
 }
+
 .center {
   display: flex;
   flex-direction: column;
