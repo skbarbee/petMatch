@@ -20,10 +20,11 @@ const PetCreate = ({user, msgAlert}) => {
 		setPet(prevPet =>{
 			const updatedName = e.target.name
 			let updatedValue = e.target.value
+			console.log(updatedValue)
 
-			if (updatedName === 'avaliable' && e.target.checked){
+			if (updatedName === 'available' && e.target.checked){
 				updatedValue = true
-			}else if( updatedName === 'avaliable' && !e.target.checked){
+			}else if( updatedName === 'available' && !e.target.checked){
 				updatedValue = false
 			}
 
@@ -31,11 +32,11 @@ const PetCreate = ({user, msgAlert}) => {
 				updatedValue = e.target.value.toUpperCase()
 			}else if(updatedName === "name"){
 				updatedValue = e.target.value.toUpperCase()
-			}else{
+			}else if (updatedName === "breed"){
 				updatedValue = e.target.value
 			}
 			const updatedPet = { [updatedName]: updatedValue}
-
+			console.log(updatedPet)
 			return {...prevPet, ...updatedPet}
 		})
 	}

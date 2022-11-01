@@ -109,7 +109,7 @@ const PetShow = ({ user, msgAlert }) => {
                         <Card.Footer>
                         <div>
                                 Available for a play date: { pet.available ? 'yes' : 'no' }
-                            </div><br/>
+                        </div><br/>
                         </Card.Footer>
                         </div>
                         </Card>
