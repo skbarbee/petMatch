@@ -101,7 +101,7 @@ const PetShow = ({ user, msgAlert }) => {
                         <Col xl={6}>
                         <Container fluid style={{width:"100%"}}>
                         <Card>
-                        <Card.Header><h1>Hi! My name is {pet.name}</h1> </Card.Header>
+                        <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
                        <Card.Body>
                             <h3>I am a {pet.typeOfPet}, more specifically I am {pet.breed}!</h3>
                             <h4>Likes: {pet.likes}</h4>
