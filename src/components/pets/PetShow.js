@@ -68,13 +68,13 @@ const PetShow = ({ user, msgAlert }) => {
     return (
 			<>
 				<Container className='mt-5 mx-auto'>
-                    <Container>
+                   
                     <Row className=' mx-auto'>
                     <Col xl={1}>
                         </Col>
                         <Col className='mx-auto mt-5'>
                         {setImage(pet.typeOfPet)}
-                        <Card.Footer>
+                        <Card.Body>
                            { 
                              pet.owner && user && pet.owner._id === user._id 
                                 ?
@@ -95,7 +95,8 @@ const PetShow = ({ user, msgAlert }) => {
                         </Row>
                         :
                         null
-                    }</Card.Footer>
+                    }
+                    </Card.Body>
                         </Col>
                         <Col xl={6}>
                         <Container fluid style={{width:"100%"}}>
@@ -126,7 +127,7 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                     </Row>
                     </Container>
-                </Container>
+                
 			</>
 		)
 }
