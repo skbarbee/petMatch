@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { imageCreate } from "../../api/image";
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Upload = ({user,pet})=>{
 	console.log("this is the pet?\n", pet)
 	const [fileInputState, setFileInputState] = useState('')
 	const [selectedFile, setSelectedFile] =useState('')
 	const [previewSource,setPreviewSource] = useState('')
-	const { petid } = useParams()
+	
+	const { petId } = useParams()
+	const navigate = useNavigate()
+	
 	//show the user the picture they selected
 	const previewFile =(file)=>{
 		//File reader is a built in js
@@ -38,8 +41,8 @@ const Upload = ({user,pet})=>{
 	const uploadImage =async (previewSource) => {
 	let imgFile = previewSource
 	
-		imageCreate(petid, user, imgFile )
-		.then(res=> console.log(res))
+		imageCreate(petId, user, imgFile )
+		.then(res =>{ navigate(`/petmatch/${petId}`)} )
 		.catch((error)=>{
 			console.log(error)
 		})

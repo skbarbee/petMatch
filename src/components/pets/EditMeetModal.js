@@ -1,49 +1,42 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
-import PetForm from '../shared/PetForm'
-import { petUpdate } from '../../api/pet'
+import MeetForm from '../shared/MeetForm'
+import { meetUpdate } from '../../api/meet'
 
 
 
 
-const EditPetModal = (props) => {
+
+const EditMeetModal = (props) => {
     const { 
         user, show, handleClose, 
         msgAlert, triggerRefresh
     } = props
-    console.log("this is the props.pet", props.pet)
     
     const [pet, setPet] = useState(props.pet)
     
-    console.log("the pet", pet)
     const handleChange =(e) =>{
 		setPet(prevPet =>{
 			const updatedName = e.target.name
 			let updatedValue = e.target.value
 			console.log(updatedValue)
 
-			if (updatedName === 'available' && e.target.checked){
-				updatedValue = true
-			}else if( updatedName === 'available' && !e.target.checked){
-				updatedValue = false
-			}
-
-			if (updatedName === "typeOfPet"){
+			if (updatedName === "person"){
 				updatedValue = e.target.value.toUpperCase()
-			}else if(updatedName === "name"){
+			}else if(updatedName === "when"){
 				updatedValue = e.target.value.toUpperCase()
-			}else if (updatedName === "breed"){
+			}else if (updatedName === "where"){
 				updatedValue = e.target.value
 			}
-			const updatedPet = { [updatedName]: updatedValue}
-			console.log(updatedPet)
-			return {...prevPet, ...updatedPet}
+			const updatedMeet = { [updatedName]: updatedValue}
+			console.log(updatedMeet)
+			return {...prevPet, ...updatedMeet}
 		})
 	}
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        petUpdate(pet, user, props.pet._id)
+        meetUpdate(pet, user, props.pet._id)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({
@@ -66,7 +59,7 @@ const EditPetModal = (props) => {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton/>
             <Modal.Body>
-                <PetForm 
+                <MeetForm 
                     pet={pet}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
@@ -77,4 +70,4 @@ const EditPetModal = (props) => {
     )
 }
 
-export default EditPetModal
+export default EditMeetModal

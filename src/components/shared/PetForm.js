@@ -6,46 +6,46 @@ const PetForm = (props) => {
     console.log(pet.available)
     return (
         <Container className="justify-content-center">
-            <h3>{ heading }</h3>
-            <Form onSubmit={ handleSubmit }>
+            <h3>{heading}</h3>
+            <Form onSubmit={handleSubmit}>
                 <Form.Label>Name:</Form.Label>
-                <Form.Control 
+                <Form.Control
                     placeholder="what's your pet's name?"
                     name="name"
                     id="name"
-                    value= { pet.name }
-                    onChange={ handleChange }
+                    value={pet.name}
+                    onChange={handleChange}
                 />
                 <Form.Label>Type:</Form.Label>
-                <Form.Control 
+                <Form.Control
                     placeholder="Cat, Dog, Iguana?"
                     name="typeOfPet"
                     id="typeOfPet"
-                    value= { pet.typeOfPet }
-                    onChange={ handleChange }
+                    value={pet.typeOfPet}
+                    onChange={handleChange}
                 />
                 <Form.Label>Breed:</Form.Label>
-                <Form.Control 
+                <Form.Control
                     placeholder="Border Collie, Tabby Cat, Good Boy"
                     name="breed"
                     id="breed"
-                    value= { pet.breed }
-                    onChange={ handleChange }
+                    value={pet.breed}
+                    onChange={handleChange}
                 />
-				<Form.Label>Likes:</Form.Label>
-                <Form.Control 
+                <Form.Label>Likes:</Form.Label>
+                <Form.Control
                     placeholder="What does your pet like to do?"
                     name="likes"
                     id="likes"
-                    value= { pet.likes }
-                    onChange={ handleChange }
+                    value={pet.likes}
+                    onChange={handleChange}
                 />
-                <Form.Check 
-					// type='switch'
+                <Form.Check
+                    // type='switch'
                     label="Are You Able to Meet-up?"
                     name="available"
-                    defaultChecked={ pet.available }
-                    onChange={ handleChange }
+                    defaultChecked={pet.available}
+                    onChange={handleChange}
                 />
                 <Button type="submit">Submit</Button>
             </Form>

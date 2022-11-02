@@ -4,11 +4,21 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
 import UploadPetPicture from './UploadPetPictureModal'
+import EditMeetModal from './EditMeetModal'
+import ShowMeet from './ShowMeet'
+
+
+const cardContainerLayout = {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center'
+}
 
 const PetShow = ({ user, msgAlert }) => {
 
     const [pet, setPet] = useState({})
     const [editModalShow, setEditModalShow] = useState(false)
+    const [meetModalShow, setMeetModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
@@ -36,11 +46,15 @@ const PetShow = ({ user, msgAlert }) => {
 	const catPic = require('../shared/images/defaultCat.png')
 	
 	const setImage = (type)=>{
-		if(type === "DOG"){
-			return <img fluid  src={dogPic} />
-		}else{
-			return <img fluid  src={catPic} />
-		}
+        if(!pet.img){
+		    if(type === "DOG"){
+			    return <img fluid  src={dogPic} />
+		    }else{
+			    return <img fluid  src={catPic} />
+		    }
+        }else{
+            return   <img fluid style={{width:'300px', height:'300px'}} src={pet.img} />
+       }
 	}
     const handleDeletePet = () => {
         petDelete(user, id)
@@ -62,6 +76,23 @@ const PetShow = ({ user, msgAlert }) => {
         })
     }
 
+
+    // let meetCards
+    // if (pet) {
+    //     if (pet.meets.length > 0) {
+    //         meetCards = pet.meets.map(meet => (
+    //             <ShowMeet
+    //                 key={pet.meets._id}
+    //                 meets={pet.meets}
+    //                 pet={pet}
+    //             />
+    //         ))
+    //     } else {
+    //         return
+    //     }
+    // }
+
+
     // oneliner
     if (deleted) navigate('/petmatch')
 
@@ -69,12 +100,13 @@ const PetShow = ({ user, msgAlert }) => {
 			<>
 				<Container className='mt-5 mx-auto'>
                    
-                    <Row className=' mx-auto'>
+                    <Row className=''>
                     <Col xl={1}>
                         </Col>
                         <Col className='mx-auto mt-5'>
+                      
                         {setImage(pet.typeOfPet)}
-                        <img fluid  src={pet.img} />
+                        
                         <Card.Body>
                            { 
                              pet.owner && user && pet.owner._id === user._id 
@@ -103,7 +135,7 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                         <Col xl={6}>
                         <Container fluid style={{width:"100%"}}>
-                        <Card>
+                        <Card className='mt-5'>
                         <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
                        <Card.Body>
                             <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
@@ -111,21 +143,26 @@ const PetShow = ({ user, msgAlert }) => {
                         </Card.Body> 
                         <Col xl={1}>
                         </Col>
+                        
                         <div className="footer">
                         <Card.Footer>
                         <div>
                                 Available for a play date: { pet.available ? 'yes' : 'no' }
                         </div><br/>
                         <div>
-                        <Button onClick  className="dates" variant="info">
+                        <Button onClick={() => setMeetModalShow(true)} className="m-2" variant="info">
                                 Let's go!
-                        </Button>
+                            </Button>
                         </div>
                         </Card.Footer>
                         </div>
                         </Card>
                         </Container>
-                        
+                        <Col>
+                        <Container style={cardContainerLayout}>
+                            {ShowMeet}
+                        </Container>
+                        </Col>
                         </Col>
                         <Col>
                         <EditPetModal 
@@ -137,6 +174,15 @@ const PetShow = ({ user, msgAlert }) => {
                             handleClose={() => setEditModalShow(false)}/>
                         </Col>
                         <Row>
+                        <Col>
+                        <EditMeetModal 
+                            user={user}
+                            pet={pet}
+                            show={meetModalShow}
+                            msgAlert={msgAlert}
+                            triggerRefresh={() => setUpdated(prev => !prev)}
+                            handleClose={() => setMeetModalShow(false)}/>
+                        </Col>
                         <Col>
                         <UploadPetPicture 
                             user={user}

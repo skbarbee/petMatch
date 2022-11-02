@@ -1,9 +1,9 @@
 import { Form, Button, Container } from 'react-bootstrap'
 
-const PetForm = (props) => {
+const MeetForm = (props) => {
     // here are the props we're going to bring into our form
     const { pet, handleChange, heading, handleSubmit } = props
-    console.log(pet.available)
+    
     return (
         <Container className="justify-content-center">
             <h3>{ heading }</h3>
@@ -13,7 +13,7 @@ const PetForm = (props) => {
                     placeholder="Name?"
                     name="name"
                     id="name"
-                    value= { pet.name }
+                    value= { pet.person }
                     onChange={ handleChange }
                 />
                 <Form.Label>When To Meet:</Form.Label>
@@ -21,15 +21,15 @@ const PetForm = (props) => {
                     placeholder="When?"
                     name="date"
                     id="date"
-                    value= { pet.typeOfPet }
+                    value= { pet.when }
                     onChange={ handleChange }
                 />
                 <Form.Label>Where To Meet:</Form.Label>
                 <Form.Control 
                     placeholder="Location"
-                    name="adress"
-                    id="adress"
-                    value= { pet.breed }
+                    name="address"
+                    id="address"
+                    value= { pet.where }
                     onChange={ handleChange }
                 />
                 <Form.Check 
@@ -45,4 +45,4 @@ const PetForm = (props) => {
     )
 }
 
-export default PetForm
+export default MeetForm
