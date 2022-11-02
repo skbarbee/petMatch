@@ -1,16 +1,18 @@
+import React from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import PetCheckBox from './PetCheckBox'
 
+
 const PetForm = (props) => {
     // here are the props we're going to bring into our form
-    const { pet, handleChange, heading, handleSubmit } = props
+    const { pet, handleChange, heading, handleSubmit, handleCheck } = props
     console.log(pet.available)
 
-    const [checked, setChecked] = React.useState(false);
+    // const [checked, setChecked] = React.useState(false);
 
-    const handleCheck = () => {
-        setChecked(!checked);
-    }
+    // const handleCheck = () => {
+    //     setChecked(!checked);
+    // }
 
     return (
         <Container className="justify-content-center">
@@ -57,10 +59,10 @@ const PetForm = (props) => {
                 /> */}
                 <PetCheckBox
                     label="Available to meet up"
-                    value={checked}
+                    value={pet.available}
                     onChange={handleCheck}
                 />
-                <p>Is "availability" checked? {checked.toString()}</p>
+                <p>Is "availability" checked? </p>
                 <Button type="submit">Submit</Button>
             </Form>
         </Container>
