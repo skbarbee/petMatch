@@ -8,7 +8,7 @@ const PetCreate = ({user, msgAlert}) => {
 
     const defaultPet = {
 		name:'',
-		//img: '',
+		img: '',
 		type: '',
 		breed: '',
 		likes: [],

@@ -3,11 +3,13 @@ import { Container, Row, Col , Card, Button} from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
+import UploadPetPicture from './UploadPetPictureModal'
 
 const PetShow = ({ user, msgAlert }) => {
 
     const [pet, setPet] = useState({})
     const [editModalShow, setEditModalShow] = useState(false)
+    const [uploadPictureShow, setUploadPictureShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
@@ -72,13 +74,17 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                         <Col className='mx-auto mt-5'>
                         {setImage(pet.typeOfPet)}
+                        <img fluid  src={pet.img} />
                         <Card.Body>
                            { 
                              pet.owner && user && pet.owner._id === user._id 
                                 ?
                             <Row>
                             <Button onClick={() => setEditModalShow(true)} className="m-2" variant="info">
-                                Edit {pet.name}'s Profile'
+                                Edit {pet.name}'s Profile
+                            </Button>
+                            <Button onClick={() => navigate(`/image/${pet._id}`)} className="m-2" variant="secondary">
+                                Edit {pet.name}'s Picture
                             </Button>
                             
                             
@@ -123,9 +129,19 @@ const PetShow = ({ user, msgAlert }) => {
                             show={editModalShow}
                             msgAlert={msgAlert}
                             triggerRefresh={() => setUpdated(prev => !prev)}
-                            handleClose={() => setEditModalShow(false)}
-            />
+                            handleClose={() => setEditModalShow(false)}/>
                         </Col>
+                        <Row>
+                        <Col>
+                        <UploadPetPicture 
+                            user={user}
+                            pet={pet}
+                            show={uploadPictureShow}
+                            msgAlert={msgAlert}
+                            triggerRefresh={() => setUpdated(prev => !prev)}
+                            handleClose={() => setUploadPictureShow(false)}/>
+                        </Col></Row>
+                        
                     </Row>
                     </Container>
                 
