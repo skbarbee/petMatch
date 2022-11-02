@@ -16,6 +16,7 @@ const EditPetModal = (props) => {
     const { id } = useParams()
     
     console.log("the pet in edit\n", pet)
+   
     const handleChange =(e) =>{
 		setPet(prevPet =>{
 			const updatedName = e.target.name
@@ -64,7 +65,7 @@ const EditPetModal = (props) => {
     }
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={props.handleClose}>
             <Modal.Header closeButton/>
             <Modal.Body>
                 <PetForm 

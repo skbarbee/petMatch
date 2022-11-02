@@ -95,13 +95,13 @@ const App = () => {
                 <PetIndex msgAlert={msgAlert} user={user} />
               </RequireAuth>}
 				/>
-				  <Route
+				  {/* <Route
             path='/image/:petId'
             element={
               <RequireAuth user={user}>
                 <Upload msgAlert={msgAlert} user={user}/>
               </RequireAuth>}
-				/>
+				/> */}
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
