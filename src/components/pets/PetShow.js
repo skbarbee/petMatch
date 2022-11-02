@@ -36,11 +36,15 @@ const PetShow = ({ user, msgAlert }) => {
 	const catPic = require('../shared/images/defaultCat.png')
 	
 	const setImage = (type)=>{
-		if(type === "DOG"){
-			return <img fluid  src={dogPic} />
-		}else{
-			return <img fluid  src={catPic} />
-		}
+        if(!pet.img){
+		    if(type === "DOG"){
+			    return <img fluid  src={dogPic} />
+		    }else{
+			    return <img fluid  src={catPic} />
+		    }
+        }else{
+            return null
+       }
 	}
     const handleDeletePet = () => {
         petDelete(user, id)
@@ -73,8 +77,10 @@ const PetShow = ({ user, msgAlert }) => {
                     <Col xl={1}>
                         </Col>
                         <Col className='mx-auto mt-5'>
+                        <img fluid style={{width:'250px', height:'250px'}} src={pet.img} />
+                       
                         {setImage(pet.typeOfPet)}
-                        <img fluid  src={pet.img} />
+                        
                         <Card.Body>
                            { 
                              pet.owner && user && pet.owner._id === user._id 
