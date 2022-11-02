@@ -36,11 +36,15 @@ const PetShow = ({ user, msgAlert }) => {
 	const catPic = require('../shared/images/defaultCat.png')
 	
 	const setImage = (type)=>{
-		if(type === "DOG"){
-			return <img fluid  src={dogPic} />
-		}else{
-			return <img fluid  src={catPic} />
-		}
+        if(!pet.img){
+		    if(type === "DOG"){
+			    return <img fluid  src={dogPic} />
+		    }else{
+			    return <img fluid  src={catPic} />
+		    }
+        }else{
+            return   <img fluid style={{width:'300px', height:'300px'}} src={pet.img} />
+       }
 	}
     const handleDeletePet = () => {
         petDelete(user, id)
@@ -69,12 +73,13 @@ const PetShow = ({ user, msgAlert }) => {
 			<>
 				<Container className='mt-5 mx-auto'>
                    
-                    <Row className=' mx-auto'>
+                    <Row className=''>
                     <Col xl={1}>
                         </Col>
                         <Col className='mx-auto mt-5'>
+                      
                         {setImage(pet.typeOfPet)}
-                        <img fluid  src={pet.img} />
+                        
                         <Card.Body>
                            { 
                              pet.owner && user && pet.owner._id === user._id 
@@ -103,7 +108,7 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                         <Col xl={6}>
                         <Container fluid style={{width:"100%"}}>
-                        <Card>
+                        <Card className='mt-5'>
                         <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
                        <Card.Body>
                             <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>

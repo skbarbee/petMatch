@@ -96,7 +96,7 @@ const App = () => {
               </RequireAuth>}
 				/>
 				  <Route
-            path='/image/:petid'
+            path='/image/:petId'
             element={
               <RequireAuth user={user}>
                 <Upload msgAlert={msgAlert} user={user}/>
