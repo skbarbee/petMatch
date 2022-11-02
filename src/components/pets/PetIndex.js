@@ -46,7 +46,7 @@ const PetIndex = ({ user, msgAlert }) => {
                     
                     {/* <Link to={ `/petmatch/${pet._id}` }>View { pet.name }</Link> */}
                     <Row>
-                        <Col><Link to={ `/petmatch/${pet._id}` }>{setImage(pet.typeOfPet)}</Link></Col>
+                        <Col><Link to={ `/petmatch/${pet._id}` }><Container>{setImage(pet.typeOfPet)}</Container></Link></Col>
                         <Col> 
                             <Card.Title><h1>{ pet.name }</h1></Card.Title>
                             <Card.Text style ={{color:'#eb50b8'}}>{ pet.typeOfPet}</Card.Text>
