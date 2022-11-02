@@ -6,7 +6,7 @@ export const createRating = (user, petId, newRating) => {
     console.log('the user in createRating', user)
     console.log('the newRating in createRating', newRating)
 	return axios({
-		url: `${apiUrl}/ratings/${petId}`,
+		url: `${apiUrl}/rating/${petId}`,
 		method: 'POST',
 		data: { rating: newRating }
 	})
@@ -16,7 +16,7 @@ export const createRating = (user, petId, newRating) => {
 export const updateRating = (user, petId, updatedRating) => {
     console.log('this is updatedRating', updatedRating)
 	return axios({
-		url: `${apiUrl}/ratings/${petId}/${updatedRating._id}`,
+		url: `${apiUrl}/rating/${petId}/${updatedRating._id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,
@@ -28,7 +28,7 @@ export const updateRating = (user, petId, updatedRating) => {
 // DELETE rating by user
 export const deleteRating = (user, petId, ratingId) => {
 	return axios({
-		url: `${apiUrl}/ratings/${petId}/${ratingId}`,
+		url: `${apiUrl}/rating/${petId}/${ratingId}`,
 		method: 'DELETE',
 		headers: {
 			Authorization: `Token token=${user.token}`,
