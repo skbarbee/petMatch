@@ -4,12 +4,14 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
 import UploadPetPicture from './UploadPetPictureModal'
-
+import NewRatingModal from '../rating/NewRatingModal'
+ 
 const PetShow = ({ user, msgAlert }) => {
 
     const [pet, setPet] = useState({})
     const [editModalShow, setEditModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
+    const [NewRatingShow, setNewRatingShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
@@ -117,12 +119,15 @@ const PetShow = ({ user, msgAlert }) => {
                         <Col xl={1}>
                         </Col>
                         <div className="footer">
+                        </div>   
                         <Card.Footer>
                         <div>
                                 Available for a play date: { pet.available ? 'yes' : 'no' }
                         </div><br/>
                         </Card.Footer>
-                        </div>
+                        <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
+                                Rate your date!
+                        </Button>
                         </Card>
                         </Container>
                         
@@ -151,6 +156,16 @@ const PetShow = ({ user, msgAlert }) => {
                         </Row>
                         
                     </Row>
+                    <Col>
+                            <NewRatingModal
+                                user={user}
+                                pet={pet}
+                                show={NewRatingShow}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setNewRatingShow(false)}
+                            />
+                        </Col>
                     </Container>
                 
 			</>
