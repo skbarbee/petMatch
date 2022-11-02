@@ -126,7 +126,7 @@ const PetShow = ({ user, msgAlert }) => {
                         </div><br/>
                         </Card.Footer>
                         <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
-                                Rate your date!
+                                Rate your date !
                         </Button>
                         </Card>
                         </Container>
