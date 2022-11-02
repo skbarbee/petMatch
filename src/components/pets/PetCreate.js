@@ -16,6 +16,13 @@ const PetCreate = ({user, msgAlert}) => {
     }
 	const [pet, setPet] = useState(defaultPet)
 
+    const handleCheck = () => {
+		console.log("clicked")
+		setPet(prevPet => {
+			return {...prevPet, available: !prevPet.available}
+		})
+    }
+
 	const handleChange =(e) =>{
 		setPet(prevPet =>{
 			const updatedName = e.target.name
@@ -69,6 +76,7 @@ const PetCreate = ({user, msgAlert}) => {
 			handleChange={ handleChange }
 			heading="Add a new pet!"
 			handleSubmit={ handleCreatePet }
+			handleCheck={ handleCheck }
 		/>
 		</>
 	)

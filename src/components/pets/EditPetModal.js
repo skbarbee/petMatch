@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import PetForm from '../shared/PetForm'
-import { petUpdate } from '../../api/pet'
-import { useNavigate, useParams } from 'react-router-dom'
+import { petUpdate, petShow } from '../../api/pet'
+import PetShow from './PetShow'
+import { useParams } from 'react-router-dom'
+
+// we need a useEffect that runs like a componentDidNotMount, so it needs a dependency array that is empty at the end
+// get the petId from the params
+// import the showPet inside here and run like it is run in the show pet component
+// make sure that pet is set to state
+// ShowPet is the source of truth for getting the id from the params etc
+
 
 const EditPetModal = (props) => {
     const { 
@@ -15,7 +23,30 @@ const EditPetModal = (props) => {
 
     const { id } = useParams()
     
-    console.log("the pet in edit\n", pet)
+    
+    useEffect(() => {
+        petShow(user, id)
+        .then((res) => {
+            setPet(res.data.pet)
+            console.log("this is the id", id)
+        })
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Show Pet Failure' + error,
+                variant: 'danger'
+            })
+        })
+    },[] )
+    
+    const handleCheck = () => {
+		console.log("clicked")
+		setPet(prevPet => {
+			return {...prevPet, available: !prevPet.available}
+		})
+    }
+
+    console.log("the pet", pet)
     const handleChange =(e) =>{
 		setPet(prevPet =>{
 			const updatedName = e.target.name
@@ -72,6 +103,14 @@ const EditPetModal = (props) => {
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     heading="Update Pet"
+                    handleCheck={handleCheck}
+                />
+                <PetShow 
+                    pet={pet}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    heading="Update Pet"
+                    handleCheck={handleCheck}
                 />
             </Modal.Body>
         </Modal>
