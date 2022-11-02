@@ -6,19 +6,22 @@ import { petUpdate } from '../../api/pet'
 const EditPetModal = (props) => {
     const { 
         user, show, handleClose, 
-        msgAlert, triggerRefresh 
+        msgAlert, triggerRefresh
     } = props
-
+    console.log("this is the props.pet", props.pet)
+    
     const [pet, setPet] = useState(props.pet)
-
-	const handleChange =(e) =>{
+    
+    console.log("the pet", pet)
+    const handleChange =(e) =>{
 		setPet(prevPet =>{
 			const updatedName = e.target.name
 			let updatedValue = e.target.value
+			console.log(updatedValue)
 
-			if (updatedName === 'avaliable' && e.target.checked){
+			if (updatedName === 'available' && e.target.checked){
 				updatedValue = true
-			}else if( updatedName === 'avaliable' && !e.target.checked){
+			}else if( updatedName === 'available' && !e.target.checked){
 				updatedValue = false
 			}
 
@@ -26,11 +29,11 @@ const EditPetModal = (props) => {
 				updatedValue = e.target.value.toUpperCase()
 			}else if(updatedName === "name"){
 				updatedValue = e.target.value.toUpperCase()
-			}else{
+			}else if (updatedName === "breed"){
 				updatedValue = e.target.value
 			}
 			const updatedPet = { [updatedName]: updatedValue}
-
+			console.log(updatedPet)
 			return {...prevPet, ...updatedPet}
 		})
 	}
