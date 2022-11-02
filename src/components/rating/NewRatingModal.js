@@ -10,7 +10,7 @@ const NewRatingModal = (props) => {
         user, pet, show, handleClose, msgAlert, triggerRefresh
     } = props
 
-const { id } = useParams()
+// const { petId } = useParams()
 
 const [rating, setRating] = useState({})
 
@@ -40,8 +40,9 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
     e.preventDefault()
-
-    createRating(user, id, rating)
+    console.log('this is the petId', pet._id)
+    createRating(user, pet._id, rating)
+        
         .then(() => handleClose())
         .then(() => {
             console.log("success")
