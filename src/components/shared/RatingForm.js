@@ -10,7 +10,7 @@ const RatingForm = (props) => {
             <Form onSubmit={ handleSubmit }>
                 <Form.Label>Rating:</Form.Label>
                 <Form.Control 
-                    placeholder="Would you like to see this pet again?"
+                    placeholder="Rate your date with this pet from 1-5"
                     name="scale"
                     type="number"
                     id="scale"

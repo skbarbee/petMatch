@@ -9,6 +9,7 @@ const NewRatingModal = (props) => {
         user, pet, show, handleClose, msgAlert, triggerRefresh
     } = props
 
+  
 const [rating, setRating] = useState({})
 
 const handleChange = (e) => {
@@ -17,9 +18,9 @@ const handleChange = (e) => {
         let value = e.target.value
 
         // handle the checkbox
-        if (name === "dateAgain" && e.target.checked) {
+        if (name === "meetAgain" && e.target.checked) {
             value = true
-        } else if (name === "dateAgain" && !e.target.checked) {
+        } else if (name === "meetAgain" && !e.target.checked) {
             value = false
         }
 

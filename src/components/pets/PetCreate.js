@@ -13,6 +13,7 @@ const PetCreate = ({user, msgAlert}) => {
 		breed: '',
 		likes: [],
 		available: false ,
+		rating: []
     }
 	const [pet, setPet] = useState(defaultPet)
 

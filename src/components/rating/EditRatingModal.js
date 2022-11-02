@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import RatingForm from '../shared/RatingForm'
 import { updateRating } from '../../api/rating'
@@ -12,6 +12,21 @@ const EditRatingModal = (props) => {
     } = props
 
     const [rating, setRating] = useState(props.rating)
+
+    useEffect(() => {
+        showRating(user, id)
+        .then((res) => {
+            setRating(res.data.pet)
+            console.log("this is the id", id)
+        })
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Show Rating Failure' + error,
+                variant: 'danger'
+            })
+        })
+    },[] )
 
     const handleChange = (e) => {
         setRating(prevRating => {
