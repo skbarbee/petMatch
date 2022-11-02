@@ -6,7 +6,10 @@ body {
   margin: auto;
   font-family: 'Oswald';
   font-weight: 200;
-  
+  background-image: url("components/shared/images/sparklingrainbowsky.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .center {
