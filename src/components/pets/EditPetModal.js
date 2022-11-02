@@ -2,17 +2,20 @@ import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import PetForm from '../shared/PetForm'
 import { petUpdate } from '../../api/pet'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const EditPetModal = (props) => {
     const { 
         user, show, handleClose, 
         msgAlert, triggerRefresh
     } = props
-    console.log("this is the props.pet", props.pet)
+    console.log("this is the props.pet in editPetModal\n", props.pet)
     
     const [pet, setPet] = useState(props.pet)
+
+    const { id } = useParams()
     
-    console.log("the pet", pet)
+    console.log("the pet in edit\n", pet)
     const handleChange =(e) =>{
 		setPet(prevPet =>{
 			const updatedName = e.target.name
@@ -41,7 +44,7 @@ const EditPetModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        petUpdate(pet, user, props.pet._id)
+        petUpdate(pet, user, id)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({
