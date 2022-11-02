@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react' 
+import { Container, Row, Col , Card, Button} from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
-import { petDelete, petShow, petUpdate } from '../../api/pet'
-import PetUpdate from './PetUpdate'
+import { petDelete, petShow } from '../../api/pet'
+import EditPetModal from './EditPetModal'
+import UploadPetPicture from './UploadPetPictureModal'
 
 const PetShow = ({ user, msgAlert }) => {
 
-    const [pet, setPet] = useState(null)
-    const [isUpdateShown, setIsUpdateShown] = useState(false)
+    const [pet, setPet] = useState({})
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [uploadPictureShow, setUploadPictureShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
     const { id } = useParams()
@@ -16,6 +20,7 @@ const PetShow = ({ user, msgAlert }) => {
         petShow(user, id)
         .then((res) => {
             setPet(res.data.pet)
+            console.log("this is the id", id)
         })
         .catch((error) => {
             msgAlert({
@@ -24,52 +29,38 @@ const PetShow = ({ user, msgAlert }) => {
                 variant: 'danger'
             })
         })
-    }, [])
+    },[updated] )
 
-    const toggleShowUpdate = () => {
-        setIsUpdateShown(prevUpdateShown => !prevUpdateShown)
-    }
-
-    const handleChange = (event) => {
-        // to keep the values as users input info 
-        // first spread the current pet
-        // then comma and modify the key to the value you need
-        setPet({...pet, [event.target.name]: event.target.value})
-    }
-
-    const handleUpdatePet = () => {
-        petUpdate(pet, user, id)
-        .then(() => {
-            msgAlert({
-                heading: 'Success',
-                message: 'Updating Pet',
-                variant: 'success'
-            })
-        })
-        .catch((error) => {
-            msgAlert({
-                heading: 'Failure',
-                message: 'Update Pet Failure' + error,
-                variant: 'danger'
-            })
-        })
-    }
-
+   
+    const dogPic = require('../shared/images/defaultDog.png')
+	const catPic = require('../shared/images/defaultCat.png')
+	
+	const setImage = (type)=>{
+        if(!pet.img){
+		    if(type === "DOG"){
+			    return <img fluid  src={dogPic} />
+		    }else{
+			    return <img fluid  src={catPic} />
+		    }
+        }else{
+            return   <img fluid style={{width:'300px', height:'300px'}} src={pet.img} />
+       }
+	}
     const handleDeletePet = () => {
         petDelete(user, id)
         .then(() => {
             setDeleted(true)
             msgAlert({
                 heading: 'Success',
-                message: 'Deleting a Pet',
+                message: 'You Deleted Your Pet Profile',
                 variant: 'success'
             })
             
         })
         .catch((error) => {
             msgAlert({
-                heading: 'Failure',
-                message: 'Deleting a Pet Failure' + error,
+                heading: 'Uh-oh',
+                message: 'Your Pet Profile is Still Here' + error,
                 variant: 'danger'
             })
         })
@@ -80,22 +71,85 @@ const PetShow = ({ user, msgAlert }) => {
 
     return (
 			<>
-				<h3>Name: {pet.name}</h3>
-                <p>Image: {pet.img}</p>
-				<p>Type: {pet.typeOfPet}</p>
-                <p>Breed: {pet.breed}</p>
-                <p>Likes: {pet.likes}</p>
-                <p>Available: {pet.available}</p>
-                <p>Rating: {pet.rating}</p>
-				<button onClick={toggleShowUpdate}>Toggle Update</button>
-				{isUpdateShown && (
-					<PetUpdate
-						pet={pet}
-						handleChange={handleChange}
-						handleUpdatePet={handleUpdatePet}
-					/>
-				)}
-                <button onClick={handleDeletePet} >Delete</button>
+				<Container className='mt-5 mx-auto'>
+                   
+                    <Row className=''>
+                    <Col xl={1}>
+                        </Col>
+                        <Col className='mx-auto mt-5'>
+                      
+                        {setImage(pet.typeOfPet)}
+                        
+                        <Card.Body>
+                           { 
+                             pet.owner && user && pet.owner._id === user._id 
+                                ?
+                            <Row>
+                            <Button onClick={() => setEditModalShow(true)} className="m-2" variant="info">
+                                Edit {pet.name}'s Profile
+                            </Button>
+                            <Button onClick={() => navigate(`/image/${pet._id}`)} className="m-2" variant="secondary">
+                                Edit {pet.name}'s Picture
+                            </Button>
+                            
+                            
+                            <Button onClick={() => handleDeletePet()}
+                                className="m-2"
+                                variant="danger"
+                            >
+                               Delete { pet.name }'s Profile
+                            </Button>
+                        
+                        </Row>
+                        :
+                        null
+                    }
+                    </Card.Body>
+                        </Col>
+                        <Col xl={6}>
+                        <Container fluid style={{width:"100%"}}>
+                        <Card className='mt-5'>
+                        <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
+                       <Card.Body>
+                            <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
+                            <h4>Likes: {pet.likes}</h4>
+                        </Card.Body> 
+                        <Col xl={1}>
+                        </Col>
+                        <div className="footer">
+                        <Card.Footer>
+                        <div>
+                                Available for a play date: { pet.available ? 'yes' : 'no' }
+                        </div><br/>
+                        </Card.Footer>
+                        </div>
+                        </Card>
+                        </Container>
+                        
+                        </Col>
+                        <Col>
+                        <EditPetModal 
+                            user={user}
+                            pet={pet}
+                            show={editModalShow}
+                            msgAlert={msgAlert}
+                            triggerRefresh={() => setUpdated(prev => !prev)}
+                            handleClose={() => setEditModalShow(false)}/>
+                        </Col>
+                        <Row>
+                        <Col>
+                        <UploadPetPicture 
+                            user={user}
+                            pet={pet}
+                            show={uploadPictureShow}
+                            msgAlert={msgAlert}
+                            triggerRefresh={() => setUpdated(prev => !prev)}
+                            handleClose={() => setUploadPictureShow(false)}/>
+                        </Col></Row>
+                        
+                    </Row>
+                    </Container>
+                
 			</>
 		)
 }

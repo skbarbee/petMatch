@@ -3,7 +3,7 @@ import { Form, Button, Container } from 'react-bootstrap'
 const PetForm = (props) => {
     // here are the props we're going to bring into our form
     const { pet, handleChange, heading, handleSubmit } = props
-
+    console.log(pet.available)
     return (
         <Container className="justify-content-center">
             <h3>{ heading }</h3>
@@ -41,6 +41,7 @@ const PetForm = (props) => {
                     onChange={ handleChange }
                 />
                 <Form.Check 
+					// type='switch'
                     label="Are You Able to Meet-up?"
                     name="available"
                     defaultChecked={ pet.available }

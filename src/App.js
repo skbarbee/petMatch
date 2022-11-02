@@ -14,10 +14,11 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 
-// import Pet Routes
+// import Pet Components
 import PetCreate from './components/pets/PetCreate'
 import PetIndex from './components/pets/PetIndex'
 import PetShow from './components/pets/PetShow'
+import Upload from './components/shared/Upload'
 
 const App = () => {
 
@@ -82,7 +83,7 @@ const App = () => {
               </RequireAuth>}
           />
 		    <Route
-            path='/petmatch/:id'
+            path = '/petmatch/:id'
             element={
                 <PetShow msgAlert={msgAlert} user={user} />
             }
@@ -92,6 +93,13 @@ const App = () => {
             element={
               <RequireAuth user={user}>
                 <PetIndex msgAlert={msgAlert} user={user} />
+              </RequireAuth>}
+				/>
+				  <Route
+            path='/image/:petId'
+            element={
+              <RequireAuth user={user}>
+                <Upload msgAlert={msgAlert} user={user}/>
               </RequireAuth>}
 				/>
 				</Routes>
