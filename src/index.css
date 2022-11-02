@@ -20,3 +20,7 @@ body {
   align-items: flex-start;
 
 }
+
+.footer {
+  background-color: rgb(144, 225, 247);
+}

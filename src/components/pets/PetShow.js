@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react' 
 import { Container, Row, Col , Card, Button} from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
-import { petDelete, petShow, petUpdate } from '../../api/pet'
+import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
+import UploadPetPicture from './UploadPetPictureModal'
+
 const PetShow = ({ user, msgAlert }) => {
 
     const [pet, setPet] = useState({})
     const [editModalShow, setEditModalShow] = useState(false)
+    const [uploadPictureShow, setUploadPictureShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
-
+    
     const { id } = useParams()
     const navigate = useNavigate()
 
@@ -29,14 +32,11 @@ const PetShow = ({ user, msgAlert }) => {
     },[updated] )
 
    
- 
-
-
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
 	
 	const setImage = (type)=>{
-		if(type == "DOG"){
+		if(type === "DOG"){
 			return <img fluid  src={dogPic} />
 		}else{
 			return <img fluid  src={catPic} />
@@ -74,14 +74,17 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                         <Col className='mx-auto mt-5'>
                         {setImage(pet.typeOfPet)}
+                        <img fluid  src={pet.img} />
                         <Card.Body>
                            { 
                              pet.owner && user && pet.owner._id === user._id 
                                 ?
                             <Row>
-                                
                             <Button onClick={() => setEditModalShow(true)} className="m-2" variant="info">
-                                Edit {pet.name}'s Profile'
+                                Edit {pet.name}'s Profile
+                            </Button>
+                            <Button onClick={() => navigate(`/image/${pet._id}`)} className="m-2" variant="secondary">
+                                Edit {pet.name}'s Picture
                             </Button>
                             
                             
@@ -103,14 +106,23 @@ const PetShow = ({ user, msgAlert }) => {
                         <Card>
                         <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
                        <Card.Body>
-                            <h3>I am a {pet.typeOfPet}, more specifically I am {pet.breed}!</h3>
+                            <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
                             <h4>Likes: {pet.likes}</h4>
                         </Card.Body> 
                         <Col xl={1}>
                         </Col>
+                        <div className="footer">
                         <Card.Footer>
-                        <p>{pet.available ? "Want to meet up?" : "Might be availabe later"}</p>
+                        <div>
+                                Available for a play date: { pet.available ? 'yes' : 'no' }
+                        </div><br/>
+                        <div>
+                        <Button onClick  className="dates" variant="info">
+                                Let's go!
+                        </Button>
+                        </div>
                         </Card.Footer>
+                        </div>
                         </Card>
                         </Container>
                         
@@ -122,9 +134,19 @@ const PetShow = ({ user, msgAlert }) => {
                             show={editModalShow}
                             msgAlert={msgAlert}
                             triggerRefresh={() => setUpdated(prev => !prev)}
-                            handleClose={() => setEditModalShow(false)}
-            />
+                            handleClose={() => setEditModalShow(false)}/>
                         </Col>
+                        <Row>
+                        <Col>
+                        <UploadPetPicture 
+                            user={user}
+                            pet={pet}
+                            show={uploadPictureShow}
+                            msgAlert={msgAlert}
+                            triggerRefresh={() => setUpdated(prev => !prev)}
+                            handleClose={() => setUploadPictureShow(false)}/>
+                        </Col></Row>
+                        
                     </Row>
                     </Container>
                 

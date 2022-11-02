@@ -10,34 +10,26 @@ const PetForm = (props) => {
             <Form onSubmit={ handleSubmit }>
                 <Form.Label>Name:</Form.Label>
                 <Form.Control 
-                    placeholder="what's your pet's name?"
+                    placeholder="Name?"
                     name="name"
                     id="name"
                     value= { pet.name }
                     onChange={ handleChange }
                 />
-                <Form.Label>Type:</Form.Label>
+                <Form.Label>When To Meet:</Form.Label>
                 <Form.Control 
-                    placeholder="Cat, Dog, Iguana?"
-                    name="typeOfPet"
-                    id="typeOfPet"
+                    placeholder="When?"
+                    name="date"
+                    id="date"
                     value= { pet.typeOfPet }
                     onChange={ handleChange }
                 />
-                <Form.Label>Breed:</Form.Label>
+                <Form.Label>Where To Meet:</Form.Label>
                 <Form.Control 
-                    placeholder="Border Collie, Tabby Cat, Good Boy"
-                    name="breed"
-                    id="breed"
+                    placeholder="Location"
+                    name="adress"
+                    id="adress"
                     value= { pet.breed }
-                    onChange={ handleChange }
-                />
-				<Form.Label>Likes:</Form.Label>
-                <Form.Control 
-                    placeholder="What does your pet like to do?"
-                    name="likes"
-                    id="likes"
-                    value= { pet.likes }
                     onChange={ handleChange }
                 />
                 <Form.Check 
