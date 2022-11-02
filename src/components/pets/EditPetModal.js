@@ -1,20 +1,15 @@
-import React, { useState } from 'react' 
-import { petCreate } from '../../api/pet'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Modal } from 'react-bootstrap'
 import PetForm from '../shared/PetForm'
+import { petUpdate } from '../../api/pet'
 
-const PetCreate = ({user, msgAlert}) => {
-	const navigate = useNavigate()
+const EditPetModal = (props) => {
+    const { 
+        user, show, handleClose, 
+        msgAlert, triggerRefresh 
+    } = props
 
-    const defaultPet = {
-		name:'',
-		//img: '',
-		type: '',
-		breed: '',
-		likes: [],
-		available: true ,
-    }
-	const [pet, setPet] = useState(defaultPet)
+    const [pet, setPet] = useState(props.pet)
 
 	const handleChange =(e) =>{
 		setPet(prevPet =>{
@@ -39,38 +34,42 @@ const PetCreate = ({user, msgAlert}) => {
 			return {...prevPet, ...updatedPet}
 		})
 	}
-	const handleCreatePet = (e) => {
+
+    const handleSubmit = (e) => {
         e.preventDefault()
         
-        petCreate(pet, user)
-        //    .then(res => { navigate(`/petmatch/${res.data.pet._id}`)})
-			.then(res =>{ navigate(`/petmatch`)} )
+        petUpdate(pet, user, props.pet._id)
+            .then(() => handleClose())
             .then(() => {
                 msgAlert({
                     heading: 'Success',
-                    message: 'Create Pet',
+                    message: 'Updated pet!',
                     variant: 'success'
                 })
             })
+            .then(() => triggerRefresh())
             .catch((error) => {
-				console.log(error)
                 msgAlert({
                     heading: 'Failure',
-                    message: 'Create Pet Failure' + error,
+                    message: 'Update Pet Failure' + error,
                     variant: 'danger'
                 })
             })
     }
-	return (
-		<>
-		<PetForm
-			pet={ pet }
-			handleChange={ handleChange }
-			heading="Add a new pet!"
-			handleSubmit={ handleCreatePet }
-		/>
-		</>
-	)
+
+    return (
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton/>
+            <Modal.Body>
+                <PetForm 
+                    pet={pet}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    heading="Update Pet"
+                />
+            </Modal.Body>
+        </Modal>
+    )
 }
 
-export default PetCreate
+export default EditPetModal
