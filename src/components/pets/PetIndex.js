@@ -31,6 +31,7 @@ const PetIndex = ({ user, msgAlert }) => {
 	const catPic = require('../shared/images/defaultCat.png')
 	
 	const setImage = (type)=>{
+       
 		if(type == "DOG"){
 			return <img fluid  src={dogPic} />
 		}else{
@@ -38,6 +39,7 @@ const PetIndex = ({ user, msgAlert }) => {
 		}
 	}
     const petCards = allPets.map(pet => (
+        
         <Card key={ pet.id } style={{ margin: 10, width: '45%',}} border="primary">
            
             <Card.Body>
@@ -46,7 +48,24 @@ const PetIndex = ({ user, msgAlert }) => {
                     
                     {/* <Link to={ `/petmatch/${pet._id}` }>View { pet.name }</Link> */}
                     <Row>
-                        <Col><Link to={ `/petmatch/${pet._id}` }><Container>{setImage(pet.typeOfPet)}</Container></Link></Col>
+                        <Col>
+                        <Link to={ `/petmatch/${pet._id}` }>
+                            <Container>
+                            { 
+                                pet.img  
+                                ?
+                                <> <img fluid style={{width:'300px', height:'300px'}} src={pet.img}/></>
+                                :
+                                <> {setImage(pet.typeOfPet)} </>
+                             }
+
+
+                                
+                        
+                                
+                            </Container>
+                         </Link>
+                        </Col>
                         <Col> 
                             <Card.Title><h1>{ pet.name }</h1></Card.Title>
                             <Card.Text style ={{color:'#eb50b8'}}>{ pet.typeOfPet}</Card.Text>

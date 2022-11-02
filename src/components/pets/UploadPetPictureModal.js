@@ -1,28 +1,31 @@
-import React, { useState } from 'react'
-import { Modal } from 'react-bootstrap'
-import Upload from '../shared/Upload'
-import { petUpdate } from '../../api/pet'
+
+import React, { useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
+import { useNavigate, useParams } from 'react-router-dom'
+
 import { imageCreate } from '../../api/image'
 
 const UploadPetPicture = (props) => {
     const { 
         user, show, handleClose, 
-        msgAlert, triggerRefresh 
+        msgAlert, triggerRefresh, 
     } = props
 
-    const [pet, setPet] = useState(props.pet)
-
 	const [fileInputState, setFileInputState] = useState('')
-	const [selectedFile, setSelectedFile] =useState('')
+	
 	const [previewSource,setPreviewSource] = useState('')
-
+	
+	const {id } = useParams()
+	const navigate = useNavigate()
+	
 	//show the user the picture they selected
 	const previewFile =(file)=>{
 		//File reader is a built in js
 		const reader = new FileReader()
 		//converts image to string
 		reader.readAsDataURL(file)
-        console.log(file)
+		console.log(file)
+		
 		reader.onloadend=()=>{
 			setPreviewSource(reader.result) 
 		}
@@ -31,37 +34,67 @@ const UploadPetPicture = (props) => {
 	const handleFileInputChange = (e)=>{
 		const file = e.target.files[0]
 		previewFile(file)
+		console.log(previewSource)
+		
 	}
-	const handleSubmitFile =(e)=>{
-		console.log('submitting')
+
+
+	const uploadImage =async (previewSource) => {
+	let imgFile = previewSource
+	
+		imageCreate(id, user, imgFile )
+		.then(() => handleClose())
+		.then(() => {
+			msgAlert({
+				heading: 'Success',
+				message: 'PictureUploaded!',
+				variant: 'success'
+			})
+		})
+		.then(() => triggerRefresh())
+		.catch((error) => {
+			msgAlert({
+				heading: 'Failure',
+				message: "Oh no!" + error,
+				variant: 'danger'
+			})
+	})
+}
+
+	const handSubmitFile =(e)=>{
 		e.preventDefault()
+
 		if(!previewSource) return;
 		uploadImage(previewSource)
 	}
 
-	const uploadImage =async (base64EncodedImage) => {
-		console.log(base64EncodedImage)
-		let data = base64EncodedImage
-		imageCreate(data, user)
-		.then(res=> console.log(res))
-		.catch((error)=>{
-			console.log(error)
-		})
-	}
+
+
+	
 
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton/>
             <Modal.Body>
-                <Upload
-                    pet={pet}
-                    uploadImage ={uploadImage}
-                    imageCreate ={imageCreate}
-                    handleFileInputChange ={handleFileInputChange}
-                    handleSubmitFile = {handleSubmitFile}
-                    previewFile ={previewFile}
-                   
-                />
+			<Form onSubmit={handSubmitFile} className='form'>
+			<Form.Group controlId="formFile" className="mb-3">
+        		<Form.Label>Upload Your Image</Form.Label>
+        		<Form.Control 
+				type="file" 
+				placeholder="Choose a picture"
+				onChange={handleFileInputChange}
+				name = 'image'
+				value={fileInputState}
+				/>
+				<small>picture must be a jpeg</small><br/>
+				<Button variant="primary" type='submit'> Submit </Button>
+      			</Form.Group>
+				
+			</Form>	
+			{previewSource && (
+				<img src ={previewSource} alt='chosen picture'
+				style={{height: '300px'}}/>
+			)}
             </Modal.Body>
         </Modal>
     )

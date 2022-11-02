@@ -17,7 +17,7 @@ const EditPetModal = (props) => {
         user, show, handleClose, 
         msgAlert, triggerRefresh
     } = props
-    console.log("this is the props.pet", props.pet)
+    console.log("this is the props.pet in editPetModal\n", props.pet)
     
     const [pet, setPet] = useState(props.pet)
 
@@ -75,7 +75,7 @@ const EditPetModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        petUpdate(pet, user, props.pet._id)
+        petUpdate(pet, user, id)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({
