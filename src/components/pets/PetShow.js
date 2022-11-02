@@ -43,7 +43,7 @@ const PetShow = ({ user, msgAlert }) => {
 			    return <img fluid  src={catPic} />
 		    }
         }else{
-            return null
+            return   <img fluid style={{width:'300px', height:'300px'}} src={pet.img} />
        }
 	}
     const handleDeletePet = () => {
@@ -73,12 +73,11 @@ const PetShow = ({ user, msgAlert }) => {
 			<>
 				<Container className='mt-5 mx-auto'>
                    
-                    <Row className=' mx-auto'>
+                    <Row className=''>
                     <Col xl={1}>
                         </Col>
                         <Col className='mx-auto mt-5'>
-                        <img fluid style={{width:'250px', height:'250px'}} src={pet.img} />
-                       
+                      
                         {setImage(pet.typeOfPet)}
                         
                         <Card.Body>
@@ -109,7 +108,7 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                         <Col xl={6}>
                         <Container fluid style={{width:"100%"}}>
-                        <Card>
+                        <Card className='mt-5'>
                         <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
                        <Card.Body>
                             <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
