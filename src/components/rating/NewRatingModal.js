@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import {Modal} from 'react-bootstap'
+import { Modal } from 'react-bootstrap'
 import RatingForm from '../shared/RatingForm'
 import {createRating} from '../../api/rating'
 // import { PromiseProvider } from 'mongoose'
 
 const NewRatingModal = (props) => {
     const {
-        user, pet, show, 
+        user, pet, show, handleClose, msgAlert, triggerRefresh
     } = props
 
 const [rating, setRating] = useState({})
@@ -44,10 +44,10 @@ const handleSubmit = (e) => {
             })
         })
         .then(() => triggerRefresh())
-        .catch(() => {
+        .catch((error) => {
             msgAlert({
                 heading: 'Oh No!',
-                message: 'Something went wrong! Please try again',
+                message: 'Something went wrong! Please try again' + error, 
                 variant: 'danger'
             })
         })
@@ -61,7 +61,7 @@ return (
                 rating={rating}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
-                heading="Rate this pet!"
+                heading="Rate your date!"
             />
         </Modal.Body>
     </Modal>

@@ -8,39 +8,40 @@ const RatingForm = (props) => {
         <Container className="justify-content-center">
             <h3>{ heading }</h3>
             <Form onSubmit={ handleSubmit }>
-                <Form.Label>Name:</Form.Label>
+                <Form.Label>Rating:</Form.Label>
                 <Form.Control 
                     placeholder="Would you like to see this pet again?"
-                    name="name"
-                    id="name"
-                    value= { rating.name }
+                    name="scale"
+                    type="number"
+                    id="scale"
+                    value= { rating.scale }
                     onChange={ handleChange }
                 />
-                <Form.Label>Description:</Form.Label>
+                <Form.Label>Comment:</Form.Label>
                 <Form.Control 
                     placeholder="Rate your date..."
-                    name="description"
-                    id="description"
-                    value= { rating.description }
+                    name="comment"
+                    id="comment"
+                    value= { rating.comment }
                     onChange={ handleChange }
                 />
                 <Form.Check 
                     label="Would you see again?"
-                    name="Most definitely!"
-                    defaultChecked={ rating.dateAgain }
+                    name="meetAgain"
+                    defaultChecked={ rating.meetAgain }
                     onChange={ handleChange }
                 />
-                <Form.Select
+                {/* <Form.Select
                     aria-label="Rate this pet!"
                     name="condition"
                     defaultValue={rating.condition}
-                    onChange={handleChange}
-                >
+                    onChange={handleChange} */}
+                {/* >
                     <option>Open this select menu</option>
                     <option value="Enjoyable">Enjoyable</option>
                     <option value="okay">okay</option>
                     <option value="ehhh..pass. ">ehhh..pass.</option>
-                </Form.Select>
+                </Form.Select> */}
                 <Button type="submit">Submit</Button>
             </Form>
         </Container>
