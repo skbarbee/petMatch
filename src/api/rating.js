@@ -5,6 +5,7 @@ import axios from 'axios'
 export const createRating = (user, petId, newRating) => {
     console.log('the user in createRating', user)
     console.log('the newRating in createRating', newRating)
+	console.log('petId', petId)
 	return axios({
 		url: `${apiUrl}/rating/${petId}`,
 		method: 'POST',
