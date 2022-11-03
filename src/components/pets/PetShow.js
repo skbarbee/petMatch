@@ -45,7 +45,7 @@ const PetShow = ({ user, msgAlert }) => {
 			    return <img fluid  src={catPic} />
 		    }
         }else{
-            return   <img fluid style={{width:'300px', height:'300px'}} src={pet.img} />
+            return   <img fluid style={{width:'300px', height:'300px', border: 'solid black'}} src={pet.img} />
        }
 	}
     const handleDeletePet = () => {

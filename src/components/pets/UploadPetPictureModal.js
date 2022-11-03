@@ -93,7 +93,7 @@ const UploadPetPicture = (props) => {
 			</Form>	
 			{previewSource && (
 				<img src ={previewSource} alt='chosen picture'
-				style={{height: '200px', width:'200px'}}/>
+				style={{height: '200px', width:'200px', border: 'solid black'}}/>
 			)}
             </Modal.Body>
         </Modal>
