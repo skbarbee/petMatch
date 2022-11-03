@@ -21,37 +21,56 @@ const UploadPetPicture = (props) => {
 	  });
 	  //console.log('this is cloud-info',cld)
 	
-
+	const { id } = useParams()
 	
 
 	
 	
-		const [imageSelected, setImageSelected] = useState('')
-		const [picture, setPicture] = useState('')
-		// let public_id = null
-	
-		const uploadImage = (files) => {
-			// console.log(files[0])
-			const formData = new FormData ()
-			formData.append("file", imageSelected)
-			formData.append("upload_preset", "bgbb6aec")
-			
-	
-			Axios.post("https://api.cloudinary.com/v1_1/dh1mfxtcq/image/upload", formData)
-			.then((response) => {
-				console.log('cloudinaryResponse:\n', response.data.url);
-				// public_id = response.data.public_id
-				setPicture(response.data.url)
-				console.log('pictureAfterUpload:\n',picture)
-			});
-		};
-	
-	
+	const [imageSelected, setImageSelected] = useState('')
+	const [picture, setPicture] = useState('')
+	// let public_id = null
+
+	const uploadImage = (files) => {
+		// console.log(files[0])
+		const formData = new FormData ()
+		formData.append("file", imageSelected)
+		formData.append("upload_preset", "bgbb6aec")
+		
+
+		Axios.post("https://api.cloudinary.com/v1_1/dh1mfxtcq/image/upload", formData)
+		.then((response) => {
+			console.log('cloudinaryResponse:\n', response.data.url);
+			// public_id = response.data.public_id
+			setPicture(response.data.url)
+			console.log('pictureAfterUpload:\n',picture)
+		});
+	};
+
+	const addImagetoUser = () => {
+		
+		imageCreate(id, user, picture )
+			.then(() => handleClose())
+			.then(() => {
+				msgAlert({
+					heading: 'Success',
+					message: 'PictureUploaded!',
+					variant: 'success'
+				})
+			})
+			.then(() => triggerRefresh())
+			.catch((error) => {
+				msgAlert({
+					heading: 'Failure',
+					message: "Oh no!" + error,
+					variant: 'danger'
+				})
+		})
+	}
 
 
 
 
-	
+
 
     return (
         <Modal show={show} onHide={handleClose}>
@@ -69,9 +88,8 @@ const UploadPetPicture = (props) => {
 	
 				<img 
 					style={{width: 200}}
-					// cloudName="dtszeeznm" 
-					// publicId= { picture }
 					src = { picture }
+					alt = "preview of profile picture"
 				/>
 			</div>
 		
