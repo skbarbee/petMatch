@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import MeetForm from '../shared/MeetForm'
-import { meetUpdate } from '../../api/meet'
+import { updateMeet } from '../../api/meet'
 
 
 
@@ -13,10 +13,10 @@ const EditMeetModal = (props) => {
         msgAlert, triggerRefresh
     } = props
     
-    const [pet, setPet] = useState(props.pet)
+    const [meet, setMeet] = useState(props.pet)
     
     const handleChange =(e) =>{
-		setPet(prevPet =>{
+		setMeet(prevMeet =>{
 			const updatedName = e.target.name
 			let updatedValue = e.target.value
 			console.log(updatedValue)
@@ -30,18 +30,18 @@ const EditMeetModal = (props) => {
 			}
 			const updatedMeet = { [updatedName]: updatedValue}
 			console.log(updatedMeet)
-			return {...prevPet, ...updatedMeet}
+			return {...prevMeet, ...updatedMeet}
 		})
 	}
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        meetUpdate(pet, user, props.pet._id)
+        updateMeet(meet, user, props.pet._id)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({
                     heading: 'Success',
-                    message: 'Updated pet!',
+                    message: 'Updated thing!',
                     variant: 'success'
                 })
             })
@@ -49,7 +49,7 @@ const EditMeetModal = (props) => {
             .catch((error) => {
                 msgAlert({
                     heading: 'Failure',
-                    message: 'Update Pet Failure' + error,
+                    message: 'Update Pet Failure',
                     variant: 'danger'
                 })
             })
@@ -60,7 +60,7 @@ const EditMeetModal = (props) => {
             <Modal.Header closeButton/>
             <Modal.Body>
                 <MeetForm 
-                    pet={pet}
+                    meet={meet}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     heading="Update Pet"

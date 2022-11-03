@@ -77,21 +77,18 @@ const PetShow = ({ user, msgAlert }) => {
     }
 
 
-    // let meetCards
-    // if (pet) {
-    //     if (pet.meets.length > 0) {
-    //         meetCards = pet.meets.map(meet => (
-    //             <ShowMeet
-    //                 key={pet.meets._id}
-    //                 meets={pet.meets}
-    //                 pet={pet}
-    //             />
-    //         ))
-    //     } else {
-    //         return
-    //     }
-    // }
-
+    let meetCards
+    if (pet) {
+        if (pet.meets.length > 0) {
+            meetCards = pet.meets.map(meet => (
+                <ShowMeet
+                    key={meet._id}
+                    meet={meet}
+                    pet={pet}
+                />
+            ))    
+    }
+}
 
     // oneliner
     if (deleted) navigate('/petmatch')
@@ -160,7 +157,7 @@ const PetShow = ({ user, msgAlert }) => {
                         </Container>
                         <Col>
                         <Container style={cardContainerLayout}>
-                            {ShowMeet}
+                            {meetCards}
                         </Container>
                         </Col>
                         </Col>

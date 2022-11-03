@@ -2,35 +2,18 @@ import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 
 const ShowMeet = (props) => {
-    const { meets, pet, user } = props
-
-    let meetCards
-    if (pet) {
-        if (pet.meets.length > 0) {
-            meetCards = pet.meets.map(meet => (
-                <ShowMeet
-                    key={pet.meets._id}
-                    meets={pet.meets}
-                    pet={pet}
-                />
-            ))
-        } else {
-            return
-        }
-    }
-
-
+    const { meet, pet, user } = props
 
 
 
     return (
         <>
             <Card>
-                <Card.Header>{ meets.person }</Card.Header>
+                <Card.Header>{ meet.person }</Card.Header>
                 <Card.Body>
-                    <small>{ meets.when }</small><br/>
+                    <small>{ meet.when }</small><br/>
                     <small>
-                        { meets.where}
+                        { meet.where}
                     </small>
                 </Card.Body>
             </Card>

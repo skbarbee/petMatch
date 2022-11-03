@@ -1,8 +1,9 @@
+import React from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 
 const MeetForm = (props) => {
     // here are the props we're going to bring into our form
-    const { pet, handleChange, heading, handleSubmit } = props
+    const { meet, handleChange, heading, handleSubmit } = props
     
     return (
         <Container className="justify-content-center">
@@ -13,7 +14,7 @@ const MeetForm = (props) => {
                     placeholder="Name?"
                     name="name"
                     id="name"
-                    value= { pet.person }
+                    value= { meet.person }
                     onChange={ handleChange }
                 />
                 <Form.Label>When To Meet:</Form.Label>
@@ -21,7 +22,7 @@ const MeetForm = (props) => {
                     placeholder="When?"
                     name="date"
                     id="date"
-                    value= { pet.when }
+                    value= { meet.when }
                     onChange={ handleChange }
                 />
                 <Form.Label>Where To Meet:</Form.Label>
@@ -29,14 +30,7 @@ const MeetForm = (props) => {
                     placeholder="Location"
                     name="address"
                     id="address"
-                    value= { pet.where }
-                    onChange={ handleChange }
-                />
-                <Form.Check 
-					// type='switch'
-                    label="Are You Able to Meet-up?"
-                    name="available"
-                    defaultChecked={ pet.available }
+                    value= { meet.where }
                     onChange={ handleChange }
                 />
                 <Button type="submit">Submit</Button>
