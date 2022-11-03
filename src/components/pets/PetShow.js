@@ -20,6 +20,7 @@ const PetShow = ({ user, msgAlert }) => {
     const [editModalShow, setEditModalShow] = useState(false)
     const [meetModalShow, setMeetModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
+    const [NewRatingShow, setNewRatingShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
     
@@ -112,7 +113,7 @@ const PetShow = ({ user, msgAlert }) => {
                             <Button onClick={() => setEditModalShow(true)} className="m-2" variant="info">
                                 Edit {pet.name}'s Profile
                             </Button>
-                            <Button onClick={() => navigate(`/image/${pet._id}`)} className="m-2" variant="secondary">
+                            <Button onClick={() => setUploadPictureShow(true)} className="m-2" variant="secondary">
                                 Edit {pet.name}'s Picture
                             </Button>
                             
@@ -142,6 +143,7 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                         
                         <div className="footer">
+                        </div>   
                         <Card.Footer>
                         <div>
                                 Available for a play date: { pet.available ? 'yes' : 'no' }
@@ -152,7 +154,9 @@ const PetShow = ({ user, msgAlert }) => {
                             </Button>
                         </div>
                         </Card.Footer>
-                        </div>
+                        <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
+                                Rate your date !
+                        </Button>
                         </Card>
                         </Container>
                         <Col>
@@ -162,13 +166,14 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                         </Col>
                         <Col>
-                        <EditPetModal 
-                            user={user}
-                            pet={pet}
-                            show={editModalShow}
-                            msgAlert={msgAlert}
-                            triggerRefresh={() => setUpdated(prev => !prev)}
-                            handleClose={() => setEditModalShow(false)}/>
+                            <EditPetModal 
+                                user={user}
+                                pet={pet}
+                                show={editModalShow}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setEditModalShow(false)}
+                            />
                         </Col>
                         <Row>
                         <Col>
@@ -191,6 +196,16 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col></Row>
                         
                     </Row>
+                    <Col>
+                            <NewRatingModal
+                                user={user}
+                                pet={pet}
+                                show={NewRatingShow}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setNewRatingShow(false)}
+                            />
+                        </Col>
                     </Container>
                 
 			</>

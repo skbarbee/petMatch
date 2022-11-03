@@ -1,7 +1,7 @@
 
 
 import React from "react"
-import { Container } from 'react-bootstrap'
+import { Container, Image } from 'react-bootstrap'
 
 
 const Home = (props) => {
@@ -12,9 +12,9 @@ const Home = (props) => {
 		<>
 	
 	<Container fluid className='center'>
-			<h1>PetMatch</h1>
-			<img fluid  src={picture} />
-			<h3> Find your best friend, their 2nd best friend</h3>
+			
+			<Image className='m-n5' fluid src={picture} />
+			<h3 className="mt-n5"> Find a new best friend for yourself and your pet!</h3>
 	</Container>
 	
 		</>

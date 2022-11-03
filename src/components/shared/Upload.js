@@ -4,9 +4,9 @@ import { imageCreate } from "../../api/image";
 import { useNavigate, useParams } from 'react-router-dom'
 
 const Upload = ({user,pet})=>{
-	console.log("this is the pet?\n", pet)
+	
 	const [fileInputState, setFileInputState] = useState('')
-	const [selectedFile, setSelectedFile] =useState('')
+	
 	const [previewSource,setPreviewSource] = useState('')
 	
 	const { petId } = useParams()
@@ -31,12 +31,7 @@ const Upload = ({user,pet})=>{
 		console.log(previewSource)
 		
 	}
-	const handSubmitFile =(e)=>{
-		console.log('submitting')
-		e.preventDefault()
-		if(!previewSource) return;
-		uploadImage(previewSource)
-	}
+
 
 	const uploadImage =async (previewSource) => {
 	let imgFile = previewSource
@@ -46,6 +41,13 @@ const Upload = ({user,pet})=>{
 		.catch((error)=>{
 			console.log(error)
 		})
+	}
+
+	const handSubmitFile =(e)=>{
+		console.log('submitting')
+		e.preventDefault()
+		if(!previewSource) return;
+		uploadImage(previewSource)
 	}
 
 	return(
