@@ -58,6 +58,7 @@ const ChangePassword = (props) => {
                 <h3>Change Password</h3>
                 <Form onSubmit={onChangePassword}>
                     <Form.Group controlId='oldPassword'>
+                        <br></br>
                         <Form.Label>Old password</Form.Label>
                         <Form.Control
                             required
@@ -68,6 +69,7 @@ const ChangePassword = (props) => {
                             onChange={e => setOldPassword(e.target.value)}
                         />
                     </Form.Group>
+                    <br></br>
                     <Form.Group controlId='newPassword'>
                         <Form.Label>New Password</Form.Label>
                         <Form.Control
@@ -79,6 +81,7 @@ const ChangePassword = (props) => {
                             onChange={e => setNewPassword(e.target.value)}
                         />
                     </Form.Group>
+                    <br></br>
                     <Button variant='primary' type='submit'>
                         Submit
                     </Button>
