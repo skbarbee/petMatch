@@ -4,9 +4,9 @@
 
 body {
   margin: auto;
-  font-family: 'Oswald';
+  font-family: 'Sleeping Baby Panda', 'Oswald';
   font-weight: 200;
-  background-image: url("components/shared/images/sparklingrainbowsky.png");
+  background-image: url("components/shared/images/rainbowbg3.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -20,6 +20,7 @@ body {
   text-align: center; 
   margin-bottom: 0;
 }
+
 .justify-center {
   display: flex;
   justify-content: space-between;
@@ -30,4 +31,8 @@ body {
 
 .footer {
   background-color: rgb(144, 225, 247);
+}
+
+button {
+  filter: drop-shadow(5px 5px 5px #7c7f88);
 }
