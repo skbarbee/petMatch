@@ -6,7 +6,7 @@ const MeetForm = (props) => {
     
     return (
         <Container className="justify-content-center">
-            <h3>{ heading }</h3>
+            <h3>Let's Hangout</h3>
             <Form onSubmit={ handleSubmit }>
                 <Form.Label>Name:</Form.Label>
                 <Form.Control 
