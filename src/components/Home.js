@@ -14,7 +14,7 @@ const Home = (props) => {
 	<Container fluid className='center'>
 			
 			<Image className='m-n5' fluid src={picture} />
-			<h3 className="mt-n5"> Find your best friend, their 2nd best friend</h3>
+			<h3 className="mt-n5"> Find a new best friend for yourself and your pet!</h3>
 	</Container>
 	
 		</>
