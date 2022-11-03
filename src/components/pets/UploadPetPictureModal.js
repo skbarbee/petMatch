@@ -33,6 +33,8 @@ const UploadPetPicture = (props) => {
 
 	const handleFileInputChange = (e)=>{
 		const file = e.target.files[0]
+		console.log(file)
+		setFileInputState(file.name)
 		previewFile(file)
 		console.log(previewSource)
 		
@@ -66,6 +68,7 @@ const UploadPetPicture = (props) => {
 
 		if(!previewSource) return;
 		uploadImage(previewSource)
+		triggerRefresh()
 	}
 
 
@@ -84,7 +87,7 @@ const UploadPetPicture = (props) => {
 				placeholder="Choose a picture"
 				onChange={handleFileInputChange}
 				name = 'image'
-				value={fileInputState}
+			
 				/>
 				<small>picture must be a jpeg</small><br/>
 				<Button variant="primary" type='submit'> Submit </Button>
