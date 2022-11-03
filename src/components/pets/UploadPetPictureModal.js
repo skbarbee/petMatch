@@ -83,7 +83,7 @@ const UploadPetPicture = (props) => {
 				/>
 				<Button id="upload_widget" className="m-2 cloudinary-button btn-secondary" onClick={uploadImage}
 				>
-					Upload
+					Preview
 				</Button>
 	
 				<img 
@@ -95,7 +95,7 @@ const UploadPetPicture = (props) => {
 				<>
 					<Button  className="m-2 cloudinary-button btn-secondary" onClick={addImagetoUser}
 				>
-					Add to your pet!
+					Add to your profile
 				</Button>
 				</>
 				}
