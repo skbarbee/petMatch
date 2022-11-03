@@ -45,21 +45,21 @@ const handleSubmit = (e) => {
         
         .then(() => handleClose())
         .then(() => {
-            console.log("success")
-            // msgAlert({
-            //     heading: 'Thank you!',
-            //     message: 'The pet appreciates your feedback!',
-            //     variant: 'success'
-            // })
+           
+            msgAlert({
+                heading: 'Thank you!',
+                message: 'The pet appreciates your feedback!',
+                variant: 'success'
+            })
         })
         .then(() => triggerRefresh())
         .catch((error) => {
-            console.log(error)
-            // msgAlert({
-            //     heading: 'Oh No!',
-            //     message: 'Something went wrong! Please try again' + error, 
-            //     variant: 'danger'
-            // })
+           
+            msgAlert({
+                heading: 'Oh No!',
+                message: 'Something went wrong! Please try again' + error, 
+                variant: 'danger'
+            })
         })
 }
 

@@ -6,7 +6,7 @@ export const imageCreate = async (petId, user, imgFile) => {
 		method: 'POST',
 		url:  `${apiUrl}/image/${petId}`,
 		data: {
-			// body:JSON.stringify({data:base64EncodedImage})
+			
 			 image: imgFile
 		},
 		headers: {
