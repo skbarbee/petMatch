@@ -105,13 +105,13 @@ const EditPetModal = (props) => {
                     heading="Update Pet"
                     handleCheck={handleCheck}
                 />
-                <PetShow 
+                {/* <PetShow 
                     pet={pet}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     heading="Update Pet"
                     handleCheck={handleCheck}
-                />
+                /> */}
             </Modal.Body>
         </Modal>
     )
