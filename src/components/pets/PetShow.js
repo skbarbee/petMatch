@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react' 
-import { Container, Row, Col , Card, Button} from 'react-bootstrap'
+import { Container, Row, Col , Card, Button, ButtonGroup} from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
@@ -45,7 +45,7 @@ const PetShow = ({ user, msgAlert }) => {
 			    return <img fluid  src={catPic} />
 		    }
         }else{
-            return   <img fluid style={{width:'300px', height:'300px'}} src={pet.img} />
+            return   <img fluid style={{width:'300px', height:'300px', border: 'solid fuchsia'}} src={pet.img} />
        }
 	}
     const handleDeletePet = () => {
@@ -87,21 +87,20 @@ const PetShow = ({ user, msgAlert }) => {
                              pet.owner && user && pet.owner._id === user._id 
                                 ?
                             <Row>
-                            <Button onClick={() => setEditModalShow(true)} className="m-2" variant="info">
+                                <ButtonGroup>
+                            <Button onClick={() => setEditModalShow(true)} className=" m-1 userbutton" variant="info">
                                 Edit {pet.name}'s Profile
                             </Button>
-                            <Button onClick={() => setUploadPictureShow(true)} className="m-2" variant="secondary">
+                            <Button onClick={() => setUploadPictureShow(true)} className=" m-1 userbutton" variant="secondary">
                                 Edit {pet.name}'s Picture
                             </Button>
-                            
-                            
                             <Button onClick={() => handleDeletePet()}
-                                className="m-2"
+                                className=" m-1 userbutton"
                                 variant="danger"
                             >
                                Delete { pet.name }'s Profile
                             </Button>
-                        
+                            </ButtonGroup>
                         </Row>
                         :
                         null

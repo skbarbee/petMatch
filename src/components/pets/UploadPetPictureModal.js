@@ -50,6 +50,7 @@ const UploadPetPicture = (props) => {
 		
 		imageCreate(id, user, picture )
 			.then(() => handleClose())
+			.then(() => triggerRefresh())
 			.then(() => {
 				msgAlert({
 					heading: 'Success',
@@ -81,7 +82,7 @@ const UploadPetPicture = (props) => {
 					type="file"
 					onChange={(e) => {setImageSelected(e.target.files[0])}}
 				/>
-				<Button id="upload_widget" variant="danger" onClick={uploadImage}
+				<Button id="upload_widget" variant="primary" onClick={uploadImage}
 				>
 					Preview
 				</Button>

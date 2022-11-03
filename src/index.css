@@ -31,7 +31,7 @@ body {
   background-color: rgb(144, 225, 247);
 }
 
-button {
+.userbutton {
   filter: drop-shadow(5px 5px 5px #abadb0);
 }
 
