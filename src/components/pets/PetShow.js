@@ -5,13 +5,14 @@ import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
 import UploadPetPicture from './UploadPetPictureModal'
 import NewRatingModal from '../rating/NewRatingModal'
+import ShowRating from '../rating/ShowRating'
  
 const PetShow = ({ user, msgAlert }) => {
 
     const [pet, setPet] = useState({})
     const [editModalShow, setEditModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
-    const [NewRatingShow, setNewRatingShow] = useState(false)
+    const [ratingModalShow, setRatingModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
@@ -68,6 +69,23 @@ const PetShow = ({ user, msgAlert }) => {
         })
     }
 
+    let RatingCards
+    if (pet) {
+        if (pet.rating.length > 0) {
+            // map over the ratings
+            // produce one ShowRating component for each of them
+            ratingCards = pet.rating.map(toy => (
+                <ShowRating 
+                    key={rating._id}
+                    rating={rating}
+                    pet={pet}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
     // oneliner
     if (deleted) navigate('/petmatch')
 
@@ -126,7 +144,10 @@ const PetShow = ({ user, msgAlert }) => {
                         </div><br/>
                         </Card.Footer>
                         <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
-                                Rate your date !
+                                Rate your date with { pet.name }!
+                        <Button onclick={() => setShowRating(true)} className="m-2" variant="info">
+                            View { pet.name }'s Ratings
+                        </Button>
                         </Button>
                         </Card>
                         </Container>
@@ -136,7 +157,7 @@ const PetShow = ({ user, msgAlert }) => {
                             <EditPetModal 
                                 user={user}
                                 pet={pet}
-                                show={editModalShow}
+                                show={editRatingModalShow}
                                 msgAlert={msgAlert}
                                 triggerRefresh={() => setUpdated(prev => !prev)}
                                 handleClose={() => setEditModalShow(false)}
@@ -171,5 +192,7 @@ const PetShow = ({ user, msgAlert }) => {
 			</>
 		)
 }
+
+
 
 export default PetShow
