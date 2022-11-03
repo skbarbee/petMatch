@@ -50,19 +50,11 @@ const PetForm = (props) => {
                     value= { pet.likes }
                     onChange={ handleChange }
                 />
-                {/* <Form.Check 
-					// type='switch'
-                    label="Are You Able to Meet-up?"
-                    name="available"
-                    defaultChecked={ pet.available }
-                    onChange={ handleChange }
-                /> */}
                 <PetCheckBox
                     label="Available to meet up"
                     value={pet.available}
                     onChange={handleCheck}
-                />
-                <p>Is "availability" checked? </p>
+                /> <br></br>
                 <Button type="submit">Submit</Button>
             </Form>
         </Container>
