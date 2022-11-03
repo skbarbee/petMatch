@@ -81,7 +81,7 @@ const UploadPetPicture = (props) => {
 					type="file"
 					onChange={(e) => {setImageSelected(e.target.files[0])}}
 				/>
-				<Button id="upload_widget" className="m-2 cloudinary-button btn-secondary" onClick={uploadImage}
+				<Button id="upload_widget" variant="danger" onClick={uploadImage}
 				>
 					Preview
 				</Button>
@@ -93,7 +93,7 @@ const UploadPetPicture = (props) => {
 				/>
 				{picture && 
 				<>
-					<Button  className="m-2 cloudinary-button btn-secondary" onClick={addImagetoUser}
+					<Button  className="m-2  btn-secondary" onClick={addImagetoUser}
 				>
 					Add to your profile
 				</Button>
