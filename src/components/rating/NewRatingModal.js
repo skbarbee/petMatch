@@ -10,7 +10,7 @@ const NewRatingModal = (props) => {
         user, pet, show, handleClose, msgAlert, triggerRefresh
     } = props
 
-const { id } = useParams()
+// const { petId } = useParams()
 
 const [rating, setRating] = useState({})
 
@@ -40,25 +40,26 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
     e.preventDefault()
-
-    createRating(user, id, rating)
+    console.log('this is the petId', pet._id)
+    createRating(user, pet._id, rating)
+        
         .then(() => handleClose())
         .then(() => {
-            console.log("success")
-            // msgAlert({
-            //     heading: 'Thank you!',
-            //     message: 'The pet appreciates your feedback!',
-            //     variant: 'success'
-            // })
+           
+            msgAlert({
+                heading: 'Thank you!',
+                message: 'The pet appreciates your feedback!',
+                variant: 'success'
+            })
         })
         .then(() => triggerRefresh())
         .catch((error) => {
-            console.log(error)
-            // msgAlert({
-            //     heading: 'Oh No!',
-            //     message: 'Something went wrong! Please try again' + error, 
-            //     variant: 'danger'
-            // })
+           
+            msgAlert({
+                heading: 'Oh No!',
+                message: 'Something went wrong! Please try again' + error, 
+                variant: 'danger'
+            })
         })
 }
 
