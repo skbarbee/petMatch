@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import MeetForm from '../shared/MeetForm'
-import { updateMeet } from '../../api/meet'
-
-
+import { updateMeet } from '../../api/meets'
 
 
 
