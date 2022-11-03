@@ -1,9 +1,11 @@
 
+import { Cloudinary } from "@cloudinary/url-gen";
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useNavigate, useParams } from 'react-router-dom'
-
+import Axios from 'axios'
 import { imageCreate } from '../../api/image'
+
 
 const UploadPetPicture = (props) => {
     const { 
@@ -11,65 +13,41 @@ const UploadPetPicture = (props) => {
         msgAlert, triggerRefresh, 
     } = props
 
-	const [fileInputState, setFileInputState] = useState('')
-	
-	const [previewSource,setPreviewSource] = useState('')
-	
-	const {id } = useParams()
-	const navigate = useNavigate()
-	
-	//show the user the picture they selected
-	const previewFile =(file)=>{
-		//File reader is a built in js
-		const reader = new FileReader()
-		//converts image to string
-		reader.readAsDataURL(file)
-		console.log(file)
-		
-		reader.onloadend=()=>{
-			setPreviewSource(reader.result) 
+	const cld = new Cloudinary({
+		cloud: {
+		  cloud_name: "dp5dt9bdn", //Your cloud name
+		  upload_preset: "petMatch" //Create an unsigned upload preset and update this
 		}
-	}
-
-	const handleFileInputChange = (e)=>{
-		const file = e.target.files[0]
-		console.log(file)
-		setFileInputState(file.name)
-		previewFile(file)
-		console.log(previewSource)
-		
-	}
-
-
-	const uploadImage =async (previewSource) => {
-	let imgFile = previewSource
+	  });
+	  //console.log('this is cloud-info',cld)
 	
-		imageCreate(id, user, imgFile )
-		.then(() => handleClose())
-		.then(() => {
-			msgAlert({
-				heading: 'Success',
-				message: 'PictureUploaded!',
-				variant: 'success'
-			})
-		})
-		.then(() => triggerRefresh())
-		.catch((error) => {
-			msgAlert({
-				heading: 'Failure',
-				message: "Oh no!" + error,
-				variant: 'danger'
-			})
-	})
-}
 
-	const handSubmitFile =(e)=>{
-		e.preventDefault()
+	
 
-		if(!previewSource) return;
-		uploadImage(previewSource)
-		triggerRefresh()
-	}
+	
+	
+		const [imageSelected, setImageSelected] = useState('')
+		const [picture, setPicture] = useState('')
+		// let public_id = null
+	
+		const uploadImage = (files) => {
+			// console.log(files[0])
+			const formData = new FormData ()
+			formData.append("file", imageSelected)
+			formData.append("upload_preset", "bgbb6aec")
+			
+	
+			Axios.post("https://api.cloudinary.com/v1_1/dh1mfxtcq/image/upload", formData)
+			.then((response) => {
+				console.log('cloudinaryResponse:\n', response.data.url);
+				// public_id = response.data.public_id
+				setPicture(response.data.url)
+				console.log('pictureAfterUpload:\n',picture)
+			});
+		};
+	
+	
+
 
 
 
@@ -79,25 +57,24 @@ const UploadPetPicture = (props) => {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton/>
             <Modal.Body>
-			<Form onSubmit={handSubmitFile} className='form'>
-			<Form.Group controlId="formFile" className="mb-3">
-        		<Form.Label>Upload Your Image</Form.Label>
-        		<Form.Control 
-				type="file" 
-				placeholder="Choose a picture"
-				onChange={handleFileInputChange}
-				name = 'image'
-			
+			<div>
+				<input
+					type="file"
+					onChange={(e) => {setImageSelected(e.target.files[0])}}
 				/>
-				<small>picture must be a jpeg</small><br/>
-				<Button variant="primary" type='submit'> Submit </Button>
-      			</Form.Group>
-				
-			</Form>	
-			{previewSource && (
-				<img src ={previewSource} alt='chosen picture'
-				style={{height: '300px'}}/>
-			)}
+				<Button id="upload_widget" className="m-2 cloudinary-button btn-secondary" onClick={uploadImage}
+				>
+					Upload
+				</Button>
+	
+				<img 
+					style={{width: 200}}
+					// cloudName="dtszeeznm" 
+					// publicId= { picture }
+					src = { picture }
+				/>
+			</div>
+		
             </Modal.Body>
         </Modal>
     )
