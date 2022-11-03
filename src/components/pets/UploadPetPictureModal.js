@@ -91,6 +91,14 @@ const UploadPetPicture = (props) => {
 					src = { picture }
 					alt = "preview of profile picture"
 				/>
+				{picture && 
+				<>
+					<Button  className="m-2 cloudinary-button btn-secondary" onClick={addImagetoUser}
+				>
+					Add to your pet!
+				</Button>
+				</>
+				}
 			</div>
 		
             </Modal.Body>
