@@ -4,12 +4,8 @@
 
 body {
   margin: auto;
-  font-family: 'Sleeping Baby Panda', 'Oswald';
+  font-family: 'Oswald';
   font-weight: 200;
-  background-image: url("components/shared/images/rainbowbg3.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
 }
 
 .center {
@@ -34,5 +30,5 @@ body {
 }
 
 button {
-  filter: drop-shadow(5px 5px 5px #7c7f88);
+  filter: drop-shadow(5px 5px 5px #abadb0);
 }
