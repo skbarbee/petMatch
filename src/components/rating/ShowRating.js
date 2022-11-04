@@ -6,7 +6,7 @@ import EditRatingModal from './EditRatingModal'
 const ShowRating = (props) => {
     const { rating, pet, user, msgAlert, triggerRefresh } = props
     console.log('this is the props', props)
-
+    console.log(pet, "showRating")
     const [editModalShow, setEditModalShow] = useState(false)
 
     // this function removes a rating, is only available to pet owner
@@ -31,7 +31,7 @@ const ShowRating = (props) => {
 
     return (
         <>
-            <Card className="m-2" style={setBgCondition(rating.condition)}>
+            <Card className="m-2" >
                 <Card.Header>{ rating.name }</Card.Header>
                 <Card.Body>
                     <small>{ rating.description }</small><br/>

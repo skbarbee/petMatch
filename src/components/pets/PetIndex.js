@@ -54,7 +54,7 @@ const PetIndex = ({ user, msgAlert }) => {
                             { 
                                 pet.img  
                                 ?
-                                <> <img fluid style={{width:'300px', height:'300px'}} src={pet.img}/></>
+                                <> <img style={{width:'300px', height:'300px'}} src={pet.img}/></>
                                 :
                                 <> {setImage(pet.typeOfPet)} </>
                              }

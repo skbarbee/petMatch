@@ -7,21 +7,44 @@ import UploadPetPicture from './UploadPetPictureModal'
 import NewRatingModal from '../rating/NewRatingModal'
 import ShowRating from '../rating/ShowRating'
  
-const PetShow = ({ user, msgAlert }) => {
 
-    const [pet, setPet] = useState({})
+const PetShow = (props, { user, msgAlert }) => {
+console.log(msgAlert, "msgAlert here")
+    const [pet, setPet] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
-    const [ratingModalShow, setRatingModalShow] = useState(false)
+    const [NewRatingShow, setNewRatingShow] = useState(false)
+    // const [ShowRating, setShowRating] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
     const { id } = useParams()
     const navigate = useNavigate()
+console.log(pet, "pet show pet")
+    const makeRatingCards = () => {
+        let ratingCards = []
+        if (pet && pet.rating.length >0) {
+            // map over the ratings
+            // produce one ShowRating component for each of them
+            console.log("making rating cards if")
+            ratingCards = pet.rating.map(rating => (
+                <ShowRating 
+                    key={rating._id}
+                    rating={rating}
+                    pet={pet}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+        return (ratingCards)
+    }
 
     useEffect(() => {
         petShow(user, id)
         .then((res) => {
+            console.log(res.data.pet)
             setPet(res.data.pet)
             console.log("this is the id", id)
         })
@@ -34,7 +57,6 @@ const PetShow = ({ user, msgAlert }) => {
         })
     },[updated] )
 
-   
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
 	
@@ -69,25 +91,28 @@ const PetShow = ({ user, msgAlert }) => {
         })
     }
 
-    let RatingCards
-    if (pet) {
-        if (pet.rating.length > 0) {
-            // map over the ratings
-            // produce one ShowRating component for each of them
-            ratingCards = pet.rating.map(toy => (
-                <ShowRating 
-                    key={rating._id}
-                    rating={rating}
-                    pet={pet}
-                    user={user}
-                    msgAlert={msgAlert}
-                    triggerRefresh={() => setUpdated(prev => !prev)}
-                />
-            ))
-        }
-    }
+    // let ratingCards
+    // if (pet) {
+    //     if (pet.rating.length > 0) {
+    //         // map over the ratings
+    //         // produce one ShowRating component for each of them
+    //         ratingCards = pet.rating.map(rating => (
+    //             <ShowRating 
+    //                 key={rating._id}
+    //                 rating={rating}
+    //                 pet={props.pet}
+    //                 user={user}
+    //                 msgAlert={msgAlert}
+    //                 triggerRefresh={() => setUpdated(prev => !prev)}
+    //             />
+    //         ))
+  
     // oneliner
     if (deleted) navigate('/petmatch')
+
+    if (!pet) {
+        return<p>Loading...</p>
+    }
 
     return (
 			<>
@@ -145,11 +170,15 @@ const PetShow = ({ user, msgAlert }) => {
                         </Card.Footer>
                         <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
                                 Rate your date with { pet.name }!
-                        <Button onclick={() => setShowRating(true)} className="m-2" variant="info">
+                        </Button>
+                        {/* <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
                             View { pet.name }'s Ratings
-                        </Button>
-                        </Button>
+                        </Button> */}
+    
                         </Card>
+                        <Container>
+                        {pet === !null? makeRatingCards():<></>}
+                        </Container>
                         </Container>
                         
                         </Col>
@@ -157,7 +186,7 @@ const PetShow = ({ user, msgAlert }) => {
                             <EditPetModal 
                                 user={user}
                                 pet={pet}
-                                show={editRatingModalShow}
+                                show={editModalShow}
                                 msgAlert={msgAlert}
                                 triggerRefresh={() => setUpdated(prev => !prev)}
                                 handleClose={() => setEditModalShow(false)}
@@ -177,7 +206,18 @@ const PetShow = ({ user, msgAlert }) => {
                         </Row>
                         
                     </Row>
-                    <Col>
+                    {/* <Col>
+                            <ShowRating
+                                user={user}
+                                pet={pet}
+                                // show={ShowRating}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setShowRating(false)}
+                            />
+                        </Col> */}
+
+                        <Col>
                             <NewRatingModal
                                 user={user}
                                 pet={pet}

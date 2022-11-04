@@ -5,6 +5,7 @@ import { updateRating } from '../../api/rating'
 import messages from '../shared/AutoDismissAlert/messages'
 
 
+
 const EditRatingModal = (props) => {
     const { 
         user, show, handleClose, 
@@ -12,12 +13,11 @@ const EditRatingModal = (props) => {
     } = props
 
     const [rating, setRating] = useState(props.rating)
-
+    console.log(pet, "im the pet")
     useEffect(() => {
-        showRating(user, id)
+        updateRating(user, pet._id, rating)
         .then((res) => {
             setRating(res.data.pet)
-            console.log("this is the id", id)
         })
         .catch((error) => {
             msgAlert({
