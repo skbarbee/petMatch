@@ -5,35 +5,75 @@ import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
 import UploadPetPicture from './UploadPetPictureModal'
 import NewRatingModal from '../rating/NewRatingModal'
+import ShowRating from '../rating/ShowRating'
  
-const PetShow = ({ user, msgAlert }) => {
 
-    const [pet, setPet] = useState({})
+const PetShow = (props, { user, msgAlert }) => {
+console.log(msgAlert, "msgAlert here")
+    const [pet, setPet] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
     const [NewRatingShow, setNewRatingShow] = useState(false)
+    // const [ShowRating, setShowRating] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
 
     const { id } = useParams()
     const navigate = useNavigate()
+    const makeRatingCards = () => {
+        let ratingCards = []
+        console.log("inside make rating cards before if", pet)
+        if (pet && pet.rating.length >0) {
+            // map over the ratings
+            // produce one ShowRating component for each of them
+            console.log("making rating cards if")
+            ratingCards = pet.rating.map(rating => (
+                <ShowRating 
+                    key={rating._id}
+                    rating={rating}
+                    pet={pet}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+        return (ratingCards)
+    }
+
+    useEffect(() => { //will this useEffect run before our EditRatingModal useEffect? 
+        petShow(user, id)
+            .then((res) => {
+                console.log(res.data.pet)
+                setPet(res.data.pet)
+                console.log("this is the id in the on mount useeffect", id) //this is the id in the on mount useEffect
+            })
+            .catch((error) => {
+                msgAlert({
+                    heading: 'Failure',
+                    message: 'Show Pet Failure' + error,
+                    variant: 'danger'
+                })
+            })
+    },[] )
 
     useEffect(() => {
         petShow(user, id)
-        .then((res) => {
-            setPet(res.data.pet)
-            console.log("this is the id", id)
-        })
-        .catch((error) => {
-            msgAlert({
-                heading: 'Failure',
-                message: 'Show Pet Failure' + error,
-                variant: 'danger'
+            .then((res) => {
+                console.log(res.data.pet)
+                setPet(res.data.pet)
+                console.log("this is the id in the updated useeffect", id) //this is the id in the updated useEffect
             })
-        })
-    },[updated] )
+            .catch((error) => {
+                msgAlert({
+                    heading: 'Failure',
+                    message: 'Show Pet Failure' + error,
+                    variant: 'danger'
+                })
+            })
+    },[updated] ) //this use effect only runs when updated is changed. consider adding a new useeffect that runs on mount "[]"
 
-   
+
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
 	
@@ -68,8 +108,28 @@ const PetShow = ({ user, msgAlert }) => {
         })
     }
 
+    // let ratingCards
+    // if (pet) {
+    //     if (pet.rating.length > 0) {
+    //         // map over the ratings
+    //         // produce one ShowRating component for each of them
+    //         ratingCards = pet.rating.map(rating => (
+    //             <ShowRating 
+    //                 key={rating._id}
+    //                 rating={rating}
+    //                 pet={props.pet}
+    //                 user={user}
+    //                 msgAlert={msgAlert}
+    //                 triggerRefresh={() => setUpdated(prev => !prev)}
+    //             />
+    //         ))
+  
     // oneliner
     if (deleted) navigate('/petmatch')
+
+    if (!pet) {
+        return<p>Loading...</p>
+    }
 
     return (
 			<>
@@ -125,9 +185,16 @@ const PetShow = ({ user, msgAlert }) => {
                         </div><br/>
                         </Card.Footer>
                         <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
-                                Rate your date !
+                                Rate your date with { pet.name }!
                         </Button>
+                        {/* <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
+                            View { pet.name }'s Ratings
+                        </Button> */}
+    
                         </Card>
+                        <Container>
+                        {pet ? makeRatingCards():<p>rating cards go here</p>}
+                        </Container>
                         </Container>
                         
                         </Col>
@@ -155,7 +222,18 @@ const PetShow = ({ user, msgAlert }) => {
                         </Row>
                         
                     </Row>
-                    <Col>
+                    {/* <Col>
+                            <ShowRating
+                                user={user}
+                                pet={pet}
+                                // show={ShowRating}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setShowRating(false)}
+                            />
+                        </Col> */}
+
+                        <Col>
                             <NewRatingModal
                                 user={user}
                                 pet={pet}
@@ -170,5 +248,7 @@ const PetShow = ({ user, msgAlert }) => {
 			</>
 		)
 }
+
+
 
 export default PetShow
