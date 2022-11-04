@@ -34,6 +34,7 @@ export const petIndex = (user) => {
 	})
 }
 export const petShow = (user, id) => {
+	console.log('this is running')
 	return axios({
 		method: 'GET',
 		url: apiUrl + '/petmatch/' + id

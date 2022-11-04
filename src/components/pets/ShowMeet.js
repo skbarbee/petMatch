@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import React from 'react'
+import { Card } from 'react-bootstrap'
 
 const ShowMeet = (props) => {
-    const { meet, pet, user } = props
+    const { meet , key} = props
 
 
 
     return (
         <>
-            <Card>
+            <Card key={key}>
                 <Card.Header>{ meet.person }</Card.Header>
                 <Card.Body>
                     <small>{ meet.when }</small><br/>

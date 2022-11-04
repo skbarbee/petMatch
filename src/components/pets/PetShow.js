@@ -8,6 +8,7 @@ import EditMeetModal from './EditMeetModal'
 import ShowMeet from './ShowMeet'
 
 
+
 const cardContainerLayout = {
     display: 'flex',
     flexFlow: 'row wrap',
@@ -15,8 +16,7 @@ const cardContainerLayout = {
 }
 
 const PetShow = ({ user, msgAlert }) => {
-
-    const [pet, setPet] = useState({})
+    const [pet, setPet] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
     const [meetModalShow, setMeetModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
@@ -40,7 +40,24 @@ const PetShow = ({ user, msgAlert }) => {
                 variant: 'danger'
             })
         })
-    },[updated] )
+    } ,[])
+
+    useEffect(() => {
+        let meetCards
+        if (pet) {
+            console.log(pet.meets)
+            if (pet.meets.length > 0) {
+                meetCards = pet.meets.map(meet => (
+                    <ShowMeet
+                        key={meet._id}
+                        meet={meet}
+                        pet={pet}
+                    />
+                ))    
+        }
+    } },[pet])
+
+    
 
    
     const dogPic = require('../shared/images/defaultDog.png')
@@ -76,21 +93,29 @@ const PetShow = ({ user, msgAlert }) => {
             })
         })
     }
-
-
-    let meetCards
-    if (pet) {
-        if (pet.meets.length > 0) {
-            meetCards = pet.meets.map(meet => (
-                <ShowMeet
-                    key={meet._id}
-                    meet={meet}
-                    pet={pet}
-                />
-            ))    
+    if (!pet) {
+        return (
+            <div>
+                loading
+            </div>
+        )
     }
-}
 
+console.log('before generating meet card, looking at pet', pet)
+//     let meetCards
+//     if (pet) {
+//         console.log(pet.meets)
+//         if (pet.meets.length > 0) {
+//             meetCards = pet.meets.map(meet => (
+//                 <ShowMeet
+//                     key={meet._id}
+//                     meet={meet}
+//                     pet={pet}
+//                 />
+//             ))    
+//     }
+// }
+ 
     // oneliner
     if (deleted) navigate('/petmatch')
 
@@ -151,18 +176,21 @@ const PetShow = ({ user, msgAlert }) => {
                         <div>
                         <Button onClick={() => setMeetModalShow(true)} className="m-2" variant="info">
                                 Let's go!
-                            </Button>
+                        </Button>
+                        {/* <Container style={cardContainerLayout}>
+                            {meetCards}
+                        </Container> */}
                         </div>
                         </Card.Footer>
-                        <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
+                        {/* <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
                                 Rate your date !
-                        </Button>
+                        </Button> */}
                         </Card>
                         </Container>
                         <Col>
-                        <Container style={cardContainerLayout}>
+                        {/* <Container style={cardContainerLayout}>
                             {meetCards}
-                        </Container>
+                        </Container> */}
                         </Col>
                         </Col>
                         <Col>
@@ -196,7 +224,7 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col></Row>
                         
                     </Row>
-                    <Col>
+                    {/* <Col>
                             <NewRatingModal
                                 user={user}
                                 pet={pet}
@@ -205,7 +233,7 @@ const PetShow = ({ user, msgAlert }) => {
                                 triggerRefresh={() => setUpdated(prev => !prev)}
                                 handleClose={() => setNewRatingShow(false)}
                             />
-                        </Col>
+                        </Col> */}
                     </Container>
                 
 			</>

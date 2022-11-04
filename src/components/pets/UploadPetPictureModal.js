@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useNavigate, useParams } from 'react-router-dom'
+import {useParams } from 'react-router-dom'
 
 import { imageCreate } from '../../api/image'
 
@@ -11,12 +11,12 @@ const UploadPetPicture = (props) => {
         msgAlert, triggerRefresh, 
     } = props
 
-	const [fileInputState, setFileInputState] = useState('')
+	const [fileInputState] = useState('')
 	
 	const [previewSource,setPreviewSource] = useState('')
 	
 	const {id } = useParams()
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
 	
 	//show the user the picture they selected
 	const previewFile =(file)=>{
@@ -92,7 +92,7 @@ const UploadPetPicture = (props) => {
 				
 			</Form>	
 			{previewSource && (
-				<img src ={previewSource} alt='chosen picture'
+				<img src ={previewSource} alt='chosen'
 				style={{height: '300px'}}/>
 			)}
             </Modal.Body>
