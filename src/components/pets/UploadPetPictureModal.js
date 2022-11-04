@@ -22,9 +22,7 @@ const UploadPetPicture = (props) => {
 	  //console.log('this is cloud-info',cld)
 	
 	const { id } = useParams()
-	
 
-	
 	
 	const [imageSelected, setImageSelected] = useState('')
 	const [picture, setPicture] = useState('')
@@ -50,6 +48,7 @@ const UploadPetPicture = (props) => {
 		
 		imageCreate(id, user, picture )
 			.then(() => handleClose())
+			.then(() => triggerRefresh())
 			.then(() => {
 				msgAlert({
 					heading: 'Success',
@@ -68,10 +67,6 @@ const UploadPetPicture = (props) => {
 	}
 
 
-
-
-
-
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton/>
@@ -81,16 +76,7 @@ const UploadPetPicture = (props) => {
 					type="file"
 					onChange={(e) => {setImageSelected(e.target.files[0])}}
 				/>
-				<small>picture must be a jpeg</small><br/>
-				<Button variant="primary" type='submit'> Submit </Button>
-      			</Form.Group>
-				
-			</Form>	
-			{previewSource && (
-				<img src ={previewSource} alt='chosen picture'
-				style={{height: '200px', width:'200px', border: 'solid fuchsia'}}/>
-			)}
-				<Button id="upload_widget" variant="danger" onClick={uploadImage}
+				<Button id="upload_widget" variant="primary" onClick={uploadImage}
 				>
 					Preview
 				</Button>

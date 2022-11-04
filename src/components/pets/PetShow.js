@@ -5,15 +5,21 @@ import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
 import UploadPetPicture from './UploadPetPictureModal'
 import NewRatingModal from '../rating/NewRatingModal'
+import NewPetMessageModal from "../shared/Messages/NewPetMessageModal"
+import ShowPetMessage from '../shared/Messages/ShowPetMessage'
  
+
+
 const PetShow = ({ user, msgAlert }) => {
 
-    const [pet, setPet] = useState({})
+    const [pet, setPet] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
     const [NewRatingShow, setNewRatingShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
+    const [petMessageModalShow, setPetMessageModalShow] = useState(false)
+    const [petMessages, setPetMessages] = useState(false)
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -68,8 +74,30 @@ const PetShow = ({ user, msgAlert }) => {
         })
     }
 
+    let petMessageCards
+    if (pet) {
+        console.log("this is the pet", pet)
+        if (pet.petMessages.length > 0) {
+            // map over the petMessages
+            // produce one ShowPetMessage component for each of them
+            petMessageCards = pet.petMessages.map(petMessage => (
+                <ShowPetMessage
+                    key={petMessages._id}
+                    petMessage={petMessage}
+                    pet={pet}
+                    user = {user}
+                    msgAlert = {msgAlert}
+                    triggerRefresh = {()=>setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
+
     // oneliner
     if (deleted) navigate('/petmatch')
+    if (!pet) {
+        return <p>Loading...</p>
+    }
 
     return (
 			<>
@@ -80,11 +108,11 @@ const PetShow = ({ user, msgAlert }) => {
                         </Col>
                         <Col className='mx-auto mt-5'>
                       
-                        {setImage(pet.typeOfPet)}
+                        {pet ? setImage(pet.typeOfPet) : null}
                         
                         <Card.Body>
                            { 
-                             pet.owner && user && pet.owner._id === user._id 
+                             pet && pet.owner && user && pet.owner._id === user._id 
                                 ?
                             <Row>
                             <Button onClick={() => setEditModalShow(true)} className="m-2" variant="info">
@@ -130,7 +158,20 @@ const PetShow = ({ user, msgAlert }) => {
                         </Button>
                         </Card>
                         </Container>
-                        
+                        <Button onClick={() => setPetMessageModalShow(true)} className="m-2" variant="info">
+                                Leave a message!
+                        </Button>
+                        <NewPetMessageModal 
+                            user={user}
+                            pet={pet}
+                            show={petMessageModalShow}
+                            msgAlert={msgAlert}
+                            triggerRefresh={() => setUpdated(prev => !prev)}
+                            handleClose={() => setPetMessageModalShow(false)}
+                        />
+                        <>
+                            { petMessageCards }
+                        </>
                         </Col>
                         <Col>
                             <EditPetModal 
