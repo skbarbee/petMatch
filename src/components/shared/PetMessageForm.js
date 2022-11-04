@@ -33,7 +33,7 @@ const PetMessageForm = (props) => {
                     placeholder="What times and days are you available?"
                     name="daysAvailable"
                     id="daysAvailable"
-                    value= { petMessage.daysAvailabe }
+                    value= { petMessage.daysAvailable }
                     onChange={ handleChange }
                 />
                
