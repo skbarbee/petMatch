@@ -231,9 +231,6 @@ console.log(msgAlert, "msgAlert here")
                         </Row>
                         
                     </Row>
-<<<<<<< HEAD
-                   
-=======
                     {/* <Col>
                             <ShowRating
                                 user={user}
@@ -244,7 +241,6 @@ console.log(msgAlert, "msgAlert here")
                                 handleClose={() => setShowRating(false)}
                             />
                         </Col> */}
->>>>>>> be9d837fcd61b6d4881efec8326bac03be82ca21
 
                         <Col>
                             <NewRatingModal
