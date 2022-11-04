@@ -6,7 +6,7 @@ import EditRatingModal from './EditRatingModal'
 const ShowRating = (props) => {
     const { rating, pet, user, msgAlert, triggerRefresh } = props
     console.log('this is the props', props)
-
+    console.log(pet, "showRating")
     const [editModalShow, setEditModalShow] = useState(false)
 
     // this will set the color of the card based on the condition
@@ -76,7 +76,7 @@ const ShowRating = (props) => {
                     }
                 </Card.Footer>
             </Card>
-            <EditRatingModal 
+            {/* <EditRatingModal 
                 user={user}
                 pet={pet}
                 rating={rating}
@@ -84,7 +84,7 @@ const ShowRating = (props) => {
                 triggerRefresh={triggerRefresh}
                 show={editModalShow}
                 handleClose={() => setEditModalShow(false)}
-            />
+            /> */}
         </>
     )
 }

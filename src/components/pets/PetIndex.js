@@ -61,6 +61,10 @@ const PetIndex = ({ user, msgAlert }) => {
                                 :
                                 <> {setImage(pet.typeOfPet)} </>
                              }
+<<<<<<< HEAD
+=======
+                             
+>>>>>>> be9d837fcd61b6d4881efec8326bac03be82ca21
                             </Container>
                          </Link>
                         </Col>
