@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import RatingForm from '../shared/RatingForm'
 import { updateRating } from '../../api/rating'
 import messages from '../shared/AutoDismissAlert/messages'
+
 
 
 const EditRatingModal = (props) => {
@@ -12,6 +13,21 @@ const EditRatingModal = (props) => {
     } = props
 
     const [rating, setRating] = useState(props.rating)
+    console.log(pet, "im the pet")
+    useEffect(() => {
+        updateRating(user, pet._id, rating)
+        .then((res) => {
+            setRating(res.data.pet)
+        })
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Show Rating Failure' + error,
+                variant: 'danger'
+            })
+        })
+    },[] )
+    //this dependency array is SUSS. -_-
 
     const handleChange = (e) => {
         setRating(prevRating => {

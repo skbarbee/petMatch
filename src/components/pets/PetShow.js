@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
 import UploadPetPicture from './UploadPetPictureModal'
+<<<<<<< HEAD
 import EditMeetModal from './EditMeetModal'
 import ShowMeet from './ShowMeet'
 
@@ -16,29 +17,79 @@ const cardContainerLayout = {
 }
 
 const PetShow = ({ user, msgAlert }) => {
+=======
+import NewRatingModal from '../rating/NewRatingModal'
+import ShowRating from '../rating/ShowRating'
+ 
+
+const PetShow = (props) => {
+
+    const { user, msgAlert } = props
+
+
+console.log(msgAlert, "msgAlert here")
+>>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
     const [pet, setPet] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
     const [meetModalShow, setMeetModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
     const [NewRatingShow, setNewRatingShow] = useState(false)
+    // const [ShowRating, setShowRating] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
     
     const { id } = useParams()
     const navigate = useNavigate()
+    
+  useEffect(() => { //will this useEffect run before our EditRatingModal useEffect? 
+        petShow(user, id)
+            .then((res) => {
+                console.log('this is the user', user)
+                console.log(res.data.pet)
+                setPet(res.data.pet)
+                console.log("this is the id in the on mount useeffect", id) //this is the id in the on mount useEffect
+            })
+            .catch((error) => {
+                msgAlert({
+                    heading: 'Failure',
+                    message: 'Show Pet Failure' + error,
+                    variant: 'danger'
+                })
+            })
+    },[] )
+
+    
+    const makeRatingCards = () => {
+        let ratingCards = []
+        console.log("inside make rating cards before if", pet)
+        if (pet && pet.rating.length >0) {
+            // map over the ratings
+            // produce one ShowRating component for each of them
+            console.log("making rating cards if")
+            ratingCards = pet.rating.map(rating => (
+                <ShowRating 
+                    key={rating._id}
+                    rating={rating}
+                    pet={pet}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+        return (ratingCards)
+    }
+
+  
 
     useEffect(() => {
         petShow(user, id)
-        .then((res) => {
-            setPet(res.data.pet)
-            console.log("this is the id", id)
-        })
-        .catch((error) => {
-            msgAlert({
-                heading: 'Failure',
-                message: 'Show Pet Failure' + error,
-                variant: 'danger'
+            .then((res) => {
+                console.log(res.data.pet)
+                setPet(res.data.pet)
+                console.log("this is the id in the updated useeffect", id) //this is the id in the updated useEffect
             })
+<<<<<<< HEAD
         })
     } ,[])
 
@@ -58,8 +109,18 @@ const PetShow = ({ user, msgAlert }) => {
     } },[pet])
 
     
+=======
+            .catch((error) => {
+                msgAlert({
+                    heading: 'Failure',
+                    message: 'Show Pet Failure' + error,
+                    variant: 'danger'
+                })
+            })
+    },[updated] ) //this use effect only runs when updated is changed. consider adding a new useeffect that runs on mount "[]"
 
-   
+>>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
+
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
 	
@@ -101,6 +162,7 @@ const PetShow = ({ user, msgAlert }) => {
         )
     }
 
+<<<<<<< HEAD
 console.log('before generating meet card, looking at pet', pet)
 //     let meetCards
 //     if (pet) {
@@ -116,8 +178,30 @@ console.log('before generating meet card, looking at pet', pet)
 //     }
 // }
  
+=======
+    // let ratingCards
+    // if (pet) {
+    //     if (pet.rating.length > 0) {
+    //         // map over the ratings
+    //         // produce one ShowRating component for each of them
+    //         ratingCards = pet.rating.map(rating => (
+    //             <ShowRating 
+    //                 key={rating._id}
+    //                 rating={rating}
+    //                 pet={props.pet}
+    //                 user={user}
+    //                 msgAlert={msgAlert}
+    //                 triggerRefresh={() => setUpdated(prev => !prev)}
+    //             />
+    //         ))
+  
+>>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
     // oneliner
     if (deleted) navigate('/petmatch')
+
+    if (!pet) {
+        return<p>Loading...</p>
+    }
 
     return (
 			<>
@@ -135,7 +219,7 @@ console.log('before generating meet card, looking at pet', pet)
                              pet.owner && user && pet.owner._id === user._id 
                                 ?
                             <Row>
-                                <ButtonGroup>
+                                
                             <Button onClick={() => setEditModalShow(true)} className=" m-1 userbutton" variant="info">
                                 Edit {pet.name}'s Profile
                             </Button>
@@ -148,7 +232,7 @@ console.log('before generating meet card, looking at pet', pet)
                             >
                                Delete { pet.name }'s Profile
                             </Button>
-                            </ButtonGroup>
+                            
                         </Row>
                         :
                         null
@@ -172,6 +256,7 @@ console.log('before generating meet card, looking at pet', pet)
                         <div>
                                 Available for a play date: { pet.available ? 'yes' : 'no' }
                         </div><br/>
+<<<<<<< HEAD
                         <div>
                         <Button onClick={() => setMeetModalShow(true)} className="m-2" variant="info">
                                 Let's go!
@@ -184,7 +269,20 @@ console.log('before generating meet card, looking at pet', pet)
                         {/* <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
                                 Rate your date !
                         </Button> */}
+=======
+                        </Card.Footer>
+                        <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
+                                Rate your date with { pet.name }!
+                        </Button>
+                        {/* <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
+                            View { pet.name }'s Ratings
+                        </Button> */}
+    
+>>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
                         </Card>
+                        <Container>
+                        {pet ? makeRatingCards():<p>rating cards go here</p>}
+                        </Container>
                         </Container>
                         <Col>
                         {/* <Container style={cardContainerLayout}>
@@ -224,6 +322,20 @@ console.log('before generating meet card, looking at pet', pet)
                         
                     </Row>
                     {/* <Col>
+<<<<<<< HEAD
+=======
+                            <ShowRating
+                                user={user}
+                                pet={pet}
+                                // show={ShowRating}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setShowRating(false)}
+                            />
+                        </Col> */}
+
+                        <Col>
+>>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
                             <NewRatingModal
                                 user={user}
                                 pet={pet}
@@ -238,5 +350,7 @@ console.log('before generating meet card, looking at pet', pet)
 			</>
 		)
 }
+
+
 
 export default PetShow
