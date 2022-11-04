@@ -11,7 +11,7 @@ const EditPetModal = (props) => {
         user, show, handleClose, 
         msgAlert, triggerRefresh
     } = props
-    console.log("this is the props.pet in editPetModal\n", props.pet)
+    //console.log("this is the props.pet in editPetModal\n", props.pet)
     
     const [pet, setPet] = useState(props.pet)
 
@@ -40,7 +40,7 @@ const EditPetModal = (props) => {
 		})
     }
 
-    console.log("the pet", pet)
+    //console.log("the pet", pet)
     const handleChange =(e) =>{
 		setPet(prevPet =>{
 			const updatedName = e.target.name

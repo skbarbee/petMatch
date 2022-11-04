@@ -6,6 +6,8 @@ import EditPetModal from './EditPetModal'
 import UploadPetPicture from './UploadPetPictureModal'
 import NewRatingModal from '../rating/NewRatingModal'
 import ShowRating from '../rating/ShowRating'
+import NewPetMessageModal from "../Messages/NewPetMessageModal"
+import ShowPetMessage from "../Messages/ShowPetMessage"
  
 
 const PetShow = (props) => {
@@ -13,7 +15,8 @@ const PetShow = (props) => {
     const { user, msgAlert } = props
 
 
-console.log(msgAlert, "msgAlert here")
+
+
     const [pet, setPet] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
@@ -21,26 +24,28 @@ console.log(msgAlert, "msgAlert here")
     // const [ShowRating, setShowRating] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
+    const [petMessageModalShow, setPetMessageModalShow] = useState(false)
+    const [petMessages, setPetMessages] = useState(false)
 
     const { id } = useParams()
     const navigate = useNavigate()
     
-  useEffect(() => { //will this useEffect run before our EditRatingModal useEffect? 
-        petShow(user, id)
-            .then((res) => {
-                console.log('this is the user', user)
-                console.log(res.data.pet)
-                setPet(res.data.pet)
-                console.log("this is the id in the on mount useeffect", id) //this is the id in the on mount useEffect
-            })
-            .catch((error) => {
-                msgAlert({
-                    heading: 'Failure',
-                    message: 'Show Pet Failure' + error,
-                    variant: 'danger'
-                })
-            })
-    },[] )
+//   useEffect(() => { //will this useEffect run before our EditRatingModal useEffect? 
+//         petShow(user, id)
+//             .then((res) => {
+//                 console.log('this is the user', user)
+//                 console.log(res.data.pet)
+//                 setPet(res.data.pet)
+//                 console.log("this is the id in the on mount useeffect", id) //this is the id in the on mount useEffect
+//             })
+//             .catch((error) => {
+//                 msgAlert({
+//                     heading: 'Failure',
+//                     message: 'Show Pet Failure' + error,
+//                     variant: 'danger'
+//                 })
+//             })
+//     },[] )
 
     
     const makeRatingCards = () => {
@@ -63,7 +68,24 @@ console.log(msgAlert, "msgAlert here")
         }
         return (ratingCards)
     }
-
+    let petMessageCards
+    if (pet) {
+        console.log("this is the pet in MESSAGECARDS", pet)
+        if (pet.petMessages.length > 0) {
+            // map over the petMessages
+            // produce one ShowPetMessage component for each of them
+            petMessageCards = pet.petMessages.map(petMessage => (
+                <ShowPetMessage
+                    key={petMessages._id}
+                    petMessage={petMessage}
+                    pet={pet}
+                    user = {user}
+                    msgAlert = {msgAlert}
+                    triggerRefresh = {()=>setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
   
 
     useEffect(() => {
@@ -117,77 +139,96 @@ console.log(msgAlert, "msgAlert here")
         })
     }
 
- 
+  
+
     // oneliner
     if (deleted) navigate('/petmatch')
-
+    
+    
     if (!pet) {
-        return<p>Loading...</p>
+        return <p>Loading...</p>
     }
 
+    
+
     return (
-			<>
-				<Container className='mt-5 mx-auto'>
-                   
-                    <Row className=''>
-                    <Col xl={1}>
-                        </Col>
-                        <Col className='mx-auto mt-5'>
-                      
-                        {setImage(pet.typeOfPet)}
+    <>
+	    <Container className='mt-5 mx-auto'>
+            <Row className='Picture'>
+                <Col xl={1}>
+                    <Card.Header>
+                                <h1>This Is m</h1>
+                    </Card.Header>
+                </Col>
+                <Col className='mx-auto mt-5'>
+                    
+                    {pet ? setImage(pet.typeOfPet) : null}
+                    <Card.Body>
+                    { pet && pet.owner && user && pet.owner._id === user._id 
+                        ?
+                    <Row className="userButtonGroup">
                         
-                        <Card.Body>
-                           { 
-                             pet.owner && user && pet.owner._id === user._id 
-                                ?
-                            <Row>
-                                
-                            <Button onClick={() => setEditModalShow(true)} className=" m-1 userbutton" variant="info">
+                        <Button 
+                            onClick={() => setEditModalShow(true)} 
+                            className=" m-1 userbutton" variant="info">
                                 Edit {pet.name}'s Profile
-                            </Button>
-                            <Button onClick={() => setUploadPictureShow(true)} className=" m-1 userbutton" variant="secondary">
+                        </Button>
+                        <Button 
+                            onClick={() => setUploadPictureShow(true)} 
+                            className=" m-1 userbutton" variant="secondary">
                                 Edit {pet.name}'s Picture
-                            </Button>
-                            <Button onClick={() => handleDeletePet()}
-                                className=" m-1 userbutton"
-                                variant="danger"
-                            >
-                               Delete { pet.name }'s Profile
-                            </Button>
-                            
-                        </Row>
+                        </Button>
+                        <Button 
+                            onClick={() => handleDeletePet()}
+                            className=" m-1 userbutton"
+                            variant="danger"
+                        >
+                            Delete { pet.name }'s Profile
+                        </Button> 
+                    </Row>
                         :
                         null
                     }
                     </Card.Body>
-                        </Col>
-                        <Col xl={6}>
+                </Col>
+                    <Col xl={6}>
                         <Container fluid style={{width:"100%"}}>
-                        <Card className='mt-5'>
-                        <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
-                       <Card.Body>
-                            <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
-                            <h4>Likes: {pet.likes}</h4>
-                        </Card.Body> 
-                        <Col xl={1}>
-                        </Col>
-                        <div className="footer">
-                        </div>   
-                        <Card.Footer>
-                        <div>
-                                Available for a play date: { pet.available ? 'yes' : 'no' }
-                        </div><br/>
-                        </Card.Footer>
-                        <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
+                            <Card className='mt-5'>
+                                <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
+                                <Card.Body>
+                                    <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
+                                    <h4>Likes: {pet.likes}</h4>
+                                </Card.Body> 
+                            <Card.Footer className='footer'>
+                                { pet.available ? "I'm available for a play date!" : 'Not available for play date at the moment. ' }
+                            </Card.Footer>
+                        <ButtonGroup>
+                            <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
                                 Rate your date with { pet.name }!
-                        </Button>
-                      
-    
+                            </Button>
+                            <Button onClick={() => setPetMessageModalShow(true)} className="m-2" variant="info">
+                                Leave a message!
+                            </Button>
+                        </ButtonGroup>
                         </Card>
+                       
+                        <Col >
+                            <>{petMessageCards}</>
+                        </Col>
+                        </Container>
                         <Container>
-                        {pet ? makeRatingCards():<p>rating cards go here</p>}
+                        {pet ? makeRatingCards():<><p>rating cards go here</p></>}
                         </Container>
-                        </Container>
+                       
+                        
+                        <NewPetMessageModal 
+                            user={user}
+                            pet={pet}
+                            show={petMessageModalShow}
+                            msgAlert={msgAlert}
+                            triggerRefresh={() => setUpdated(prev => !prev)}
+                            handleClose={() => setPetMessageModalShow(false)}
+                        />
                         
                         </Col>
                         <Col>

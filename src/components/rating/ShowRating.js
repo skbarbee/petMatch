@@ -9,16 +9,7 @@ const ShowRating = (props) => {
     console.log(pet, "showRating")
     const [editModalShow, setEditModalShow] = useState(false)
 
-    // this will set the color of the card based on the condition
-    // const setBgCondition = (cond) => {
-    //     if (cond === 'new') {
-    //         return({ width: '18rem', backgroundColor: '#b5ead7'})
-    //     } else if (cond === 'used') {
-    //         return({ width: '18rem', backgroundColor: '#ffdac1'})
-    //     } else {
-    //         return({ width: '18rem', backgroundColor: '#ff9aa2'})
-    //     }
-    // }
+  
 
     // this function removes a rating, is only available to pet owner
     const destroyRating = () => {

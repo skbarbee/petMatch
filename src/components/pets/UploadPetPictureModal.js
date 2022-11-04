@@ -21,9 +21,7 @@ const UploadPetPicture = (props) => {
 	  //console.log('this is cloud-info',cld)
 	
 	const { id } = useParams()
-	
 
-	
 	
 	const [imageSelected, setImageSelected] = useState('')
 	const [picture, setPicture] = useState('')
@@ -66,10 +64,6 @@ const UploadPetPicture = (props) => {
 				})
 		})
 	}
-
-
-
-
 
 
     return (
