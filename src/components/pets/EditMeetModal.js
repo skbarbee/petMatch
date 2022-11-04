@@ -10,20 +10,20 @@ const EditMeetModal = (props) => {
 
     const [meet, setMeet] = useState({})
     
-    useEffect(() => {
-        let meetCards
-        if (pet) {
-            console.log(pet.meets)
-            if (pet.meets.length > 0) {
-                meetCards = pet.meets.map(meet => (
-                    <ShowMeet
-                        key={meet._id}
-                        meet={meet}
-                        pet={pet}
-                    />
-                ))    
-        }
-    } },[pet])
+    // useEffect(() => {
+    //     let meetCards
+    //     if (pet) {
+    //         console.log(pet.meets)
+    //         if (pet.meets.length > 0) {
+    //             meetCards = pet.meets.map(meet => (
+    //                 <ShowMeet
+    //                     key={meet._id}
+    //                     meet={meet}
+    //                     pet={pet}
+    //                 />
+    //             ))    
+    //     }
+    // } },[pet])
     
     const handleChange = (e) => {
         setMeet(prevMeet => {

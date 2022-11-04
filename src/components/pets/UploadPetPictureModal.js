@@ -2,8 +2,8 @@
 import { Cloudinary } from "@cloudinary/url-gen";
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import {useParams } from 'react-router-dom'
-
+import { useNavigate, useParams } from 'react-router-dom'
+import Axios from 'axios'
 import { imageCreate } from '../../api/image'
 
 
@@ -13,23 +13,10 @@ const UploadPetPicture = (props) => {
         msgAlert, triggerRefresh, 
     } = props
 
-	const [fileInputState] = useState('')
-	
-	const [previewSource,setPreviewSource] = useState('')
-	
-	const { id } = useParams()
-	// const navigate = useNavigate()
-	
-	//show the user the picture they selected
-	const previewFile =(file)=>{
-		//File reader is a built in js
-		const reader = new FileReader()
-		//converts image to string
-		reader.readAsDataURL(file)
-		console.log(file)
-		
-		reader.onloadend=()=>{
-			setPreviewSource(reader.result) 
+	const cld = new Cloudinary({
+		cloud: {
+		  cloud_name: "dp5dt9bdn", //Your cloud name
+		  upload_preset: "petMatch" //Create an unsigned upload preset and update this
 		}
 	  });
 	  //console.log('this is cloud-info',cld)
@@ -95,17 +82,27 @@ const UploadPetPicture = (props) => {
 					type="file"
 					onChange={(e) => {setImageSelected(e.target.files[0])}}
 				/>
-				<small>picture must be a jpeg</small><br/>
-				<Button variant="primary" type='submit'> Submit </Button>
-      			
-				
-			</div>	
-			{previewSource && (
-				<img src ={previewSource} alt='chosen'
-				style={{height: '300px'}}/>
-			)}
+				<Button id="upload_widget" variant="primary" onClick={uploadImage}
+				>
+					Preview
+				</Button>
+	
+				<img 
+					style={{width: 200}}
+					src = { picture }
+					alt = "preview of profile picture"
+				/>
+				{picture && 
+				<>
+					<Button  className="m-2  btn-secondary" onClick={addImagetoUser}
+				>
+					Add to your profile
+				</Button>
+				</>
+				}
+			</div>
+		
             </Modal.Body>
-
         </Modal>
     )
 }
