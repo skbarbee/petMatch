@@ -6,6 +6,7 @@ body {
   margin: auto;
   font-family: 'Oswald';
   font-weight: 200;
+  background-color: rgb(193, 144, 205);
   
 }
 
@@ -17,6 +18,7 @@ body {
   text-align: center; 
   margin-bottom: 0;
 }
+
 .justify-center {
   display: flex;
   justify-content: space-between;
@@ -27,4 +29,12 @@ body {
 
 .footer {
   background-color: rgb(144, 225, 247);
+}
+
+.userbutton {
+  filter: drop-shadow(5px 5px 5px #abadb0);
+}
+
+img {
+  border-radius: 3%;
 }
