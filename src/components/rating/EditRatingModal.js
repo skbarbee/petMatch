@@ -14,19 +14,19 @@ const EditRatingModal = (props) => {
 
     const [rating, setRating] = useState(props.rating)
     console.log(pet, "im the pet")
-    useEffect(() => {
-        updateRating(user, pet._id, rating)
-        .then((res) => {
-            setRating(res.data.pet)
-        })
-        .catch((error) => {
-            msgAlert({
-                heading: 'Failure',
-                message: 'Show Rating Failure' + error,
-                variant: 'danger'
-            })
-        })
-    },[] )
+    // useEffect(() => {
+    //     updateRating(user, pet._id, rating)
+    //     .then((res) => {
+    //         setRating(res.data.pet)
+    //     })
+    //     .catch((error) => {
+    //         msgAlert({
+    //             heading: 'Failure',
+    //             message: 'Show Rating Failure' + error,
+    //             variant: 'danger'
+    //         })
+    //     })
+    // },[] )
     //this dependency array is SUSS. -_-
 
     const handleChange = (e) => {
