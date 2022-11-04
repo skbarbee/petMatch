@@ -10,15 +10,15 @@ const ShowRating = (props) => {
     const [editModalShow, setEditModalShow] = useState(false)
 
     // this will set the color of the card based on the condition
-    const setBgCondition = (cond) => {
-        if (cond === 'new') {
-            return({ width: '18rem', backgroundColor: '#b5ead7'})
-        } else if (cond === 'used') {
-            return({ width: '18rem', backgroundColor: '#ffdac1'})
-        } else {
-            return({ width: '18rem', backgroundColor: '#ff9aa2'})
-        }
-    }
+    // const setBgCondition = (cond) => {
+    //     if (cond === 'new') {
+    //         return({ width: '18rem', backgroundColor: '#b5ead7'})
+    //     } else if (cond === 'used') {
+    //         return({ width: '18rem', backgroundColor: '#ffdac1'})
+    //     } else {
+    //         return({ width: '18rem', backgroundColor: '#ff9aa2'})
+    //     }
+    // }
 
     // this function removes a rating, is only available to pet owner
     const destroyRating = () => {
@@ -42,14 +42,14 @@ const ShowRating = (props) => {
 
     return (
         <>
-            <Card className="m-2" style={setBgCondition(rating.condition)}>
-                <Card.Header>{ rating.name }</Card.Header>
+            <Card className="m-2" >
+                <Card.Header>{ rating.scale }{ rating.ratingIcon } </Card.Header>
                 <Card.Body>
-                    <small>{ rating.description }</small><br/>
+                    <small>Comment: { rating.comment }</small><br/>
                     <small>
-                        { rating.dateAgain ? 'Would love to!' : 'Not a chance'}
+                        Would you want to meet again?:{ rating.meetAgain ? 'Would love to!' : 'Not a chance'}
                     </small><br/>
-                    <small>Condition: { rating.condition }</small>
+                    <small></small>
                 </Card.Body>
                 <Card.Footer>
                     { 

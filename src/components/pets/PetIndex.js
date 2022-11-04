@@ -11,6 +11,18 @@ import { petIndex } from '../../api/pet'
 
 const PetIndex = ({ user, msgAlert }) => {
 
+
+    const dogPic = require('../shared/images/defaultDog.png')
+	const catPic = require('../shared/images/defaultCat.png')
+    const setImage = (type)=>{
+       
+		if(type == "DOG"){
+			return <img fluid  src={dogPic} />
+		}else{
+			return <img fluid  src={catPic} />
+		}
+	}
+    
     const [allPets, setAllPets] = useState([])
 
     useEffect(() => {
@@ -27,20 +39,11 @@ const PetIndex = ({ user, msgAlert }) => {
         })
     }, [])
 
-	const dogPic = require('../shared/images/defaultDog.png')
-	const catPic = require('../shared/images/defaultCat.png')
 	
-	const setImage = (type)=>{
-       
-		if(type == "DOG"){
-			return <img fluid  src={dogPic} />
-		}else{
-			return <img fluid  src={catPic} />
-		}
-	}
+
     const petCards = allPets.map(pet => (
         
-        <Card key={ pet.id } style={{ margin: 10, width: '45%',}} border="primary">
+        <Card key={ pet._id } style={{ margin: 10, width: '45%',}} border="primary">
            
             <Card.Body>
                 <Card.Text>
@@ -58,11 +61,6 @@ const PetIndex = ({ user, msgAlert }) => {
                                 :
                                 <> {setImage(pet.typeOfPet)} </>
                              }
-
-
-                                
-                        
-                                
                             </Container>
                          </Link>
                         </Col>
