@@ -43,7 +43,7 @@ const ShowRating = (props) => {
     return (
         <>
             <Card className="m-2" >
-                <Card.Header>{ rating.scale }{ rating.ratingIcon } </Card.Header>
+                <Card.Header>{ rating.scale } { rating.ratingIcon } </Card.Header>
                 <Card.Body>
                     <small>Comment: { rating.comment }</small><br/>
                     <small>

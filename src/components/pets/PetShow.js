@@ -117,22 +117,7 @@ console.log(msgAlert, "msgAlert here")
         })
     }
 
-    // let ratingCards
-    // if (pet) {
-    //     if (pet.rating.length > 0) {
-    //         // map over the ratings
-    //         // produce one ShowRating component for each of them
-    //         ratingCards = pet.rating.map(rating => (
-    //             <ShowRating 
-    //                 key={rating._id}
-    //                 rating={rating}
-    //                 pet={props.pet}
-    //                 user={user}
-    //                 msgAlert={msgAlert}
-    //                 triggerRefresh={() => setUpdated(prev => !prev)}
-    //             />
-    //         ))
-  
+ 
     // oneliner
     if (deleted) navigate('/petmatch')
 
@@ -196,9 +181,7 @@ console.log(msgAlert, "msgAlert here")
                         <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
                                 Rate your date with { pet.name }!
                         </Button>
-                        {/* <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
-                            View { pet.name }'s Ratings
-                        </Button> */}
+                      
     
                         </Card>
                         <Container>
@@ -231,16 +214,7 @@ console.log(msgAlert, "msgAlert here")
                         </Row>
                         
                     </Row>
-                    {/* <Col>
-                            <ShowRating
-                                user={user}
-                                pet={pet}
-                                // show={ShowRating}
-                                msgAlert={msgAlert}
-                                triggerRefresh={() => setUpdated(prev => !prev)}
-                                handleClose={() => setShowRating(false)}
-                            />
-                        </Col> */}
+                    
 
                         <Col>
                             <NewRatingModal

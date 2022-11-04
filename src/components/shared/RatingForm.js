@@ -9,14 +9,21 @@ const RatingForm = (props) => {
             <h3>{ heading }</h3>
             <Form onSubmit={ handleSubmit }>
                 <Form.Label>Rating:</Form.Label>
-                <Form.Control 
-                    placeholder="Rate your pet date from 1-5"
+                <Form.Select
+                    aria-label="Rate this pet!"
                     name="scale"
                     type="number"
                     id="scale"
                     value= { rating.scale }
                     onChange={ handleChange }
-                />
+                    >
+                <option>Open this select menu</option>
+                    <option value="1"  >1</option>
+                    <option value="2"  >2</option>
+                    <option value="3"  >3</option>
+                    <option value="4"  >4</option>
+                    <option value="5"  >5</option>
+                    </Form.Select>
                 <Form.Label>Comment:</Form.Label>
                 <Form.Control 
                     placeholder="Tell us about your date..."
@@ -32,11 +39,11 @@ const RatingForm = (props) => {
                     onChange={ handleChange }
                 />
                 {/* <Form.Select
-                    aria-label="Rate this pet!"
+                    
                     name="condition"
                     defaultValue={rating.condition}
-                    onChange={handleChange} */}
-                {/* >
+                    onChange={handleChange}
+                >
                     <option>Open this select menu</option>
                     <option value="Enjoyable">Enjoyable</option>
                     <option value="okay">okay</option>
