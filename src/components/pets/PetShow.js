@@ -20,9 +20,9 @@ console.log(msgAlert, "msgAlert here")
 
     const { id } = useParams()
     const navigate = useNavigate()
-console.log(pet, "pet show pet")
     const makeRatingCards = () => {
         let ratingCards = []
+        console.log("inside make rating cards before if", pet)
         if (pet && pet.rating.length >0) {
             // map over the ratings
             // produce one ShowRating component for each of them
@@ -41,21 +41,38 @@ console.log(pet, "pet show pet")
         return (ratingCards)
     }
 
+    useEffect(() => { //will this useEffect run before our EditRatingModal useEffect? 
+        petShow(user, id)
+            .then((res) => {
+                console.log(res.data.pet)
+                setPet(res.data.pet)
+                console.log("this is the id in the on mount useeffect", id) //this is the id in the on mount useEffect
+            })
+            .catch((error) => {
+                msgAlert({
+                    heading: 'Failure',
+                    message: 'Show Pet Failure' + error,
+                    variant: 'danger'
+                })
+            })
+    },[] )
+
     useEffect(() => {
         petShow(user, id)
-        .then((res) => {
-            console.log(res.data.pet)
-            setPet(res.data.pet)
-            console.log("this is the id", id)
-        })
-        .catch((error) => {
-            msgAlert({
-                heading: 'Failure',
-                message: 'Show Pet Failure' + error,
-                variant: 'danger'
+            .then((res) => {
+                console.log(res.data.pet)
+                setPet(res.data.pet)
+                console.log("this is the id in the updated useeffect", id) //this is the id in the updated useEffect
             })
-        })
-    },[updated] )
+            .catch((error) => {
+                msgAlert({
+                    heading: 'Failure',
+                    message: 'Show Pet Failure' + error,
+                    variant: 'danger'
+                })
+            })
+    },[updated] ) //this use effect only runs when updated is changed. consider adding a new useeffect that runs on mount "[]"
+
 
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
@@ -176,7 +193,7 @@ console.log(pet, "pet show pet")
     
                         </Card>
                         <Container>
-                        {pet === !null? makeRatingCards():<></>}
+                        {pet ? makeRatingCards():<p>rating cards go here</p>}
                         </Container>
                         </Container>
                         

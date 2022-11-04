@@ -65,7 +65,7 @@ const ShowRating = (props) => {
                     }
                 </Card.Footer>
             </Card>
-            <EditRatingModal 
+            {/* <EditRatingModal 
                 user={user}
                 pet={pet}
                 rating={rating}
@@ -73,7 +73,7 @@ const ShowRating = (props) => {
                 triggerRefresh={triggerRefresh}
                 show={editModalShow}
                 handleClose={() => setEditModalShow(false)}
-            />
+            /> */}
         </>
     )
 }

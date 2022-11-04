@@ -27,6 +27,7 @@ const EditRatingModal = (props) => {
             })
         })
     },[] )
+    //this dependency array is SUSS. -_-
 
     const handleChange = (e) => {
         setRating(prevRating => {
