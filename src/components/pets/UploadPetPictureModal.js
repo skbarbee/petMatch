@@ -1,9 +1,11 @@
 
+import { Cloudinary } from "@cloudinary/url-gen";
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import {useParams } from 'react-router-dom'
 
 import { imageCreate } from '../../api/image'
+
 
 const UploadPetPicture = (props) => {
     const { 
@@ -15,7 +17,7 @@ const UploadPetPicture = (props) => {
 	
 	const [previewSource,setPreviewSource] = useState('')
 	
-	const {id } = useParams()
+	const { id } = useParams()
 	// const navigate = useNavigate()
 	
 	//show the user the picture they selected
@@ -29,73 +31,81 @@ const UploadPetPicture = (props) => {
 		reader.onloadend=()=>{
 			setPreviewSource(reader.result) 
 		}
-	}
+	  });
+	  //console.log('this is cloud-info',cld)
+	
+	const { id } = useParams()
+	
 
-	const handleFileInputChange = (e)=>{
-		const file = e.target.files[0]
-		previewFile(file)
-		console.log(previewSource)
+	
+	
+	const [imageSelected, setImageSelected] = useState('')
+	const [picture, setPicture] = useState('')
+	// let public_id = null
+
+	const uploadImage = (files) => {
+		// console.log(files[0])
+		const formData = new FormData ()
+		formData.append("file", imageSelected)
+		formData.append("upload_preset", "bgbb6aec")
 		
-	}
 
+		Axios.post("https://api.cloudinary.com/v1_1/dh1mfxtcq/image/upload", formData)
+		.then((response) => {
+			console.log('cloudinaryResponse:\n', response.data.url);
+			// public_id = response.data.public_id
+			setPicture(response.data.url)
+			console.log('pictureAfterUpload:\n',picture)
+		});
+	};
 
-	const uploadImage =async (previewSource) => {
-	let imgFile = previewSource
-	
-		imageCreate(id, user, imgFile )
-		.then(() => handleClose())
-		.then(() => {
-			msgAlert({
-				heading: 'Success',
-				message: 'PictureUploaded!',
-				variant: 'success'
+	const addImagetoUser = () => {
+		
+		imageCreate(id, user, picture )
+			.then(() => handleClose())
+			.then(() => triggerRefresh())
+			.then(() => {
+				msgAlert({
+					heading: 'Success',
+					message: 'PictureUploaded!',
+					variant: 'success'
+				})
 			})
+			.then(() => triggerRefresh())
+			.catch((error) => {
+				msgAlert({
+					heading: 'Failure',
+					message: "Oh no!" + error,
+					variant: 'danger'
+				})
 		})
-		.then(() => triggerRefresh())
-		.catch((error) => {
-			msgAlert({
-				heading: 'Failure',
-				message: "Oh no!" + error,
-				variant: 'danger'
-			})
-	})
-}
-
-	const handSubmitFile =(e)=>{
-		e.preventDefault()
-
-		if(!previewSource) return;
-		uploadImage(previewSource)
 	}
 
 
 
-	
+
+
 
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton/>
             <Modal.Body>
-			<Form onSubmit={handSubmitFile} className='form'>
-			<Form.Group controlId="formFile" className="mb-3">
-        		<Form.Label>Upload Your Image</Form.Label>
-        		<Form.Control 
-				type="file" 
-				placeholder="Choose a picture"
-				onChange={handleFileInputChange}
-				name = 'image'
-				value={fileInputState}
+			<div>
+				<input
+					type="file"
+					onChange={(e) => {setImageSelected(e.target.files[0])}}
 				/>
 				<small>picture must be a jpeg</small><br/>
 				<Button variant="primary" type='submit'> Submit </Button>
-      			</Form.Group>
+      			
 				
-			</Form>	
+			</div>	
 			{previewSource && (
 				<img src ={previewSource} alt='chosen'
 				style={{height: '300px'}}/>
 			)}
             </Modal.Body>
+
         </Modal>
     )
 }
