@@ -28,6 +28,8 @@ const MessageOffCanvas = (props)=>{
                     triggerRefresh = {()=>setUpdated(prev => !prev)}
                 />
             ))
+        } else {
+          petMessageCards = <h2>No messages yet 😭</h2>
         }
     }
 	return (
@@ -39,9 +41,10 @@ const MessageOffCanvas = (props)=>{
 		
 		  <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>You have some messages </Offcanvas.Title>
+          <Offcanvas.Title><h1> Messages for {pet.name} </h1></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
+        
           {petMessageCards}
         </Offcanvas.Body>
       </Offcanvas>

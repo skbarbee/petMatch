@@ -70,7 +70,7 @@ const PetIndex = ({ user, msgAlert }) => {
                          </Link>
                         </Col>
                         <Col> 
-                            <Card.Title>{ pet.name.toUpperCase() }</Card.Title>
+                            <Card.Title style={{fontFamily:'Oswald'}}>{ pet.name.toUpperCase() }</Card.Title>
                             <Card.Text style ={{color:'#eb50b8'}}>{ pet.typeOfPet}</Card.Text>
                         </Col>
                     

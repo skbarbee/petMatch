@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, ButtonGroup } from 'react-bootstrap'
 import { deleteRating } from '../../api/rating'
 import EditRatingModal from './EditRatingModal'
 
 const ShowRating = (props) => {
     const { rating, pet, user, msgAlert, triggerRefresh } = props
-    // console.log('this is the props', props)
-    // console.log(pet, "showRating")
+    console.log('this is the rating.author\n', rating.author)
+    console.log('this is the user.email\n', props.user.email)
     const [editModalShow, setEditModalShow] = useState(false)
 
-  
+  const userString = JSON.stringify(props.user.email)
 
     // this function removes a rating, is only available to pet owner
     const destroyRating = () => {
@@ -36,31 +36,34 @@ const ShowRating = (props) => {
             <Card className="m-2" >
                 <Card.Header>{ rating.scale } {pet.ratingIcon} by {rating.author} </Card.Header>
                 <Card.Body>
-                    <small>Comment: { rating.comment }</small><br/>
+                    <small>Comment : { rating.comment }</small><br/>
                     <small>
-                        Would you want to meet again?:{ rating.meetAgain ? 'Would love to!' : 'Not a chance'}
+                        Would you want to meet again? : { rating.meetAgain ? 'Would love to!' : 'Not a chance'}
                     </small><br/>
                     <small></small>
                 </Card.Body>
-                <Card.Footer>
+                <Card.Footer className="justify-content-end">
                     { 
-                        user && pet.owner && user._id === pet.owner._id 
+                        user && rating.author && userString == rating.author
                         ?
                         <>
+                        <ButtonGroup>
                             <Button size='sm'
-                                className="m-2" 
+                                className=" m-1 " 
                                 variant="secondary"
                                 onClick={() => setEditModalShow(true)}  
                             >
                                 Edit Rating
                             </Button>
-                            <Button size='sm' 
-                                className="m-2"
+                            <Button 
+                                className=" m-1 " 
+                                size='sm' 
                                 variant="danger"
                                 onClick={() => destroyRating()}
                             >
                                 Delete Rating
                             </Button>
+                        </ButtonGroup>
                         </>
                         :
                         null

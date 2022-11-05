@@ -5,9 +5,10 @@ const RatingForm = (props) => {
     const {rating, handleChange, handleSubmit, heading} = props
 
     return (
-        <Container className="justify-content-center">
-            <h3>{ heading }</h3>
+        <Container className="justify-content-center" style={{fontFamily:"Oswald"}}>
+          
             <Form onSubmit={ handleSubmit }>
+                 <h3>{ heading }</h3>
                 <Form.Label>Rating:</Form.Label>
                 <Form.Select
                     aria-label="Rate this pet!"

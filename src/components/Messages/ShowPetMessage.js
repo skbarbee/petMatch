@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, ButtonGroup } from 'react-bootstrap'
 import { deletePetMessage } from '../../api/petMessages'
 import EditPetMessageModal from '../Messages/EditPetMessageModal'
 
@@ -10,7 +10,7 @@ const ShowPetMessage = (props) => {
     console.log('this is the petMessage \n', petMessage)
 
     const [editPetMessageModalShow, setEditPetMessageModalShow] = useState(false)
-
+    const userString = JSON.stringify(props.user.email)
 
   
     const destroyPetMessage = () => {
@@ -48,20 +48,30 @@ const ShowPetMessage = (props) => {
                         user && pet.owner && user._id === pet.owner._id 
                         ?
                         <>
+                        <ButtonGroup>
                             <Button
-                                className="m-2"
+                                className="m-1"
                                 variant="secondary"
                                 onClick={() => setEditPetMessageModalShow(true)}
                             >
+                                {/* { user && petMessages.author && userString == rating.author } */}
                                 Edit Message
                             </Button>
                             <Button 
-                                className="m-2"
+                                className="m-1"
                                 variant="danger"
                                 onClick={() => destroyPetMessage()}
                             >
                                 Delete Message
                             </Button>  
+                            <Button 
+                                className=" disabled m-1"
+                                variant="info"
+                                
+                            >
+                                Reply to Message
+                            </Button> 
+                         </ButtonGroup>
                         </>  
                         :
                         null

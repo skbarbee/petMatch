@@ -1,15 +1,17 @@
 /* //Remember, to style rating icons, refer to ClassNames in App.js */
 
 /* font-family: 'Oswald', sans-serif; */
-
+/* font-family: 'Pompiere', cursive; */
 body {
   margin: auto;
-  font-family: 'Oswald';
+  font-family: 'Pompiere';
   font-weight: 200;
   background-color: rgb(229, 222, 231);
   
 }
-
+h1{
+  font-family:'Oswald';
+}
 .center {
   display: flex;
   flex-direction: column;

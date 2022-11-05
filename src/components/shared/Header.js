@@ -7,7 +7,8 @@ import MessageOffCanvas from './MessageOfCanvas'
 
 const linkStyle = {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
+	fontFamily: 'Oswald',
 }
 
 const authenticatedOptions = (
