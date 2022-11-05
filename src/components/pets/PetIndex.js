@@ -14,12 +14,15 @@ const PetIndex = ({ user, msgAlert }) => {
 
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
+    const animalPic = require('../shared/images/defaultAnimal.png')
     const setImage = (type)=>{
        
-		if(type == "DOG"){
+		if(type === "DOG"){
 			return <img fluid  src={dogPic} />
-		}else{
+		}else if(type === "CAT"){
 			return <img fluid  src={catPic} />
+        }else{
+			return <img fluid  src={animalPic} />
 		}
 	}
     
@@ -66,7 +69,7 @@ const PetIndex = ({ user, msgAlert }) => {
                          </Link>
                         </Col>
                         <Col> 
-                            <Card.Title><h1>{ pet.name }</h1></Card.Title>
+                            <Card.Title><h1>{ pet.name.toUpperCase() }</h1></Card.Title>
                             <Card.Text style ={{color:'#eb50b8'}}>{ pet.typeOfPet}</Card.Text>
                         </Col>
                     

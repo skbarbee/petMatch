@@ -107,14 +107,16 @@ const PetShow = (props) => {
 
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
-	
+    const animalPic = require('../shared/images/defaultAnimal.png')
 	const setImage = (type)=>{
         if(!pet.img){
 		    if(type === "DOG"){
 			    return <img fluid  src={dogPic} />
-		    }else{
+		    }else if(type ==="CAT"){
 			    return <img fluid  src={catPic} />
-		    }
+		    }else{
+                return <img fluid  src={animalPic} />
+            }
         }else{
             return   <img fluid style={{width:'300px', height:'300px', border: 'solid fuchsia'}} src={pet.img} />
        }
@@ -123,6 +125,7 @@ const PetShow = (props) => {
         petDelete(user, id)
         .then(() => {
             setDeleted(true)
+            
             msgAlert({
                 heading: 'Success',
                 message: 'You Deleted Your Pet Profile',
@@ -130,6 +133,7 @@ const PetShow = (props) => {
             })
             
         })
+        
         .catch((error) => {
             msgAlert({
                 heading: 'Uh-oh',

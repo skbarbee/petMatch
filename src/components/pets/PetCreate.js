@@ -39,7 +39,7 @@ const PetCreate = ({user, msgAlert}) => {
 			if (updatedName === "typeOfPet"){
 				updatedValue = e.target.value.toUpperCase()
 			}else if(updatedName === "name"){
-				updatedValue = e.target.value.toUpperCase()
+				updatedValue = e.target.value
 			}else if (updatedName === "breed"){
 				updatedValue = e.target.value
 			}
