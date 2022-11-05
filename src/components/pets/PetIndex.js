@@ -3,6 +3,7 @@ import { Card, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { petIndex } from '../../api/pet'
 
+
 // const cardContainerLayout = {
 //     display: 'flex',
 //     flexFlow: 'row wrap',
@@ -81,14 +82,15 @@ const PetIndex = ({ user, msgAlert }) => {
     ))
 
     return (
-        // <div className='container-md' style={ cardContainerLayout }>
+       <>
+        
            <Container className="mx-auto mt-5" style={{justifyContent:"space-around"}}>
             <Row>
             { petCards }
             </Row>
            </Container>
           
-        
+        </>
     )
 }
 

@@ -8,7 +8,7 @@ import NewRatingModal from '../rating/NewRatingModal'
 import ShowRating from '../rating/ShowRating'
 import NewPetMessageModal from "../Messages/NewPetMessageModal"
 import ShowPetMessage from "../Messages/ShowPetMessage"
- 
+import MessageOffCanvas from '../shared/MessageOfCanvas'
 
 const PetShow = (props) => {
 
@@ -68,24 +68,24 @@ const PetShow = (props) => {
         }
         return (ratingCards)
     }
-    let petMessageCards
-    if (pet) {
-        console.log("this is the pet in MESSAGECARDS", pet)
-        if (pet.petMessages.length > 0) {
-            // map over the petMessages
-            // produce one ShowPetMessage component for each of them
-            petMessageCards = pet.petMessages.map(petMessage => (
-                <ShowPetMessage
-                    key={petMessages._id}
-                    petMessage={petMessage}
-                    pet={pet}
-                    user = {user}
-                    msgAlert = {msgAlert}
-                    triggerRefresh = {()=>setUpdated(prev => !prev)}
-                />
-            ))
-        }
-    }
+    // let petMessageCards
+    // if (pet) {
+    //     console.log("this is the pet in MESSAGECARDS", pet)
+    //     if (pet.petMessages.length > 0) {
+    //         // map over the petMessages
+    //         // produce one ShowPetMessage component for each of them
+    //         petMessageCards = pet.petMessages.map(petMessage => (
+    //             <ShowPetMessage
+    //                 key={petMessages._id}
+    //                 petMessage={petMessage}
+    //                 pet={pet}
+    //                 user = {user}
+    //                 msgAlert = {msgAlert}
+    //                 triggerRefresh = {()=>setUpdated(prev => !prev)}
+    //             />
+    //         ))
+    //     }
+    // }
   
 
     useEffect(() => {
@@ -157,11 +157,19 @@ const PetShow = (props) => {
 
     return (
     <>
+        <Container fluid className='mt-5'>
+            <MessageOffCanvas 
+                pet = {pet}
+                user = {user}
+                msgAlert ={msgAlert}
+                setUpdated = {setUpdated}
+            />
+    </Container>
 	    <Container className='mt-5 mx-auto'>
             <Row className='Picture'>
                 <Col xl={1}>
                     <Card.Header>
-                                <h1>This Is m</h1>
+                           
                     </Card.Header>
                 </Col>
                 <Col className='mx-auto mt-5'>
@@ -216,9 +224,7 @@ const PetShow = (props) => {
                         </ButtonGroup>
                         </Card>
                        
-                        <Col >
-                            <>{petMessageCards}</>
-                        </Col>
+                        
                         </Container>
                         <Container>
                         {pet ? makeRatingCards():<><p>rating cards go here</p></>}
