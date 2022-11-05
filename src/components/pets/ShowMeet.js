@@ -2,18 +2,18 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 
 const ShowMeet = (props) => {
-    const { meet} = props
+    const { meets } = props
 
 
 
     return (
         <>
             <Card className='m-2'>
-                <Card.Header>{ meet.person }</Card.Header>
+                <Card.Header>Name:{ meets.name }</Card.Header>
                 <Card.Body>
-                    <small>{ meet.when }</small><br/>
+                    <small>When to meet:{ meets.date }</small><br/>
                     <small>
-                        { meet.where}
+                        Where to meet:{ meets.address }
                     </small>
                 </Card.Body>
             </Card>

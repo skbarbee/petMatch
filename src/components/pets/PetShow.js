@@ -243,7 +243,7 @@ const makeMeetCards = () => {
                         </Button> */}
     
                         </Card><Container>
-                            {makeMeetCards}
+                            {makeMeetCards()}
                         </Container>
                         
                         
