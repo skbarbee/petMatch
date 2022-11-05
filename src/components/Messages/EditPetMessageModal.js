@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap'
 import PetMessageForm from '../shared/PetMessageForm'
 import { updatePetMessage } from '../../api/petMessages'
 import messages from '../shared/AutoDismissAlert/AutoDismissAlert'
+import { useParams } from 'react-router-dom'
 
 
 const EditPetMessageModal = (props) => {
@@ -11,6 +12,7 @@ const EditPetMessageModal = (props) => {
         msgAlert, triggerRefresh, pet 
     } = props
 
+    const {petId, messageId} = useParams()
     const [petMessage, setPetMessage] = useState(props.petMessage)
 
     const handleChange = (e) => {
@@ -29,6 +31,7 @@ const EditPetMessageModal = (props) => {
 
             return {
                 ...prevPetMessage, ...updatedPetMessage
+    
             }
         })
     }
@@ -36,7 +39,7 @@ const EditPetMessageModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        updatePetMessage(user, pet._id, petMessage)
+        updatePetMessage(user, pet._id,  petMessage)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({

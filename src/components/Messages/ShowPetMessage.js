@@ -50,7 +50,7 @@ const ShowPetMessage = (props) => {
                         <>
                             <Button
                                 className="m-2"
-                                variant="warning"
+                                variant="secondary"
                                 onClick={() => setEditPetMessageModalShow(true)}
                             >
                                 Edit Message
