@@ -4,23 +4,10 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
 import UploadPetPicture from './UploadPetPictureModal'
-<<<<<<< HEAD
-import EditMeetModal from './EditMeetModal'
-import ShowMeet from './ShowMeet'
-
-
-
-const cardContainerLayout = {
-    display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'center'
-}
-
-const PetShow = ({ user, msgAlert }) => {
-=======
 import NewRatingModal from '../rating/NewRatingModal'
 import ShowRating from '../rating/ShowRating'
- 
+import NewMeetModal from './NewMeetModal'
+import ShowMeet from './ShowMeet'
 
 const PetShow = (props) => {
 
@@ -28,19 +15,22 @@ const PetShow = (props) => {
 
 
 console.log(msgAlert, "msgAlert here")
->>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
     const [pet, setPet] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
-    const [meetModalShow, setMeetModalShow] = useState(false)
     const [uploadPictureShow, setUploadPictureShow] = useState(false)
     const [NewRatingShow, setNewRatingShow] = useState(false)
+    const [NewMeetShow, setNewMeetShow] = useState(false)
     // const [ShowRating, setShowRating] = useState(false)
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
-    
+
     const { id } = useParams()
     const navigate = useNavigate()
-    
+
+
+
+
+    ///
   useEffect(() => { //will this useEffect run before our EditRatingModal useEffect? 
         petShow(user, id)
             .then((res) => {
@@ -79,7 +69,40 @@ console.log(msgAlert, "msgAlert here")
         }
         return (ratingCards)
     }
-
+///
+useEffect(() => { 
+    petShow(user, id)
+        .then((res) => {
+            setPet(res.data.pet)
+        })
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Show Pet Failure' + error,
+                variant: 'danger'
+            })
+        })
+},[] )
+///
+const makeMeetCards = () => {
+    let MeetCards = []
+    if (pet && pet.meets.length >0) {
+       
+    
+        MeetCards = pet.meets.map(meets => (
+            <ShowMeet 
+                key={meets._id}
+                meets={meets}
+                pet={pet}
+                user={user}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+            />
+        ))
+    }
+    return (MeetCards)
+}
+///
   
 
     useEffect(() => {
@@ -89,27 +112,6 @@ console.log(msgAlert, "msgAlert here")
                 setPet(res.data.pet)
                 console.log("this is the id in the updated useeffect", id) //this is the id in the updated useEffect
             })
-<<<<<<< HEAD
-        })
-    } ,[])
-
-    useEffect(() => {
-        let meetCards
-        if (pet) {
-            console.log(pet.meets)
-            if (pet.meets.length > 0) {
-                meetCards = pet.meets.map(meet => (
-                    <ShowMeet
-                        key={meet._id}
-                        meet={meet}
-                        pet={pet}
-                    />
-                ))    
-        }
-    } },[pet])
-
-    
-=======
             .catch((error) => {
                 msgAlert({
                     heading: 'Failure',
@@ -119,7 +121,6 @@ console.log(msgAlert, "msgAlert here")
             })
     },[updated] ) //this use effect only runs when updated is changed. consider adding a new useeffect that runs on mount "[]"
 
->>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
 
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
@@ -154,31 +155,7 @@ console.log(msgAlert, "msgAlert here")
             })
         })
     }
-    if (!pet) {
-        return (
-            <div>
-                loading
-            </div>
-        )
-    }
 
-<<<<<<< HEAD
-console.log('before generating meet card, looking at pet', pet)
-//     let meetCards
-//     if (pet) {
-//         console.log(pet.meets)
-//         if (pet.meets.length > 0) {
-//             meetCards = pet.meets.map(meet => (
-//                 <ShowMeet
-//                     key={meet._id}
-//                     meet={meet}
-//                     pet={pet}
-//                 />
-//             ))    
-//     }
-// }
- 
-=======
     // let ratingCards
     // if (pet) {
     //     if (pet.rating.length > 0) {
@@ -195,7 +172,6 @@ console.log('before generating meet card, looking at pet', pet)
     //             />
     //         ))
   
->>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
     // oneliner
     if (deleted) navigate('/petmatch')
 
@@ -249,27 +225,15 @@ console.log('before generating meet card, looking at pet', pet)
                         </Card.Body> 
                         <Col xl={1}>
                         </Col>
-                        
                         <div className="footer">
                         </div>   
                         <Card.Footer>
                         <div>
                                 Available for a play date: { pet.available ? 'yes' : 'no' }
                         </div><br/>
-<<<<<<< HEAD
-                        <div>
-                        <Button onClick={() => setMeetModalShow(true)} className="m-2" variant="info">
-                                Let's go!
+                        <Button onClick={() => setNewMeetShow(true)} className="m-2" variant="info">
+                                Let's Go!
                         </Button>
-                        {/* <Container style={cardContainerLayout}>
-                            {meetCards}
-                        </Container> */}
-                        </div>
-                        </Card.Footer>
-                        {/* <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
-                                Rate your date !
-                        </Button> */}
-=======
                         </Card.Footer>
                         <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
                                 Rate your date with { pet.name }!
@@ -278,17 +242,16 @@ console.log('before generating meet card, looking at pet', pet)
                             View { pet.name }'s Ratings
                         </Button> */}
     
->>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
-                        </Card>
+                        </Card><Container>
+                            {makeMeetCards}
+                        </Container>
+                        
+                        
                         <Container>
-                        {pet ? makeRatingCards():<p>rating cards go here</p>}
+                            {pet ? makeRatingCards():<p>rating cards go here</p>}
                         </Container>
                         </Container>
-                        <Col>
-                        {/* <Container style={cardContainerLayout}>
-                            {meetCards}
-                        </Container> */}
-                        </Col>
+                        
                         </Col>
                         <Col>
                             <EditPetModal 
@@ -302,28 +265,28 @@ console.log('before generating meet card, looking at pet', pet)
                         </Col>
                         <Row>
                         <Col>
-                        <EditMeetModal 
-                            user={user}
-                            pet={pet}
-                            show={meetModalShow}
-                            msgAlert={msgAlert}
-                            triggerRefresh={() => setUpdated(prev => !prev)}
-                            handleClose={() => setMeetModalShow(false)}/>
+                            <UploadPetPicture 
+                                user={user}
+                                pet={pet}
+                                show={uploadPictureShow}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setUploadPictureShow(false)}
+                            />
                         </Col>
+                        </Row>
                         <Col>
-                        <UploadPetPicture 
-                            user={user}
-                            pet={pet}
-                            show={uploadPictureShow}
-                            msgAlert={msgAlert}
-                            triggerRefresh={() => setUpdated(prev => !prev)}
-                            handleClose={() => setUploadPictureShow(false)}/>
-                        </Col></Row>
-                        
+                            <NewMeetModal
+                                user={user}
+                                pet={pet}
+                                show={NewMeetShow}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setNewMeetShow(false)}
+                            />
+                        </Col>
                     </Row>
                     {/* <Col>
-<<<<<<< HEAD
-=======
                             <ShowRating
                                 user={user}
                                 pet={pet}
@@ -335,7 +298,6 @@ console.log('before generating meet card, looking at pet', pet)
                         </Col> */}
 
                         <Col>
->>>>>>> 0b95cd9e95557b435ed73b33d99b9715299d2d43
                             <NewRatingModal
                                 user={user}
                                 pet={pet}
@@ -344,7 +306,7 @@ console.log('before generating meet card, looking at pet', pet)
                                 triggerRefresh={() => setUpdated(prev => !prev)}
                                 handleClose={() => setNewRatingShow(false)}
                             />
-                        </Col> */}
+                        </Col>
                     </Container>
                 
 			</>

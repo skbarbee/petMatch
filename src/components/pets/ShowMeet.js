@@ -2,13 +2,13 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 
 const ShowMeet = (props) => {
-    const { meet , key} = props
+    const { meet} = props
 
 
 
     return (
         <>
-            <Card key={key}>
+            <Card className='m-2'>
                 <Card.Header>{ meet.person }</Card.Header>
                 <Card.Body>
                     <small>{ meet.when }</small><br/>

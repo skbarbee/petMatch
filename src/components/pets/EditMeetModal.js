@@ -1,15 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import MeetForm from '../shared/MeetForm'
-import { createMeet } from '../../api/meets'
+import { updateMeet } from '../../api/meets'
+import messages from '../shared/AutoDismissAlert/messages'
 
 const EditMeetModal = (props) => {
     const { 
-        user, pet, show, handleClose, msgAlert, triggerRefresh
+        user, pet, show, handleClose, 
+        msgAlert, triggerRefresh
     } = props
 
-    const [meet, setMeet] = useState({})
+    const [meet, setMeet] = useState(props.rating)
     
+    useEffect(()=> {
+        updateMeet(user,pet._id, rating)
+        .then((res) => {
+            setMeet(res.data.pet)
+        })
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Show Rating Failure' +error,
+                variant: 'danger'
+            })
+        })
+    },[])
+    
+
+
+
+
+
+
     // useEffect(() => {
     //     let meetCards
     //     if (pet) {
@@ -48,7 +70,7 @@ const EditMeetModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        createMeet(user, pet, meet)
+        updateMeet(user, pet._id, meet)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({
