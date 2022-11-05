@@ -47,14 +47,14 @@ const ShowRating = (props) => {
                         user && pet.owner && user._id === pet.owner._id 
                         ?
                         <>
-                            <Button
+                            <Button size='sm'
                                 className="m-2" 
                                 variant="secondary"
                                 onClick={() => setEditModalShow(true)}  
                             >
                                 Edit Rating
                             </Button>
-                            <Button 
+                            <Button size='sm' 
                                 className="m-2"
                                 variant="danger"
                                 onClick={() => destroyRating()}

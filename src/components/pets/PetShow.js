@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react' 
-import { Container, Row, Col , Card, Button, ButtonGroup} from 'react-bootstrap'
+import React, { Fragment, useEffect, useState } from 'react' 
+import { Container, Row, Col , Card, Button, ButtonGroup, Image} from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
@@ -111,14 +111,14 @@ const PetShow = (props) => {
 	const setImage = (type)=>{
         if(!pet.img){
 		    if(type === "DOG"){
-			    return <img fluid  src={dogPic} />
+			    return <Image fluid  src={dogPic} />
 		    }else if(type ==="CAT"){
-			    return <img fluid  src={catPic} />
+			    return <Image fluid  src={catPic} />
 		    }else{
-                return <img fluid  src={animalPic} />
+                return <Image fluid  src={animalPic} />
             }
         }else{
-            return   <img fluid style={{width:'300px', height:'300px', border: 'solid fuchsia'}} src={pet.img} />
+            return   <Image fluid style={{width:'300px', height:'300px', border: 'solid #d838f2'}} src={pet.img} />
        }
 	}
     const handleDeletePet = () => {
@@ -156,7 +156,7 @@ const PetShow = (props) => {
     
 
     return (
-    <>
+    <Container>
         <Container fluid className='mt-5'>
             <MessageOffCanvas 
                 pet = {pet}
@@ -165,7 +165,7 @@ const PetShow = (props) => {
                 setUpdated = {setUpdated}
             />
     </Container>
-	    <Container className='mt-5 mx-auto'>
+	    <Container className='mt-5 mx-auto' >
             <Row className='Picture'>
                 <Col xl={1}>
                     <Card.Header>
@@ -211,17 +211,25 @@ const PetShow = (props) => {
                                     <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
                                     <h4>Likes: {pet.likes}</h4>
                                 </Card.Body> 
-                            <Card.Footer className='footer'>
+                            <Card.Footer >
                                 { pet.available ? "I'm available for a play date!" : 'Not available for play date at the moment. ' }
                             </Card.Footer>
-                        <ButtonGroup>
-                            <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
+                            <Container className="justify-content-end">
+                        <ButtonGroup size='sm'>
+                            <Button size='sm'
+                             onClick={() => setNewRatingShow(true)} 
+                             className="m-2" 
+                             variant="info">
                                 Rate your date with { pet.name }!
                             </Button>
-                            <Button onClick={() => setPetMessageModalShow(true)} className="m-2" variant="info">
+                            <Button size='sm'
+                             onClick={() => setPetMessageModalShow(true)} 
+                             className="m-2" 
+                             variant="info">
                                 Leave a message!
                             </Button>
                         </ButtonGroup>
+                        </Container>
                         </Card>
                        
                         
@@ -279,7 +287,7 @@ const PetShow = (props) => {
                         </Col>
                     </Container>
                 
-			</>
+			</Container>
 		)
 }
 

@@ -6,7 +6,7 @@ body {
   margin: auto;
   font-family: 'Oswald';
   font-weight: 200;
-  background-color: rgb(239, 212, 246);
+  background-color: rgb(229, 222, 231);
   
 }
 
@@ -25,6 +25,11 @@ body {
   align-content: flex-start;
   align-items: flex-start;
 
+}
+.justify-content-end{
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
 }
 
 .footer {
