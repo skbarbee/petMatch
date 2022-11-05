@@ -19,6 +19,7 @@ import PetCreate from './components/pets/PetCreate'
 import PetIndex from './components/pets/PetIndex'
 import PetShow from './components/pets/PetShow'
 
+import './index.css'
 
 const App = () => {
 

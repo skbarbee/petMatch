@@ -9,7 +9,9 @@ export const createRating = (user, petId, newRating) => {
 	return axios({
 		method: 'POST',
 		url: `${apiUrl}/rating/${petId}`,
-		
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
 		data: { rating: newRating }
 	})
 }

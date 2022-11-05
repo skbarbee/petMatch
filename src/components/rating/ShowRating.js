@@ -5,8 +5,8 @@ import EditRatingModal from './EditRatingModal'
 
 const ShowRating = (props) => {
     const { rating, pet, user, msgAlert, triggerRefresh } = props
-    console.log('this is the props', props)
-    console.log(pet, "showRating")
+    // console.log('this is the props', props)
+    // console.log(pet, "showRating")
     const [editModalShow, setEditModalShow] = useState(false)
 
   
@@ -34,7 +34,7 @@ const ShowRating = (props) => {
     return (
         <>
             <Card className="m-2" >
-                <Card.Header>{ rating.scale } { rating.ratingIcon } </Card.Header>
+                <Card.Header>{ rating.scale } {pet.ratingIcon} by {rating.author} </Card.Header>
                 <Card.Body>
                     <small>Comment: { rating.comment }</small><br/>
                     <small>
@@ -49,7 +49,7 @@ const ShowRating = (props) => {
                         <>
                             <Button
                                 className="m-2" 
-                                variant="warning"
+                                variant="secondary"
                                 onClick={() => setEditModalShow(true)}  
                             >
                                 Edit Rating

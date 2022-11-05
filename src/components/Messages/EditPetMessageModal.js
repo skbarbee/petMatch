@@ -20,13 +20,7 @@ const EditPetMessageModal = (props) => {
             const name = e.target.name
             let value = e.target.value
 
-            // // handle the checkbox
-            // if (name === "isSqueaky" && e.target.checked) {
-            //     value = true
-            // } else if (name === "isSqueaky" && !e.target.checked) {
-            //     value = false
-            // }
-
+        
             const updatedPetMessage = { [name]: value }
 
             return {
