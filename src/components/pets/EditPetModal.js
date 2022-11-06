@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import PetForm from '../shared/PetForm'
 import { petUpdate, petShow } from '../../api/pet'
-import PetShow from './PetShow'
+// import PetShow from './PetShow'
 import { useParams } from 'react-router-dom'
 
 
@@ -16,7 +16,6 @@ const EditPetModal = (props) => {
     const [pet, setPet] = useState(props.pet)
 
     const { id } = useParams()
-
 
     useEffect(() => {
         petShow(user, id)

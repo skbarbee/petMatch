@@ -9,7 +9,7 @@ const ShowRating = (props) => {
     console.log('this is the user.email\n', props.user.email)
     const [editModalShow, setEditModalShow] = useState(false)
 
-  const userString = JSON.stringify(props.user.email)
+    const userString = JSON.stringify(props.user.email)
 
     // this function removes a rating, is only available to pet owner
     const destroyRating = () => {
@@ -34,43 +34,43 @@ const ShowRating = (props) => {
     return (
         <>
             <Card className="m-2" >
-                <Card.Header>{ rating.scale } {pet.ratingIcon} by {rating.author} </Card.Header>
+                <Card.Header>{rating.scale} {pet.ratingIcon} by {rating.author} </Card.Header>
                 <Card.Body>
-                    <h4>Comment : { rating.comment }</h4><br/>
+                    <h4>Comment : {rating.comment}</h4><br />
                     <h4>
-                        Would you want to meet again? : { rating.meetAgain ? 'Would love to!' : 'Not a chance'}
-                    </h4><br/>
+                        Would you want to meet again? : {rating.meetAgain ? 'Would love to!' : 'Not a chance'}
+                    </h4><br />
                     <small></small>
                 </Card.Body>
                 <Card.Footer className="justify-content-end">
-                    { 
+                    {
                         user && rating.author && userString == rating.author
-                        ?
-                        <>
-                        <ButtonGroup>
-                            <Button size='sm'
-                                className=" m-1 " 
-                                variant="secondary"
-                                onClick={() => setEditModalShow(true)}  
-                            >
-                                Edit Rating
-                            </Button>
-                            <Button 
-                                className=" m-1 " 
-                                size='sm' 
-                                variant="danger"
-                                onClick={() => destroyRating()}
-                            >
-                                Delete Rating
-                            </Button>
-                        </ButtonGroup>
-                        </>
-                        :
-                        null
+                            ?
+                            <>
+                                <ButtonGroup>
+                                    <Button size='sm'
+                                        className=" m-1 "
+                                        variant="secondary"
+                                        onClick={() => setEditModalShow(true)}
+                                    >
+                                        Edit Rating
+                                    </Button>
+                                    <Button
+                                        className=" m-1 "
+                                        size='sm'
+                                        variant="danger"
+                                        onClick={() => destroyRating()}
+                                    >
+                                        Delete Rating
+                                    </Button>
+                                </ButtonGroup>
+                            </>
+                            :
+                            null
                     }
                 </Card.Footer>
             </Card>
-            <EditRatingModal 
+            <EditRatingModal
                 user={user}
                 pet={pet}
                 rating={rating}

@@ -20,7 +20,6 @@ const EditPetMessageModal = (props) => {
             const name = e.target.name
             let value = e.target.value
 
-        
             const updatedPetMessage = { [name]: value }
 
             return {

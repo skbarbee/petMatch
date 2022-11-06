@@ -1,4 +1,3 @@
-
 // import React, { Component, Fragment } from 'react'
 import React, { useState, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -33,20 +32,20 @@ const App = () => {
     setUser(null)
   }
 
-	const deleteAlert = (id) => {
-		setMsgAlerts((prevState) => {
-			return (prevState.filter((msg) => msg.id !== id) )
-		})
-	}
+  const deleteAlert = (id) => {
+    setMsgAlerts((prevState) => {
+      return (prevState.filter((msg) => msg.id !== id))
+    })
+  }
 
-	const msgAlert = ({ heading, message, variant }) => {
-		const id = uuid()
-		setMsgAlerts(() => {
-			return (
-				[{ heading, message, variant, id }]
+  const msgAlert = ({ heading, message, variant }) => {
+    const id = uuid()
+    setMsgAlerts(() => {
+      return (
+        [{ heading, message, variant, id }]
       )
-		})
-	}
+    })
+  }
 
   return (
     <Fragment>
@@ -84,7 +83,7 @@ const App = () => {
             </RequireAuth>}
         />
         <Route
-          path = '/petmatch/:id'
+          path='/petmatch/:id'
           element={
             <PetShow msgAlert={msgAlert} user={user} />
           }
@@ -96,9 +95,7 @@ const App = () => {
               <PetIndex msgAlert={msgAlert} user={user} />
             </RequireAuth>}
         />
-        
 
-      
       </Routes>
       {msgAlerts.map((msgAlert) => (
         <AutoDismissAlert

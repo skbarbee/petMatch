@@ -4,17 +4,14 @@ import RatingForm from '../shared/RatingForm'
 import { updateRating } from '../../api/rating'
 import messages from '../shared/AutoDismissAlert/messages'
 
-
-
 const EditRatingModal = (props) => {
-    const { 
-        user, show, handleClose, 
-        msgAlert, triggerRefresh, pet 
+    const {
+        user, show, handleClose,
+        msgAlert, triggerRefresh, pet
     } = props
 
     const [rating, setRating] = useState(props.rating)
     console.log(pet, "im the pet")
-  
 
     const handleChange = (e) => {
         setRating(prevRating => {
@@ -27,13 +24,13 @@ const EditRatingModal = (props) => {
             } else if (name === "meetAgain" && !e.target.checked) {
                 value = false
             }
-    
+
             if (e.target.type === 'number') {
                 // this looks at the input type and changes from the default type of string to an actual number
                 value = parseInt(e.target.value)
             }
             const updatedRating = { [name]: value }
-    
+
             return {
                 ...prevRating, ...updatedRating
             }
@@ -42,7 +39,7 @@ const EditRatingModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
+
         updateRating(user, pet._id, rating)
             .then(() => handleClose())
             .then(() => {
@@ -64,9 +61,9 @@ const EditRatingModal = (props) => {
 
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton/>
+            <Modal.Header closeButton />
             <Modal.Body>
-                <RatingForm 
+                <RatingForm
                     rating={rating}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}

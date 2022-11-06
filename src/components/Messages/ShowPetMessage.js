@@ -11,10 +11,6 @@ const ShowPetMessage = (props) => {
 
     const [editPetMessageModalShow, setEditPetMessageModalShow] = useState(false)
     const userString = JSON.stringify(props.user.email)
-<<<<<<< HEAD
-
-=======
->>>>>>> 30657cbb1350ccba4c0696b893cb9af041e202e8
 
     const destroyPetMessage = () => {
         deletePetMessage(user, pet._id, petMessage._id)
@@ -35,41 +31,11 @@ const ShowPetMessage = (props) => {
             })
     }
 
-
-
     return (
         <>
             <Card className="m-1" border="primary">
                 <Card.Header> <h3> Message from {petMessage.name} </h3> </Card.Header>
                 <Card.Body>
-<<<<<<< HEAD
-                    <p> {petMessage.message} </p>
-                    <p> {petMessage.daysAvailable}  </p>
-
-                </Card.Body>
-                <Card.Footer>
-                    {
-                        user && pet.owner && user._id === pet.owner._id
-                            ?
-                            <>
-                                <Button
-                                    className="m-2"
-                                    variant="warning"
-                                    onClick={() => setEditPetMessageModalShow(true)}
-                                >
-                                    Edit Message
-                                </Button>
-                                <Button
-                                    className="m-2"
-                                    variant="danger"
-                                    onClick={() => destroyPetMessage()}
-                                >
-                                    Delete Message
-                                </Button>
-                            </>
-                            :
-                            null
-=======
                     <h4> { petMessage.message } </h4>
                     <h4> { petMessage.daysAvailable }  </h4>
                    
@@ -106,7 +72,6 @@ const ShowPetMessage = (props) => {
                         </>  
                         :
                         null
->>>>>>> 30657cbb1350ccba4c0696b893cb9af041e202e8
                     }
                 </Card.Footer>
             </Card>

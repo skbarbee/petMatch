@@ -6,8 +6,8 @@ import MessageOffCanvas from './MessageOfCanvas'
 
 
 const linkStyle = {
-    color: 'white',
-    textDecoration: 'none',
+	color: 'white',
+	textDecoration: 'none',
 	fontFamily: 'Oswald',
 }
 
@@ -30,21 +30,21 @@ const authenticatedOptions = (
 		</Nav.Item>
 		<Nav.Item className='m-2'>
 			<Link to='petmatch' style={linkStyle}>
-				Meet New Friends 
+				Meet New Friends
 			</Link>
 		</Nav.Item>
-		
+
 	</>
 )
 
 const unauthenticatedOptions = (
 	<>
-        <Nav.Item className='m-2'>
-		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
-        </Nav.Item>
-        <Nav.Item className='m-2'>
-		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
-        </Nav.Item>
+		<Nav.Item className='m-2'>
+			<Link to='sign-up' style={linkStyle}>Sign Up</Link>
+		</Nav.Item>
+		<Nav.Item className='m-2'>
+			<Link to='sign-in' style={linkStyle}>Sign In</Link>
+		</Nav.Item>
 	</>
 )
 
@@ -61,10 +61,10 @@ const alwaysOptions = (
 const Header = ({ user }) => (
 	<Navbar bg='primary' variant='dark' expand='md'>
 		<Navbar.Brand className='m-2'>
-            <Link to='/' style={linkStyle}>
-              PetMatch
-            </Link>
-        </Navbar.Brand>
+			<Link to='/' style={linkStyle}>
+				PetMatch
+			</Link>
+		</Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>

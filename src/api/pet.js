@@ -33,12 +33,14 @@ export const petIndex = (user) => {
 		url: apiUrl + '/petmatch'
 	})
 }
+
 export const petShow = (user, id) => {
 	return axios({
 		method: 'GET',
 		url: apiUrl + '/petmatch/' + id
 	})
 }
+
 export const petDelete = (user, id) => {
 	return axios({
 		method: 'DELETE',
