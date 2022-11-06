@@ -18,7 +18,8 @@ import ChangePassword from './components/auth/ChangePassword'
 import PetCreate from './components/pets/PetCreate'
 import PetIndex from './components/pets/PetIndex'
 import PetShow from './components/pets/PetShow'
-import Upload from './components/shared/Upload'
+
+import './index.css'
 
 const App = () => {
 
@@ -95,13 +96,9 @@ const App = () => {
               <PetIndex msgAlert={msgAlert} user={user} />
             </RequireAuth>}
         />
-        {/* <Route
-          path='/image/:petId'
-          element={
-            <RequireAuth user={user}>
-              <Upload msgAlert={msgAlert} user={user}/>
-            </RequireAuth>}
-      /> */}
+        
+
+      
       </Routes>
       {msgAlerts.map((msgAlert) => (
         <AutoDismissAlert

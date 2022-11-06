@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react' 
-import { Container, Row, Col , Card, Button, ButtonGroup} from 'react-bootstrap'
+import React, { Fragment, useEffect, useState } from 'react' 
+import { Container, Row, Col , Card, Button, ButtonGroup, Image} from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import { petDelete, petShow } from '../../api/pet'
 import EditPetModal from './EditPetModal'
@@ -8,7 +8,7 @@ import NewRatingModal from '../rating/NewRatingModal'
 import ShowRating from '../rating/ShowRating'
 import NewPetMessageModal from "../Messages/NewPetMessageModal"
 import ShowPetMessage from "../Messages/ShowPetMessage"
- 
+import MessageOffCanvas from '../shared/MessageOfCanvas'
 
 const PetShow = (props) => {
 
@@ -68,24 +68,24 @@ const PetShow = (props) => {
         }
         return (ratingCards)
     }
-    let petMessageCards
-    if (pet) {
-        console.log("this is the pet in MESSAGECARDS", pet)
-        if (pet.petMessages.length > 0) {
-            // map over the petMessages
-            // produce one ShowPetMessage component for each of them
-            petMessageCards = pet.petMessages.map(petMessage => (
-                <ShowPetMessage
-                    key={petMessages._id}
-                    petMessage={petMessage}
-                    pet={pet}
-                    user = {user}
-                    msgAlert = {msgAlert}
-                    triggerRefresh = {()=>setUpdated(prev => !prev)}
-                />
-            ))
-        }
-    }
+    // let petMessageCards
+    // if (pet) {
+    //     console.log("this is the pet in MESSAGECARDS", pet)
+    //     if (pet.petMessages.length > 0) {
+    //         // map over the petMessages
+    //         // produce one ShowPetMessage component for each of them
+    //         petMessageCards = pet.petMessages.map(petMessage => (
+    //             <ShowPetMessage
+    //                 key={petMessages._id}
+    //                 petMessage={petMessage}
+    //                 pet={pet}
+    //                 user = {user}
+    //                 msgAlert = {msgAlert}
+    //                 triggerRefresh = {()=>setUpdated(prev => !prev)}
+    //             />
+    //         ))
+    //     }
+    // }
   
 
     useEffect(() => {
@@ -111,14 +111,14 @@ const PetShow = (props) => {
 	const setImage = (type)=>{
         if(!pet.img){
 		    if(type === "DOG"){
-			    return <img fluid  src={dogPic} />
+			    return <Image fluid style={{width:'80%', height:'80%',}}  src={dogPic} />
 		    }else if(type ==="CAT"){
-			    return <img fluid  src={catPic} />
+			    return <Image fluid style={{width:'80%', height:'80%',}}  src={catPic} />
 		    }else{
-                return <img fluid  src={animalPic} />
+                return <Image fluid style={{width:'80%', height:'80%',}} src={animalPic} />
             }
         }else{
-            return   <img fluid style={{width:'300px', height:'300px', border: 'solid fuchsia'}} src={pet.img} />
+            return   <Image fluid style={{width:'100%', height:'100%', border: 'solid #d838f2'}} src={pet.img} />
        }
 	}
     const handleDeletePet = () => {
@@ -156,17 +156,32 @@ const PetShow = (props) => {
     
 
     return (
-    <>
-	    <Container className='mt-5 mx-auto'>
+    <Container>
+         { pet && pet.owner && user && pet.owner._id === user._id 
+                        ?
+        <Container fluid className='mt-5 justify-content-end'>
+            <MessageOffCanvas 
+                pet = {pet}
+                user = {user}
+                msgAlert ={msgAlert}
+                setUpdated = {setUpdated}
+            />
+        </Container>
+            :
+             null
+        }
+
+	    <Container className='mt-5 mx-auto' >
             <Row className='Picture'>
                 <Col xl={1}>
                     <Card.Header>
-                                <h1>This Is m</h1>
+                           
                     </Card.Header>
                 </Col>
                 <Col className='mx-auto mt-5'>
-                    
+                    <Container className='justify-content-center'>
                     {pet ? setImage(pet.typeOfPet) : null}
+                    </Container>
                     <Card.Body>
                     { pet && pet.owner && user && pet.owner._id === user._id 
                         ?
@@ -175,19 +190,19 @@ const PetShow = (props) => {
                         <Button 
                             onClick={() => setEditModalShow(true)} 
                             className=" m-1 userbutton" variant="info">
-                                Edit {pet.name}'s Profile
+                               <h4> Edit {pet.name}'s Profile</h4>
                         </Button>
                         <Button 
                             onClick={() => setUploadPictureShow(true)} 
                             className=" m-1 userbutton" variant="secondary">
-                                Edit {pet.name}'s Picture
+                                <h4> Edit {pet.name}'s Picture </h4>
                         </Button>
                         <Button 
                             onClick={() => handleDeletePet()}
                             className=" m-1 userbutton"
                             variant="danger"
                         >
-                            Delete { pet.name }'s Profile
+                            <h5> Delete { pet.name }'s Profile </h5>
                         </Button> 
                     </Row>
                         :
@@ -197,28 +212,39 @@ const PetShow = (props) => {
                 </Col>
                     <Col xl={6}>
                         <Container fluid style={{width:"100%"}}>
-                            <Card className='mt-5'>
+                            <Card className='mt-3'>
                                 <Card.Header><h1 style ={{color:'#eb50b8'}}>Hi! My name is {pet.name}</h1> </Card.Header>
                                 <Card.Body>
-                                    <h3>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h3>
-                                    <h4>Likes: {pet.likes}</h4>
+                                    <h2>I am a {pet.typeOfPet}, more specifically I am a {pet.breed}!</h2>
+                                    <h2 className='text-center'>What do I Like: </h2>
+                                    <h2>{pet.likes}</h2>
                                 </Card.Body> 
-                            <Card.Footer className='footer'>
-                                { pet.available ? "I'm available for a play date!" : 'Not available for play date at the moment. ' }
+                            <Card.Footer >
+                               <h2> { pet.available ? "I'm available for a play date!" : 'Not available for play date at the moment. ' }</h2>
                             </Card.Footer>
-                        <ButtonGroup>
-                            <Button onClick={() => setNewRatingShow(true)} className="m-2" variant="info">
-                                Rate your date with { pet.name }!
+                            <Container className="justify-content-end">
+                        <ButtonGroup size='sm'>
+                            <Button 
+                                style={{color:"white"}}
+                                size='sm'
+                                onClick={() => setNewRatingShow(true)} 
+                                className="m-2" 
+                                variant="info">
+                                <h4> Rate your date with { pet.name }! </h4>
                             </Button>
-                            <Button onClick={() => setPetMessageModalShow(true)} className="m-2" variant="info">
-                                Leave a message!
+                            <Button
+                                style={{color:"white"}} 
+                                size='sm'
+                                onClick={() => setPetMessageModalShow(true)} 
+                                className="m-2" 
+                                variant="info">
+                                    <h4>Leave a message!</h4>
                             </Button>
                         </ButtonGroup>
+                        </Container>
                         </Card>
                        
-                        <Col >
-                            <>{petMessageCards}</>
-                        </Col>
+                        
                         </Container>
                         <Container>
                         {pet ? makeRatingCards():<><p>rating cards go here</p></>}
@@ -273,7 +299,7 @@ const PetShow = (props) => {
                         </Col>
                     </Container>
                 
-			</>
+			</Container>
 		)
 }
 

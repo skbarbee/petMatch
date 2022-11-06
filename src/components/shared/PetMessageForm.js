@@ -9,7 +9,7 @@ const PetMessageForm = (props) => {
     
     
     return (
-        <Container className="justify-content-center">
+        <Container className="justify-content-center" style={{fontFamily:"Oswald"}}>
             <h3>{ heading }</h3>
             <Form onSubmit={ handleSubmit }>
                 <Form.Label>Name:</Form.Label>
@@ -37,7 +37,7 @@ const PetMessageForm = (props) => {
                     onChange={ handleChange }
                 />
                
-                <Button type="submit">Submit</Button>
+                <Button className=" m-3 justify-content-end" type="submit"> Submit </Button>
             </Form>
         </Container>
     )

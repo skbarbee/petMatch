@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react' 
-import { Card, Container, Row, Col } from 'react-bootstrap'
+import { Card, Container, Row, Col, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { petIndex } from '../../api/pet'
+
 
 // const cardContainerLayout = {
 //     display: 'flex',
@@ -18,11 +19,11 @@ const PetIndex = ({ user, msgAlert }) => {
     const setImage = (type)=>{
        
 		if(type === "DOG"){
-			return <img fluid  src={dogPic} />
+			return <Image fluid  src={dogPic} />
 		}else if(type === "CAT"){
-			return <img fluid  src={catPic} />
+			return <Image fluid  src={catPic} />
         }else{
-			return <img fluid  src={animalPic} />
+			return <Image fluid  src={animalPic} />
 		}
 	}
     
@@ -60,7 +61,7 @@ const PetIndex = ({ user, msgAlert }) => {
                             { 
                                 pet.img  
                                 ?
-                                <> <img fluid style={{width:'200px', height:'200px', border: 'solid fuchsia'}} src={pet.img}/></>
+                                <> <Image fluid style={{width:'200px', height:'200px', border: 'solid fuchsia'}} src={pet.img}/></>
                                 :
                                 <> {setImage(pet.typeOfPet)} </>
                              }
@@ -69,7 +70,7 @@ const PetIndex = ({ user, msgAlert }) => {
                          </Link>
                         </Col>
                         <Col> 
-                            <Card.Title><h1>{ pet.name.toUpperCase() }</h1></Card.Title>
+                            <Card.Title style={{fontFamily:'Oswald'}}>{ pet.name.toUpperCase() }</Card.Title>
                             <Card.Text style ={{color:'#eb50b8'}}>{ pet.typeOfPet}</Card.Text>
                         </Col>
                     
@@ -81,14 +82,15 @@ const PetIndex = ({ user, msgAlert }) => {
     ))
 
     return (
-        // <div className='container-md' style={ cardContainerLayout }>
+      
+        
            <Container className="mx-auto mt-5" style={{justifyContent:"space-around"}}>
             <Row>
             { petCards }
             </Row>
            </Container>
           
-        
+      
     )
 }
 

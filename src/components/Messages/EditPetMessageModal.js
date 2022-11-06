@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap'
 import PetMessageForm from '../shared/PetMessageForm'
 import { updatePetMessage } from '../../api/petMessages'
 import messages from '../shared/AutoDismissAlert/AutoDismissAlert'
+import { useParams } from 'react-router-dom'
 
 
 const EditPetMessageModal = (props) => {
@@ -11,6 +12,7 @@ const EditPetMessageModal = (props) => {
         msgAlert, triggerRefresh, pet
     } = props
 
+    const {petId, messageId} = useParams()
     const [petMessage, setPetMessage] = useState(props.petMessage)
 
     const handleChange = (e) => {
@@ -18,17 +20,12 @@ const EditPetMessageModal = (props) => {
             const name = e.target.name
             let value = e.target.value
 
-            // // handle the checkbox
-            // if (name === "isSqueaky" && e.target.checked) {
-            //     value = true
-            // } else if (name === "isSqueaky" && !e.target.checked) {
-            //     value = false
-            // }
-
+        
             const updatedPetMessage = { [name]: value }
 
             return {
                 ...prevPetMessage, ...updatedPetMessage
+    
             }
         })
     }

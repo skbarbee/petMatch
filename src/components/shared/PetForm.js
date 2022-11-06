@@ -15,11 +15,10 @@ const PetForm = (props) => {
     // }
 
     return (
-        <Container className="justify-content-center">
-            <br></br>
-            <h3>{ heading }</h3>
-            <br></br>
+        <Container className="justify-content-center" style={{fontFamily:"Oswald"}}>
+            
             <Form onSubmit={ handleSubmit }>
+            <h2>{ heading }</h2>
                 <Form.Label>Name:</Form.Label>
                 <Form.Control 
                     placeholder="what's your pet's name?"

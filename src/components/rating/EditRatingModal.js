@@ -14,20 +14,7 @@ const EditRatingModal = (props) => {
 
     const [rating, setRating] = useState(props.rating)
     console.log(pet, "im the pet")
-    // useEffect(() => {
-    //     updateRating(user, pet._id, rating)
-    //     .then((res) => {
-    //         setRating(res.data.pet)
-    //     })
-    //     .catch((error) => {
-    //         msgAlert({
-    //             heading: 'Failure',
-    //             message: 'Show Rating Failure' + error,
-    //             variant: 'danger'
-    //         })
-    //     })
-    // },[] )
-    //this dependency array is SUSS. -_-
+  
 
     const handleChange = (e) => {
         setRating(prevRating => {
@@ -35,14 +22,18 @@ const EditRatingModal = (props) => {
             let value = e.target.value
 
             // handle the checkbox
-            if (name === "dateAgain" && e.target.checked) {
+            if (name === "meetAgain" && e.target.checked) {
                 value = true
-            } else if (name === "dateAgain" && !e.target.checked) {
+            } else if (name === "meetAgain" && !e.target.checked) {
                 value = false
             }
-
+    
+            if (e.target.type === 'number') {
+                // this looks at the input type and changes from the default type of string to an actual number
+                value = parseInt(e.target.value)
+            }
             const updatedRating = { [name]: value }
-
+    
             return {
                 ...prevRating, ...updatedRating
             }
@@ -80,6 +71,7 @@ const EditRatingModal = (props) => {
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     heading="Rate this pet!"
+                    user={user}
                 />
             </Modal.Body>
         </Modal>

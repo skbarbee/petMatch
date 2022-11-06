@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, ButtonGroup } from 'react-bootstrap'
 import { deletePetMessage } from '../../api/petMessages'
 import EditPetMessageModal from '../Messages/EditPetMessageModal'
 
@@ -10,7 +10,7 @@ const ShowPetMessage = (props) => {
     console.log('this is the petMessage \n', petMessage)
 
     const [editPetMessageModalShow, setEditPetMessageModalShow] = useState(false)
-
+    const userString = JSON.stringify(props.user.email)
 
 
     const destroyPetMessage = () => {
@@ -37,7 +37,7 @@ const ShowPetMessage = (props) => {
     return (
         <>
             <Card className="m-1" border="primary">
-                <Card.Header> Message from {petMessage.name} </Card.Header>
+                <Card.Header> <h3> Message from {petMessage.name} </h3> </Card.Header>
                 <Card.Body>
                     <p> {petMessage.message} </p>
                     <p> {petMessage.daysAvailable}  </p>
