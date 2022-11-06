@@ -12,7 +12,7 @@ const ShowPetMessage = (props) => {
     const [editPetMessageModalShow, setEditPetMessageModalShow] = useState(false)
 
 
-  
+
     const destroyPetMessage = () => {
         deletePetMessage(user, pet._id, petMessage._id)
             .then(() => {
@@ -39,37 +39,37 @@ const ShowPetMessage = (props) => {
             <Card className="m-1" border="primary">
                 <Card.Header> Message from {petMessage.name} </Card.Header>
                 <Card.Body>
-                    <p> { petMessage.message } </p>
-                    <p> { petMessage.daysAvailable }  </p>
-                   
+                    <p> {petMessage.message} </p>
+                    <p> {petMessage.daysAvailable}  </p>
+
                 </Card.Body>
                 <Card.Footer>
-                    { 
-                        user && pet.owner && user._id === pet.owner._id 
-                        ?
-                        <>
-                            <Button
-                                className="m-2"
-                                variant="warning"
-                                onClick={() => setEditPetMessageModalShow(true)}
-                            >
-                                Edit Message
-                            </Button>
-                            <Button 
-                                className="m-2"
-                                variant="danger"
-                                onClick={() => destroyPetMessage()}
-                            >
-                                Delete Message
-                            </Button>  
-                        </>  
-                        :
-                        null
+                    {
+                        user && pet.owner && user._id === pet.owner._id
+                            ?
+                            <>
+                                <Button
+                                    className="m-2"
+                                    variant="warning"
+                                    onClick={() => setEditPetMessageModalShow(true)}
+                                >
+                                    Edit Message
+                                </Button>
+                                <Button
+                                    className="m-2"
+                                    variant="danger"
+                                    onClick={() => destroyPetMessage()}
+                                >
+                                    Delete Message
+                                </Button>
+                            </>
+                            :
+                            null
                     }
                 </Card.Footer>
             </Card>
 
-            <EditPetMessageModal 
+            <EditPetMessageModal
                 user={user}
                 pet={pet}
                 petMessage={petMessage}

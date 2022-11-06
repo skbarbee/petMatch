@@ -5,26 +5,19 @@ import { createPetMessage } from '../../api/petMessages'
 
 const NewPetMessageModal = (props) => {
     const {
-        user, pet, show, handleClose, msgAlert, triggerRefresh 
+        user, pet, show, handleClose, msgAlert, triggerRefresh
     } = props
 
     const [petMessage, setPetMessage] = useState({})
 
     const handleChange = (e) => {
         setPetMessage(prevPetMessage => {
-            const name = e.target.name 
+            const name = e.target.name
             let value = e.target.value
-
-            // // handle the checkbox
-            // if(name === 'isSqueaky' && e.target.checked) {
-            //     value = true
-            // } else if (name === "isSqueaky" && !e.target.checked) {
-            //     value = false 
-            // }
 
             const updatedPetMessage = { [name]: value }
 
-            return{
+            return {
                 ...prevPetMessage, ...updatedPetMessage
             }
         })
@@ -32,10 +25,10 @@ const NewPetMessageModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        createPetMessage(user, pet._id, petMessage) 
+        createPetMessage(user, pet._id, petMessage)
             .then(() => handleClose())
             .then(() => triggerRefresh())
-            .then(()=> msgAlert({
+            .then(() => msgAlert({
                 heading: "Oh yeah!",
                 message: "great! thank you for your message!",
                 variant: 'success'
@@ -49,13 +42,13 @@ const NewPetMessageModal = (props) => {
     }
 
     return (
-        <Modal show={show} onHide={ handleClose }>
+        <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton />
             <Modal.Body>
-                
+
                 <PetMessageForm
                     petMessage={petMessage}
-                    pet = {pet}
+                    pet={pet}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     heading="Leave a message for the owner of this pet!"

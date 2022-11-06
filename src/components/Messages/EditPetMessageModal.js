@@ -6,9 +6,9 @@ import messages from '../shared/AutoDismissAlert/AutoDismissAlert'
 
 
 const EditPetMessageModal = (props) => {
-    const { 
-        user, show, handleClose, 
-        msgAlert, triggerRefresh, pet 
+    const {
+        user, show, handleClose,
+        msgAlert, triggerRefresh, pet
     } = props
 
     const [petMessage, setPetMessage] = useState(props.petMessage)
@@ -35,7 +35,7 @@ const EditPetMessageModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
+
         updatePetMessage(user, pet._id, petMessage)
             .then(() => handleClose())
             .then(() => {
@@ -57,9 +57,9 @@ const EditPetMessageModal = (props) => {
 
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton/>
+            <Modal.Header closeButton />
             <Modal.Body>
-                <PetMessageForm 
+                <PetMessageForm
                     petMessage={petMessage}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}

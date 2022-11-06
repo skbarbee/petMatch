@@ -15,16 +15,16 @@ export const petCreate = (data, user) => {
 }
 
 export const petUpdate = (data, user, id) => {
-    return axios({
-        method: 'PATCH',
-        url: apiUrl + '/petmatch/' + id,
-        data: {
-            pet: data,
-        },
-        headers: {
-            Authorization: `Token token=${user.token}`,
-        },
-    })
+	return axios({
+		method: 'PATCH',
+		url: apiUrl + '/petmatch/' + id,
+		data: {
+			pet: data,
+		},
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+	})
 }
 
 export const petIndex = (user) => {

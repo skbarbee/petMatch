@@ -4,14 +4,14 @@ import axios from 'axios'
 export const imageCreate = async (petId, user, imgFile) => {
 	await axios({
 		method: 'POST',
-		url:  `${apiUrl}/image/${petId}`,
+		url: `${apiUrl}/image/${petId}`,
 		data: {
-			
-			 image: imgFile
+
+			image: imgFile
 		},
 		headers: {
 			Authorization: `Token token=${user.token}`,
-			
+
 		},
 	})
 }
