@@ -32,8 +32,8 @@ const EditPetMessageModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        updatePetMessage(user, pet._id, petMessage)
+        
+        updatePetMessage(user, pet._id,  petMessage)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({

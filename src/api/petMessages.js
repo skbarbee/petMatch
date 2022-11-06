@@ -13,8 +13,8 @@ export const createPetMessage = (user, petId, newPetMessage) => {
 }
 
 // UPDATE message
-export const updatePetMessage = (user, petId, updatedPetMessage) => {
-	console.log('this is updatedPetMessage', updatedPetMessage)
+export const updatePetMessage = (user, petId,  updatedPetMessage) => {
+    console.log('this is updatedPetMessage', updatedPetMessage)
 	return axios({
 		url: `${apiUrl}/petMessages/${petId}/${updatedPetMessage._id}`,
 		method: 'PATCH',

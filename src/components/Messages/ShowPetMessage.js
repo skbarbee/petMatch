@@ -11,7 +11,10 @@ const ShowPetMessage = (props) => {
 
     const [editPetMessageModalShow, setEditPetMessageModalShow] = useState(false)
     const userString = JSON.stringify(props.user.email)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 30657cbb1350ccba4c0696b893cb9af041e202e8
 
     const destroyPetMessage = () => {
         deletePetMessage(user, pet._id, petMessage._id)
@@ -39,6 +42,7 @@ const ShowPetMessage = (props) => {
             <Card className="m-1" border="primary">
                 <Card.Header> <h3> Message from {petMessage.name} </h3> </Card.Header>
                 <Card.Body>
+<<<<<<< HEAD
                     <p> {petMessage.message} </p>
                     <p> {petMessage.daysAvailable}  </p>
 
@@ -65,6 +69,44 @@ const ShowPetMessage = (props) => {
                             </>
                             :
                             null
+=======
+                    <h4> { petMessage.message } </h4>
+                    <h4> { petMessage.daysAvailable }  </h4>
+                   
+                </Card.Body>
+                <Card.Footer>
+                    { 
+                        user && pet.owner && user._id === pet.owner._id 
+                        ?
+                        <>
+                        <ButtonGroup>
+                            <Button
+                                className="m-1"
+                                variant="secondary"
+                                onClick={() => setEditPetMessageModalShow(true)}
+                            >
+                                {/* { user && petMessages.author && userString == rating.author } */}
+                                Edit Message
+                            </Button>
+                            <Button 
+                                className="m-1"
+                                variant="danger"
+                                onClick={() => destroyPetMessage()}
+                            >
+                                Delete Message
+                            </Button>  
+                            <Button 
+                                className=" disabled m-1"
+                                variant="info"
+                                
+                            >
+                                Reply to Message
+                            </Button> 
+                         </ButtonGroup>
+                        </>  
+                        :
+                        null
+>>>>>>> 30657cbb1350ccba4c0696b893cb9af041e202e8
                     }
                 </Card.Footer>
             </Card>
