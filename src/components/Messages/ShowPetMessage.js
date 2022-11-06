@@ -37,10 +37,10 @@ const ShowPetMessage = (props) => {
     return (
         <>
             <Card className="m-1" border="primary">
-                <Card.Header> Message from {petMessage.name} </Card.Header>
+                <Card.Header> <h3> Message from {petMessage.name} </h3> </Card.Header>
                 <Card.Body>
-                    <p> { petMessage.message } </p>
-                    <p> { petMessage.daysAvailable }  </p>
+                    <h4> { petMessage.message } </h4>
+                    <h4> { petMessage.daysAvailable }  </h4>
                    
                 </Card.Body>
                 <Card.Footer>

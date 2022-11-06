@@ -111,11 +111,11 @@ const PetShow = (props) => {
 	const setImage = (type)=>{
         if(!pet.img){
 		    if(type === "DOG"){
-			    return <Image fluid  src={dogPic} />
+			    return <Image fluid style={{width:'80%', height:'80%',}}  src={dogPic} />
 		    }else if(type ==="CAT"){
-			    return <Image fluid  src={catPic} />
+			    return <Image fluid style={{width:'80%', height:'80%',}}  src={catPic} />
 		    }else{
-                return <Image fluid  src={animalPic} />
+                return <Image fluid style={{width:'80%', height:'80%',}} src={animalPic} />
             }
         }else{
             return   <Image fluid style={{width:'100%', height:'100%', border: 'solid #d838f2'}} src={pet.img} />
@@ -179,7 +179,7 @@ const PetShow = (props) => {
                     </Card.Header>
                 </Col>
                 <Col className='mx-auto mt-5'>
-                    <Container className='justify-center'>
+                    <Container className='justify-content-center'>
                     {pet ? setImage(pet.typeOfPet) : null}
                     </Container>
                     <Card.Body>
@@ -230,7 +230,7 @@ const PetShow = (props) => {
                                 onClick={() => setNewRatingShow(true)} 
                                 className="m-2" 
                                 variant="info">
-                                <h3> Rate your date with { pet.name }! </h3>
+                                <h4> Rate your date with { pet.name }! </h4>
                             </Button>
                             <Button
                                 style={{color:"white"}} 
@@ -238,7 +238,7 @@ const PetShow = (props) => {
                                 onClick={() => setPetMessageModalShow(true)} 
                                 className="m-2" 
                                 variant="info">
-                                    <h3>Leave a message!</h3>
+                                    <h4>Leave a message!</h4>
                             </Button>
                         </ButtonGroup>
                         </Container>
