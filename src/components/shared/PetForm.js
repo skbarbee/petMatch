@@ -6,6 +6,7 @@ import PetCheckBox from './PetCheckBox'
 const PetForm = (props) => {
     // here are the props we're going to bring into our form
     const { pet, handleChange, heading, handleSubmit, handleCheck } = props
+    // Remove console log or comment them out
     console.log(pet.available)
 
     // const [checked, setChecked] = React.useState(false);

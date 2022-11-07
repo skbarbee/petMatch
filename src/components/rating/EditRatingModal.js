@@ -13,6 +13,7 @@ const EditRatingModal = (props) => {
     } = props
 
     const [rating, setRating] = useState(props.rating)
+    // Remove console logs or comment them out
     console.log(pet, "im the pet")
   
 

@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // CREATE
 export const createPetMessage = (user, petId, newPetMessage) => {
+	// Remove console logs or comment them out
 	console.log('the user in createPetMessage', user)
 	console.log('the newPetMessage in createPetMessage', newPetMessage)
 	return axios({
@@ -14,14 +15,15 @@ export const createPetMessage = (user, petId, newPetMessage) => {
 
 // UPDATE message
 export const updatePetMessage = (user, petId,  updatedPetMessage) => {
-    console.log('this is updatedPetMessage', updatedPetMessage)
+	// Remove console logs or comment them out
+	console.log('this is updatedPetMessage', updatedPetMessage)
 	return axios({
 		url: `${apiUrl}/petMessages/${petId}/${updatedPetMessage._id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,
 		},
-		data: { petMessages: updatedPetMessage }
+		data: { petMessages: updatedPetMessage },
 	})
 }
 

@@ -18,8 +18,9 @@ const PetCreate = ({ user, msgAlert }) => {
 	const [pet, setPet] = useState(defaultPet)
 
 	const handleCheck = () => {
-		console.log("clicked")
-		setPet(prevPet => {
+		// Remove console logs or comment them out
+		console.log('clicked')
+		setPet((prevPet) => {
 			return { ...prevPet, available: !prevPet.available }
 		})
 	}
@@ -28,22 +29,25 @@ const PetCreate = ({ user, msgAlert }) => {
 		setPet(prevPet => {
 			const updatedName = e.target.name
 			let updatedValue = e.target.value
+			// Remove console logs or comment them out
 			console.log(updatedValue)
 
+			// Remove unused `available` check here if the above `handleCheck` is working
 			if (updatedName === 'available' && e.target.checked) {
 				updatedValue = true
 			} else if (updatedName === 'available' && !e.target.checked) {
 				updatedValue = false
 			}
 
-			if (updatedName === "typeOfPet") {
+			if (updatedName === 'typeOfPet') {
 				updatedValue = e.target.value.toUpperCase()
-			} else if (updatedName === "name") {
+			} else if (updatedName === 'name') {
 				updatedValue = e.target.value
-			} else if (updatedName === "breed") {
+			} else if (updatedName === 'breed') {
 				updatedValue = e.target.value
 			}
 			const updatedPet = { [updatedName]: updatedValue }
+			// Remove console logs or comment them out
 			console.log(updatedPet)
 			return { ...prevPet, ...updatedPet }
 		})
@@ -53,6 +57,7 @@ const PetCreate = ({ user, msgAlert }) => {
 
 		petCreate(pet, user)
 			//    .then(res => { navigate(`/petmatch/${res.data.pet._id}`)})
+			// remove unused `res` from  scope
 			.then(res => { navigate(`/petmatch`) })
 			.then(() => {
 				msgAlert({

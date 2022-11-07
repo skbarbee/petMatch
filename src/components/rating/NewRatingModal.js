@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Modal } from 'react-bootstrap'
 import RatingForm from '../shared/RatingForm'
 import { createRating } from '../../api/rating'
+// Remove unused import
 import { useParams } from 'react-router-dom'
 
 
@@ -40,6 +41,7 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
     e.preventDefault()
+    // remove console log or comment it out
     console.log('this is the petId', pet._id)
     createRating(user, pet._id, rating)
         

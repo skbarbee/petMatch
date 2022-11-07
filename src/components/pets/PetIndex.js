@@ -13,6 +13,7 @@ import { petIndex } from '../../api/pet'
 const PetIndex = ({ user, msgAlert }) => {
 
 
+    // This is a solution for images but we can do something that uses the react library to include images. Inside the `public` folder create an `assets` or `images` folder then you can refer to the images from there like <Image fluid  src={`${process.env.PUBLIC_URL}/assets/defaultDog.png`} />
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
     const animalPic = require('../shared/images/defaultAnimal.png')

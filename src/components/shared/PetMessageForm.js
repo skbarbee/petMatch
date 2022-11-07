@@ -2,8 +2,10 @@ import React from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 
 const PetMessageForm = (props) => {
+    // remove unused `pet`
     const {petMessage, pet, handleChange, handleSubmit, heading} = props
     
+    // Remove console log or comment them out
     console.log('this is petMessage in the form\n',petMessage )
    
     

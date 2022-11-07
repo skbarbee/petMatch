@@ -5,10 +5,12 @@ import EditRatingModal from './EditRatingModal'
 
 const ShowRating = (props) => {
     const { rating, pet, user, msgAlert, triggerRefresh } = props
+    // Remove console log or comment it out
     console.log('this is the rating.author\n', rating.author)
     console.log('this is the user.email\n', props.user.email)
     const [editModalShow, setEditModalShow] = useState(false)
 
+    // You do not need to `stringify` the `email` key. More details left in ShowPetMessage component
   const userString = JSON.stringify(props.user.email)
 
     // this function removes a rating, is only available to pet owner
@@ -44,6 +46,7 @@ const ShowRating = (props) => {
                 </Card.Body>
                 <Card.Footer className="justify-content-end">
                     { 
+                    // Alway use strict equality! And same comment here as in ShowPetMessage
                         user && rating.author && userString == rating.author
                         ?
                         <>

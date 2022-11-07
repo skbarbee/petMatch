@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import PetForm from '../shared/PetForm'
 import { petUpdate, petShow } from '../../api/pet'
+// Remove unused import
 import PetShow from './PetShow'
 import { useParams } from 'react-router-dom'
 
@@ -22,6 +23,7 @@ const EditPetModal = (props) => {
         petShow(user, id)
             .then((res) => {
                 setPet(res.data.pet)
+                // Remove console logs or comment them out
                 console.log("this is the id", id)
             })
             .catch((error) => {
@@ -34,6 +36,7 @@ const EditPetModal = (props) => {
     }, [])
 
     const handleCheck = () => {
+        // Remove console logs or comment them out
         console.log("clicked")
         setPet(prevPet => {
             return { ...prevPet, available: !prevPet.available }
@@ -45,8 +48,10 @@ const EditPetModal = (props) => {
         setPet(prevPet => {
             const updatedName = e.target.name
             let updatedValue = e.target.value
+            // Remove console logs or comment them out
             console.log(updatedValue)
 
+            // Remove or comment out usused `available` condition here is the above `handleCheck` is handling the check
             if (updatedName === 'available' && e.target.checked) {
                 updatedValue = true
             } else if (updatedName === 'available' && !e.target.checked) {
@@ -61,6 +66,7 @@ const EditPetModal = (props) => {
                 updatedValue = e.target.value
             }
             const updatedPet = { [updatedName]: updatedValue }
+            // Remove console logs or comment them out
             console.log(updatedPet)
             return { ...prevPet, ...updatedPet }
         })

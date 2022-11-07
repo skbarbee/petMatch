@@ -27,12 +27,14 @@ export const petUpdate = (data, user, id) => {
 	})
 }
 
+// Remove usused `user` param
 export const petIndex = (user) => {
 	return axios({
 		method: 'GET',
 		url: apiUrl + '/petmatch'
 	})
 }
+// Remove usused `user` param
 export const petShow = (user, id) => {
 	return axios({
 		method: 'GET',

@@ -7,6 +7,7 @@ import UploadPetPicture from './UploadPetPictureModal'
 import NewRatingModal from '../rating/NewRatingModal'
 import ShowRating from '../rating/ShowRating'
 import NewPetMessageModal from "../Messages/NewPetMessageModal"
+// Remove unsued import
 import ShowPetMessage from "../Messages/ShowPetMessage"
 import MessageOffCanvas from '../shared/MessageOfCanvas'
 
@@ -25,6 +26,7 @@ const PetShow = (props) => {
     const [updated, setUpdated] = useState(false)
     const [deleted, setDeleted] = useState(false)
     const [petMessageModalShow, setPetMessageModalShow] = useState(false)
+    // Remove unused state object
     const [petMessages, setPetMessages] = useState(false)
 
     const { id } = useParams()
@@ -50,10 +52,12 @@ const PetShow = (props) => {
     
     const makeRatingCards = () => {
         let ratingCards = []
+        // Remove console logs or comment them out
         console.log("inside make rating cards before if", pet)
         if (pet && pet.rating.length >0) {
             // map over the ratings
             // produce one ShowRating component for each of them
+            // remove console logs or comment them out
             console.log("making rating cards if")
             ratingCards = pet.rating.map(rating => (
                 <ShowRating 
@@ -91,8 +95,10 @@ const PetShow = (props) => {
     useEffect(() => {
         petShow(user, id)
             .then((res) => {
+                // Remove console logs or comment them out
                 console.log(res.data.pet)
                 setPet(res.data.pet)
+                // Remove console logs or comment them out
                 console.log("this is the id in the updated useeffect", id) //this is the id in the updated useEffect
             })
             .catch((error) => {
@@ -105,6 +111,7 @@ const PetShow = (props) => {
     },[updated] ) //this use effect only runs when updated is changed. consider adding a new useeffect that runs on mount "[]"
 
 
+    // Same comments on the image handling as I left in the PetIndex.js component
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
     const animalPic = require('../shared/images/defaultAnimal.png')
@@ -157,6 +164,8 @@ const PetShow = (props) => {
 
     return (
     <Container>
+        {/* Same comment on this as I left in the ShowPetMessage.js component */}
+        {/* Also remember conditional rendering here */}
          { pet && pet.owner && user && pet.owner._id === user._id 
                         ?
         <Container fluid className='mt-5 justify-content-end'>
@@ -183,6 +192,7 @@ const PetShow = (props) => {
                     {pet ? setImage(pet.typeOfPet) : null}
                     </Container>
                     <Card.Body>
+                        {/* Same comment as above */}
                     { pet && pet.owner && user && pet.owner._id === user._id 
                         ?
                     <Row className="userButtonGroup">

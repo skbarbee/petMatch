@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 const Upload = ({user,pet})=>{
 	
+	// since we are not using the `setFileInputState` this `fileInputState` can just be a pojo here and not a state object
 	const [fileInputState, setFileInputState] = useState('')
 	
 	const [previewSource,setPreviewSource] = useState('')
@@ -18,6 +19,7 @@ const Upload = ({user,pet})=>{
 		const reader = new FileReader()
 		//converts image to string
 		reader.readAsDataURL(file)
+		// remove console log or comment them out
 		console.log(file)
 		
 		reader.onloadend=()=>{
@@ -28,6 +30,7 @@ const Upload = ({user,pet})=>{
 	const handleFileInputChange = (e)=>{
 		const file = e.target.files[0]
 		previewFile(file)
+		// remove console log or comment them out
 		console.log(previewSource)
 		
 	}
@@ -37,13 +40,16 @@ const Upload = ({user,pet})=>{
 	let imgFile = previewSource
 	
 		imageCreate(petId, user, imgFile )
+		// can remove unused `res` here
 		.then(res =>{ navigate(`/petmatch/${petId}`)} )
 		.catch((error)=>{
+			// We never just console log the error we always want to hanlde them so the end user is able to know that and error happened. Pass this error to the msgAlert function to make an error message the end user will be able to see. 
 			console.log(error)
 		})
 	}
 
 	const handSubmitFile =(e)=>{
+		// remove console log or comment them out
 		console.log('submitting')
 		e.preventDefault()
 		if(!previewSource) return;
@@ -68,6 +74,7 @@ const Upload = ({user,pet})=>{
 				
 			</Form>	
 			{previewSource && (
+				// same comment with the alt text as left in UploadPetPictureModal
 				<img src ={previewSource} alt='chosen picture'
 				style={{height: '300px'}}/>
 			)}

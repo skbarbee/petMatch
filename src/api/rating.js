@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // CREATE
 export const createRating = (user, petId, newRating) => {
+	// Remove console logs or comment them out
 	console.log('the user in createRating', user)
 	console.log('the newRating in createRating', newRating)
 	console.log('petId', petId)
@@ -12,12 +13,13 @@ export const createRating = (user, petId, newRating) => {
 		headers: {
 			Authorization: `Token token=${user.token}`,
 		},
-		data: { rating: newRating }
+		data: { rating: newRating },
 	})
 }
 
 // UPDATE rating
 export const updateRating = (user, petId, updatedRating) => {
+	// Remove console logs or comment them out
 	console.log('this is updatedRating', updatedRating)
 	return axios({
 		url: `${apiUrl}/rating/${petId}/${updatedRating._id}`,
@@ -25,7 +27,7 @@ export const updateRating = (user, petId, updatedRating) => {
 		headers: {
 			Authorization: `Token token=${user.token}`,
 		},
-		data: { rating: updatedRating }
+		data: { rating: updatedRating },
 	})
 }
 

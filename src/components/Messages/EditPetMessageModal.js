@@ -12,6 +12,7 @@ const EditPetMessageModal = (props) => {
         msgAlert, triggerRefresh, pet
     } = props
 
+    // Remove usused `useParams()` call
     const {petId, messageId} = useParams()
     const [petMessage, setPetMessage] = useState(props.petMessage)
 

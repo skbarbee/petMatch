@@ -6,6 +6,7 @@ const MessageOffCanvas = (props)=>{
 
 	const {pet, user, msgAlert, setUpdated} = props
 	const petMessages = pet.petMessages
+  // remove console log or comment them out
 	console.log('this is pet in props\n', pet)
 
 	const [show, setShow] = useState(false);
@@ -14,6 +15,7 @@ const MessageOffCanvas = (props)=>{
 
 	let petMessageCards
     if (pet) {
+      // remove console log or comment them out
         console.log("this is the pet in MESSAGECARDS", pet)
         if (petMessages.length > 0) {
             // map over the petMessages
