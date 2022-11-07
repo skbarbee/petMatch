@@ -3,8 +3,8 @@ import axios from 'axios'
 
 // CREATE
 export const createPetMessage = (user, petId, newPetMessage) => {
-    console.log('the user in createPetMessage', user)
-    console.log('the newPetMessage in createPetMessage', newPetMessage)
+	console.log('the user in createPetMessage', user)
+	console.log('the newPetMessage in createPetMessage', newPetMessage)
 	return axios({
 		url: `${apiUrl}/petMessages/${petId}`,
 		method: 'POST',

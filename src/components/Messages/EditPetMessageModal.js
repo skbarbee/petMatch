@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom'
 
 
 const EditPetMessageModal = (props) => {
-    const { 
-        user, show, handleClose, 
-        msgAlert, triggerRefresh, pet 
+    const {
+        user, show, handleClose,
+        msgAlert, triggerRefresh, pet
     } = props
 
     const {petId, messageId} = useParams()
@@ -54,9 +54,9 @@ const EditPetMessageModal = (props) => {
 
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton/>
+            <Modal.Header closeButton />
             <Modal.Body>
-                <PetMessageForm 
+                <PetMessageForm
                     petMessage={petMessage}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}

@@ -3,8 +3,8 @@ import axios from 'axios'
 
 // CREATE
 export const createRating = (user, petId, newRating) => {
-    console.log('the user in createRating', user)
-    console.log('the newRating in createRating', newRating)
+	console.log('the user in createRating', user)
+	console.log('the newRating in createRating', newRating)
 	console.log('petId', petId)
 	return axios({
 		method: 'POST',
@@ -18,7 +18,7 @@ export const createRating = (user, petId, newRating) => {
 
 // UPDATE rating
 export const updateRating = (user, petId, updatedRating) => {
-    console.log('this is updatedRating', updatedRating)
+	console.log('this is updatedRating', updatedRating)
 	return axios({
 		url: `${apiUrl}/rating/${petId}/${updatedRating._id}`,
 		method: 'PATCH',

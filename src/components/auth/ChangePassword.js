@@ -8,47 +8,47 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const ChangePassword = (props) => {
-	// constructor(props) {
-	// 	super(props)
+    // constructor(props) {
+    // 	super(props)
 
-	// 	this.state = {
-	// 		oldPassword: '',
-	// 		newPassword: '',
-	// 	}
-	// }
+    // 	this.state = {
+    // 		oldPassword: '',
+    // 		newPassword: '',
+    // 	}
+    // }
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
 
     const navigate = useNavigate()
 
-	const onChangePassword = (event) => {
-		event.preventDefault()
+    const onChangePassword = (event) => {
+        event.preventDefault()
 
-		const { msgAlert, user } = props
+        const { msgAlert, user } = props
         console.log('the user', user)
-        
 
-        const passwords = {oldPassword, newPassword}
 
-		changePassword(passwords, user)
-			.then(() =>
-				msgAlert({
-					heading: 'Change Password Success',
-					message: messages.changePasswordSuccess,
-					variant: 'success',
-				})
-			)
-			.then(() => navigate('/'))
-			.catch((error) => {
-				setOldPassword('')
+        const passwords = { oldPassword, newPassword }
+
+        changePassword(passwords, user)
+            .then(() =>
+                msgAlert({
+                    heading: 'Change Password Success',
+                    message: messages.changePasswordSuccess,
+                    variant: 'success',
+                })
+            )
+            .then(() => navigate('/'))
+            .catch((error) => {
+                setOldPassword('')
                 setNewPassword('')
-				msgAlert({
-					heading: 'Change Password Failed with error: ' + error.message,
-					message: messages.changePasswordFailure,
-					variant: 'danger',
-				})
-			})
-	}
+                msgAlert({
+                    heading: 'Change Password Failed with error: ' + error.message,
+                    message: messages.changePasswordFailure,
+                    variant: 'danger',
+                })
+            })
+    }
 
 
 
