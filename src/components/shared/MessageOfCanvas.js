@@ -6,7 +6,7 @@ const MessageOffCanvas = (props)=>{
 
 	const {pet, user, msgAlert, setUpdated} = props
 	const petMessages = pet.petMessages
-	console.log('this is pet in props\n', pet)
+	
 
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
@@ -14,7 +14,7 @@ const MessageOffCanvas = (props)=>{
 
 	let petMessageCards
     if (pet) {
-        console.log("this is the pet in MESSAGECARDS", pet)
+       
         if (petMessages.length > 0) {
             // map over the petMessages
             // produce one ShowPetMessage component for each of them

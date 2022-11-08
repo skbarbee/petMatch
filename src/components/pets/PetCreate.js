@@ -18,7 +18,7 @@ const PetCreate = ({ user, msgAlert }) => {
 	const [pet, setPet] = useState(defaultPet)
 
 	const handleCheck = () => {
-		console.log("clicked")
+	
 		setPet(prevPet => {
 			return { ...prevPet, available: !prevPet.available }
 		})
@@ -28,7 +28,7 @@ const PetCreate = ({ user, msgAlert }) => {
 		setPet(prevPet => {
 			const updatedName = e.target.name
 			let updatedValue = e.target.value
-			console.log(updatedValue)
+		
 
 			if (updatedName === 'available' && e.target.checked) {
 				updatedValue = true
@@ -44,7 +44,7 @@ const PetCreate = ({ user, msgAlert }) => {
 				updatedValue = e.target.value
 			}
 			const updatedPet = { [updatedName]: updatedValue }
-			console.log(updatedPet)
+		
 			return { ...prevPet, ...updatedPet }
 		})
 	}
@@ -62,7 +62,7 @@ const PetCreate = ({ user, msgAlert }) => {
 				})
 			})
 			.catch((error) => {
-				console.log(error)
+				
 				msgAlert({
 					heading: 'Failure',
 					message: 'Create Pet Failure' + error,

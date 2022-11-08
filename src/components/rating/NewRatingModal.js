@@ -40,7 +40,7 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('this is the petId', pet._id)
+   
     createRating(user, pet._id, rating)
         
         .then(() => handleClose())

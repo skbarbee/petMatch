@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { imageCreate } from "../../api/image";
 import { useNavigate, useParams } from 'react-router-dom'
 
-const Upload = ({user,pet})=>{
+const Upload = ({user,pet, msgAlert})=>{
 	
 	const [fileInputState, setFileInputState] = useState('')
 	
@@ -18,7 +18,7 @@ const Upload = ({user,pet})=>{
 		const reader = new FileReader()
 		//converts image to string
 		reader.readAsDataURL(file)
-		console.log(file)
+		
 		
 		reader.onloadend=()=>{
 			setPreviewSource(reader.result) 
@@ -28,7 +28,7 @@ const Upload = ({user,pet})=>{
 	const handleFileInputChange = (e)=>{
 		const file = e.target.files[0]
 		previewFile(file)
-		console.log(previewSource)
+		
 		
 	}
 
@@ -38,13 +38,17 @@ const Upload = ({user,pet})=>{
 	
 		imageCreate(petId, user, imgFile )
 		.then(res =>{ navigate(`/petmatch/${petId}`)} )
-		.catch((error)=>{
-			console.log(error)
+		.catch((error) => {
+			msgAlert({
+				heading: 'Oh no!',
+				message: 'Something went wrong!'+ error,
+				variant: 'danger'
+			})
 		})
 	}
 
 	const handSubmitFile =(e)=>{
-		console.log('submitting')
+		
 		e.preventDefault()
 		if(!previewSource) return;
 		uploadImage(previewSource)

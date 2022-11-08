@@ -5,8 +5,7 @@ import EditRatingModal from './EditRatingModal'
 
 const ShowRating = (props) => {
     const { rating, pet, user, msgAlert, triggerRefresh } = props
-    console.log('this is the rating.author\n', rating.author)
-    console.log('this is the user.email\n', props.user.email)
+   
     const [editModalShow, setEditModalShow] = useState(false)
 
   const userString = JSON.stringify(props.user.email)

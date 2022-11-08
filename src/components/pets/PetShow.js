@@ -30,31 +30,16 @@ const PetShow = (props) => {
     const { id } = useParams()
     const navigate = useNavigate()
     
-//   useEffect(() => { //will this useEffect run before our EditRatingModal useEffect? 
-//         petShow(user, id)
-//             .then((res) => {
-//                 console.log('this is the user', user)
-//                 console.log(res.data.pet)
-//                 setPet(res.data.pet)
-//                 console.log("this is the id in the on mount useeffect", id) //this is the id in the on mount useEffect
-//             })
-//             .catch((error) => {
-//                 msgAlert({
-//                     heading: 'Failure',
-//                     message: 'Show Pet Failure' + error,
-//                     variant: 'danger'
-//                 })
-//             })
-//     },[] )
+
 
     
     const makeRatingCards = () => {
         let ratingCards = []
-        console.log("inside make rating cards before if", pet)
+       
         if (pet && pet.rating.length >0) {
             // map over the ratings
             // produce one ShowRating component for each of them
-            console.log("making rating cards if")
+           
             ratingCards = pet.rating.map(rating => (
                 <ShowRating 
                     key={rating._id}
@@ -68,32 +53,15 @@ const PetShow = (props) => {
         }
         return (ratingCards)
     }
-    // let petMessageCards
-    // if (pet) {
-    //     console.log("this is the pet in MESSAGECARDS", pet)
-    //     if (pet.petMessages.length > 0) {
-    //         // map over the petMessages
-    //         // produce one ShowPetMessage component for each of them
-    //         petMessageCards = pet.petMessages.map(petMessage => (
-    //             <ShowPetMessage
-    //                 key={petMessages._id}
-    //                 petMessage={petMessage}
-    //                 pet={pet}
-    //                 user = {user}
-    //                 msgAlert = {msgAlert}
-    //                 triggerRefresh = {()=>setUpdated(prev => !prev)}
-    //             />
-    //         ))
-    //     }
-    // }
+  
   
 
     useEffect(() => {
         petShow(user, id)
             .then((res) => {
-                console.log(res.data.pet)
+               
                 setPet(res.data.pet)
-                console.log("this is the id in the updated useeffect", id) //this is the id in the updated useEffect
+              
             })
             .catch((error) => {
                 msgAlert({
@@ -102,8 +70,7 @@ const PetShow = (props) => {
                     variant: 'danger'
                 })
             })
-    },[updated] ) //this use effect only runs when updated is changed. consider adding a new useeffect that runs on mount "[]"
-
+    },[updated] ) 
 
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')

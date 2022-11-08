@@ -4,7 +4,7 @@ import { Form, Container, Button } from 'react-bootstrap'
 const PetMessageForm = (props) => {
     const {petMessage, pet, handleChange, handleSubmit, heading} = props
     
-    console.log('this is petMessage in the form\n',petMessage )
+   
    
     
     
