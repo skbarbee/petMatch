@@ -1,4 +1,5 @@
 # Pet Match 
+
 ## Overview
 This application is a full stack application where users can create profiles for thier pets in hopes of finding matches for play dates. 
 
@@ -72,10 +73,9 @@ const startPets = [
   { name: "Margarita Perez", type: "dog", breed: "Chihuahua", likes: "spa days", availableForPlayDate: false, rating: "3 fish" }
 ]
 
-## Team Assignments
- -Git Manager: Sarah
- -Back End Developer: Emily
- -Front End Developer: Sarah and Julie
- -Full Stack - Sean
-
 ```
+## Team Assignments
+ -Git Manager and Full Stack Developer: Sarah
+ -Back End and Full Stack Developer: Emily
+ -Front End Developer: Julie
+ -Full Stack Devloper: Sean
