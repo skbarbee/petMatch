@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 const PetDelete = ({ handleDeletePet }) => {
     return (
         <>
-            <button onClick={handleDeletePet}>Delete Cat</button>
+            <button onClick={handleDeletePet}>Delete Pet</button>
         </>
     )
 }

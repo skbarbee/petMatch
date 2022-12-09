@@ -78,4 +78,4 @@ const Header = ({ user }) => (
 	</Navbar>
 )
 
-export default Header
+export default Header 
