@@ -74,6 +74,7 @@ const startPets = [
 ]
 
 ```
+
 ## Team Assignments
  -Git Manager and Full Stack Developer: Sarah
  -Back End and Full Stack Developer: Emily
