@@ -12,6 +12,7 @@ const UploadPetPicture = (props) => {
 		msgAlert, triggerRefresh,
 	} = props
 
+<<<<<<< HEAD
 	const cld = new Cloudinary({
 		cloud: {
 			cloud_name: "dp5dt9bdn", //Your cloud name
@@ -20,6 +21,10 @@ const UploadPetPicture = (props) => {
 	});
 	//console.log('this is cloud-info',cld)
 
+=======
+	
+	
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 	const { id } = useParams()
 
 	const [imageSelected, setImageSelected] = useState('')
@@ -27,18 +32,32 @@ const UploadPetPicture = (props) => {
 	// let public_id = null
 
 	const uploadImage = (files) => {
+<<<<<<< HEAD
 		// console.log(files[0])
 		const formData = new FormData()
+=======
+	
+		const formData = new FormData ()
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 		formData.append("file", imageSelected)
 		formData.append("upload_preset", "bgbb6aec")
 
 		Axios.post("https://api.cloudinary.com/v1_1/dh1mfxtcq/image/upload", formData)
+<<<<<<< HEAD
 			.then((response) => {
 				console.log('cloudinaryResponse:\n', response.data.url);
 				// public_id = response.data.public_id
 				setPicture(response.data.url)
 				console.log('pictureAfterUpload:\n', picture)
 			});
+=======
+		.then((response) => {
+			//console.log('cloudinaryResponse:\n', response.data.url);
+		
+			setPicture(response.data.url)
+			
+		});
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 	};
 
 	const addImagetoUser = () => {

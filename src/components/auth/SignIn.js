@@ -16,7 +16,7 @@ const SignIn = (props) => {
 
     const onSignIn = (event) => {
         event.preventDefault()
-        console.log('the props', props)
+       
         const { msgAlert, setUser } = props
 
         const credentials = { email, password }

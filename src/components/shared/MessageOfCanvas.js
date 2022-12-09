@@ -4,14 +4,21 @@ import ShowPetMessage from "../Messages/ShowPetMessage";
 
 const MessageOffCanvas = (props) => {
 
+<<<<<<< HEAD
   const { pet, user, msgAlert, setUpdated } = props
   const petMessages = pet.petMessages
   console.log('this is pet in props\n', pet)
+=======
+	const {pet, user, msgAlert, setUpdated} = props
+	const petMessages = pet.petMessages
+	
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+<<<<<<< HEAD
   let petMessageCards
   if (pet) {
     console.log("this is the pet in MESSAGECARDS", pet)
@@ -30,6 +37,27 @@ const MessageOffCanvas = (props) => {
       ))
     } else {
       petMessageCards = <h2>No messages yet 😭</h2>
+=======
+	let petMessageCards
+    if (pet) {
+       
+        if (petMessages.length > 0) {
+            // map over the petMessages
+            // produce one ShowPetMessage component for each of them
+            petMessageCards = pet.petMessages.map(petMessage => (
+                <ShowPetMessage
+                    key={petMessages._id}
+                    petMessage={petMessage}
+                    pet={pet}
+                    user = {user}
+                    msgAlert = {msgAlert}
+                    triggerRefresh = {()=>setUpdated(prev => !prev)}
+                />
+            ))
+        } else {
+          petMessageCards = <h2>No messages yet 😭</h2>
+        }
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
     }
   }
 

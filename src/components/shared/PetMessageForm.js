@@ -2,10 +2,19 @@ import React from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 
 const PetMessageForm = (props) => {
+<<<<<<< HEAD
     const { petMessage, pet, handleChange, handleSubmit, heading } = props
 
     console.log('this is petMessage in the form\n', petMessage)
 
+=======
+    const {petMessage, pet, handleChange, handleSubmit, heading} = props
+    
+   
+   
+    
+    
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
     return (
         <Container className="justify-content-center" style={{ fontFamily: "Oswald" }}>
             <h3>{heading}</h3>

@@ -26,14 +26,24 @@ const PetShow = (props) => {
 
     const { id } = useParams()
     const navigate = useNavigate()
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 
     const makeRatingCards = () => {
         let ratingCards = []
+<<<<<<< HEAD
         console.log("inside make rating cards before if", pet)
         if (pet && pet.rating.length > 0) {
+=======
+       
+        if (pet && pet.rating.length >0) {
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
             // map over the ratings
             // produce one ShowRating component for each of them
-            console.log("making rating cards if")
+           
             ratingCards = pet.rating.map(rating => (
                 <ShowRating
                     key={rating._id}
@@ -47,13 +57,18 @@ const PetShow = (props) => {
         }
         return (ratingCards)
     }
+<<<<<<< HEAD
+=======
+  
+  
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 
     useEffect(() => {
         petShow(user, id)
             .then((res) => {
-                console.log(res.data.pet)
+               
                 setPet(res.data.pet)
-                console.log("this is the id in the updated useeffect", id) //this is the id in the updated useEffect
+              
             })
             .catch((error) => {
                 msgAlert({
@@ -62,8 +77,12 @@ const PetShow = (props) => {
                     variant: 'danger'
                 })
             })
+<<<<<<< HEAD
     }, [updated])
 
+=======
+    },[updated] ) 
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 
     const dogPic = require('../shared/images/defaultDog.png')
     const catPic = require('../shared/images/defaultCat.png')

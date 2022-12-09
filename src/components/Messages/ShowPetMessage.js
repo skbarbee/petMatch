@@ -5,9 +5,8 @@ import EditPetMessageModal from '../Messages/EditPetMessageModal'
 
 const ShowPetMessage = (props) => {
     const { petMessage, pet, user, msgAlert, triggerRefresh } = props
-    console.log('this is the props', props)
-    console.log('this is the user in showPet\n', user)
-    console.log('this is the petMessage \n', petMessage)
+    
+   
 
     const [editPetMessageModalShow, setEditPetMessageModalShow] = useState(false)
     const userString = JSON.stringify(props.user.email)

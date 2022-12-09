@@ -31,9 +31,31 @@ const NewRatingModal = (props) => {
             }
             const updatedRating = { [name]: value }
 
+<<<<<<< HEAD
             return {
                 ...prevRating, ...updatedRating
             }
+=======
+        return {
+            ...prevRating, ...updatedRating
+        }
+    })
+}
+
+const handleSubmit = (e) => {
+    e.preventDefault()
+   
+    createRating(user, pet._id, rating)
+        
+        .then(() => handleClose())
+        .then(() => {
+           
+            msgAlert({
+                heading: 'Thank you!',
+                message: 'The pet appreciates your feedback!',
+                variant: 'success'
+            })
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
         })
     }
 

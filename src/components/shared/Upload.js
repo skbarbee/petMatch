@@ -3,8 +3,13 @@ import { Button, Form } from "react-bootstrap";
 import { imageCreate } from "../../api/image";
 import { useNavigate, useParams } from 'react-router-dom'
 
+<<<<<<< HEAD
 const Upload = ({ user, pet }) => {
 
+=======
+const Upload = ({user,pet, msgAlert})=>{
+	
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 	const [fileInputState, setFileInputState] = useState('')
 
 	const [previewSource, setPreviewSource] = useState('')
@@ -18,23 +23,36 @@ const Upload = ({ user, pet }) => {
 		const reader = new FileReader()
 		//converts image to string
 		reader.readAsDataURL(file)
+<<<<<<< HEAD
 		console.log(file)
 
 		reader.onloadend = () => {
 			setPreviewSource(reader.result)
+=======
+		
+		
+		reader.onloadend=()=>{
+			setPreviewSource(reader.result) 
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 		}
 	}
 
 	const handleFileInputChange = (e) => {
 		const file = e.target.files[0]
 		previewFile(file)
+<<<<<<< HEAD
 		console.log(previewSource)
 
+=======
+		
+		
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 	}
 
 	const uploadImage = async (previewSource) => {
 		let imgFile = previewSource
 
+<<<<<<< HEAD
 		imageCreate(petId, user, imgFile)
 			.then(res => { navigate(`/petmatch/${petId}`) })
 			.catch((error) => {
@@ -44,6 +62,24 @@ const Upload = ({ user, pet }) => {
 
 	const handSubmitFile = (e) => {
 		console.log('submitting')
+=======
+	const uploadImage =async (previewSource) => {
+	let imgFile = previewSource
+	
+		imageCreate(petId, user, imgFile )
+		.then(res =>{ navigate(`/petmatch/${petId}`)} )
+		.catch((error) => {
+			msgAlert({
+				heading: 'Oh no!',
+				message: 'Something went wrong!'+ error,
+				variant: 'danger'
+			})
+		})
+	}
+
+	const handSubmitFile =(e)=>{
+		
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 		e.preventDefault()
 		if (!previewSource) return;
 		uploadImage(previewSource)

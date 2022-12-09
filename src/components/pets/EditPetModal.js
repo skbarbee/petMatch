@@ -11,7 +11,7 @@ const EditPetModal = (props) => {
         user, show, handleClose,
         msgAlert, triggerRefresh
     } = props
-    //console.log("this is the props.pet in editPetModal\n", props.pet)
+   
 
     const [pet, setPet] = useState(props.pet)
 
@@ -21,7 +21,7 @@ const EditPetModal = (props) => {
         petShow(user, id)
             .then((res) => {
                 setPet(res.data.pet)
-                console.log("this is the id", id)
+              
             })
             .catch((error) => {
                 msgAlert({
@@ -33,18 +33,18 @@ const EditPetModal = (props) => {
     }, [])
 
     const handleCheck = () => {
-        console.log("clicked")
+  
         setPet(prevPet => {
             return { ...prevPet, available: !prevPet.available }
         })
     }
 
-    //console.log("the pet", pet)
+  
     const handleChange = (e) => {
         setPet(prevPet => {
             const updatedName = e.target.name
             let updatedValue = e.target.value
-            console.log(updatedValue)
+            
 
             if (updatedName === 'available' && e.target.checked) {
                 updatedValue = true
@@ -60,7 +60,7 @@ const EditPetModal = (props) => {
                 updatedValue = e.target.value
             }
             const updatedPet = { [updatedName]: updatedValue }
-            console.log(updatedPet)
+            
             return { ...prevPet, ...updatedPet }
         })
     }

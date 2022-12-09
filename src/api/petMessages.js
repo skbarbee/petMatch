@@ -3,8 +3,7 @@ import axios from 'axios'
 
 // CREATE
 export const createPetMessage = (user, petId, newPetMessage) => {
-	console.log('the user in createPetMessage', user)
-	console.log('the newPetMessage in createPetMessage', newPetMessage)
+	
 	return axios({
 		url: `${apiUrl}/petMessages/${petId}`,
 		method: 'POST',
@@ -14,7 +13,7 @@ export const createPetMessage = (user, petId, newPetMessage) => {
 
 // UPDATE message
 export const updatePetMessage = (user, petId,  updatedPetMessage) => {
-    console.log('this is updatedPetMessage', updatedPetMessage)
+   
 	return axios({
 		url: `${apiUrl}/petMessages/${petId}/${updatedPetMessage._id}`,
 		method: 'PATCH',

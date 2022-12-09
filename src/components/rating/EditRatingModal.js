@@ -11,7 +11,12 @@ const EditRatingModal = (props) => {
     } = props
 
     const [rating, setRating] = useState(props.rating)
+<<<<<<< HEAD
     console.log(pet, "im the pet")
+=======
+   
+  
+>>>>>>> 0c2aefa3a04d18d61d5a3f020f4372a0ce158047
 
     const handleChange = (e) => {
         setRating(prevRating => {
