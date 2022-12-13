@@ -27,13 +27,13 @@ export const petUpdate = (data, user, id) => {
 	})
 }
 
-export const petIndex = () => {
+export const petIndex = (user) => {
 	return axios({
 		method: 'GET',
 		url: apiUrl + '/petmatch'
 	})
 }
-export const petShow = (id) => {
+export const petShow = (user, id) => {
 	return axios({
 		method: 'GET',
 		url: apiUrl + '/petmatch/' + id
