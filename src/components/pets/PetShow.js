@@ -7,7 +7,6 @@ import UploadPetPicture from './UploadPetPictureModal'
 import NewRatingModal from '../rating/NewRatingModal'
 import ShowRating from '../rating/ShowRating'
 import NewPetMessageModal from "../Messages/NewPetMessageModal"
-import ShowPetMessage from "../Messages/ShowPetMessage"
 import MessageOffCanvas from '../shared/MessageOfCanvas'
 
 const PetShow = (props) => {

@@ -1,7 +1,6 @@
-import { Cloudinary } from "@cloudinary/url-gen";
 import React, { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
-import { useNavigate, useParams } from 'react-router-dom'
+import { Button, Modal } from "react-bootstrap";
+import { useParams } from 'react-router-dom'
 import Axios from 'axios'
 import { imageCreate } from '../../api/image'
 
@@ -30,7 +29,7 @@ const UploadPetPicture = (props) => {
 
 		Axios.post("https://api.cloudinary.com/v1_1/dh1mfxtcq/image/upload", formData)
 		.then((response) => {
-			//console.log('cloudinaryResponse:\n', response.data.url);
+		
 		
 			setPicture(response.data.url)
 			

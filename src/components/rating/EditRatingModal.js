@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import RatingForm from '../shared/RatingForm'
 import { updateRating } from '../../api/rating'

@@ -4,11 +4,7 @@ import { Link } from 'react-router-dom'
 import { petIndex } from '../../api/pet'
 
 
-// const cardContainerLayout = {
-//     display: 'flex',
-//     flexFlow: 'row wrap',
-//     justifyContent: 'center'
-// }
+
 
 const PetIndex = ({ user, msgAlert }) => {
 
@@ -16,6 +12,7 @@ const PetIndex = ({ user, msgAlert }) => {
     const dogPic = require('../shared/images/defaultDog.png')
 	const catPic = require('../shared/images/defaultCat.png')
     const animalPic = require('../shared/images/defaultAnimal.png')
+    
     const setImage = (type)=>{
        
 		if(type === "DOG"){
